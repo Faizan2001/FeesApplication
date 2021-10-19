@@ -1,4 +1,4 @@
-package com.example.feesapplication
+package com.example.feesapplication.data
 
 import android.app.Application
 import com.example.feesapplication.data.StudentRoomDatabase

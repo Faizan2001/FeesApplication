@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1638888888888889" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic__add_icon.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_insert_name.xml" value="0.1398148148148148" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_no_data.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/activity_main.xml" value="0.18059777102330293" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_batch_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_student_fragment.xml" value="0.371875" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/cardview_fragment.xml" value="0.18059777102330293" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/dashboard_fragment.xml" value="0.10131712259371833" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/dashboard_fragment.xml" value="0.18" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/student_list_fragment.xml" value="0.10131712259371833" />
       </map>
     </option>

@@ -3,35 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragment2">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
-        android:id="@+id/dashboardFragment2"
+        android:id="@+id/dashboardFragment"
         android:name="com.example.feesapplication.fragments.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="Dashboard" >
         <action
-            android:id="@+id/action_dashboardFragment2_to_addStudentFragment2"
-            app:destination="@id/addStudentFragment2" />
-        <action
-            android:id="@+id/action_dashboardFragment2_to_studentListFragment"
+            android:id="@+id/action_dashboardFragment_to_studentListFragment"
             app:destination="@id/studentListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addStudentFragment2"
-        android:name="com.example.feesapplication.AddStudentFragment"
-        android:label="add_student_fragment"
-        tools:layout="@layout/add_student_fragment" >
         <action
-            android:id="@+id/action_addStudentFragment2_to_dashboardFragment2"
-            app:destination="@id/dashboardFragment2" />
+            android:id="@+id/action_dashboardFragment_to_addBatchFragment"
+            app:destination="@id/addBatchFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_addStudentFragment2"
+            app:destination="@id/addStudentFragment2" />
     </fragment>
     <fragment
         android:id="@+id/studentListFragment"
-        android:name="com.example.feesapplication.StudentListFragment"
-        android:label="student_list_fragment"
+        android:name="com.example.feesapplication.fragments.StudentListFragment"
+        android:label="Student List"
         tools:layout="@layout/student_list_fragment" >
         <action
-            android:id="@+id/action_studentListFragment_to_dashboardFragment2"
-            app:destination="@id/dashboardFragment2" />
+            android:id="@+id/action_studentListFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBatchFragment"
+        android:name="com.example.feesapplication.fragments.AddBatchFragment"
+        android:label="Add Batch"
+        tools:layout="@layout/add_batch_fragment" >
+        <action
+            android:id="@+id/action_addBatchFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentFragment2"
+        android:name="com.example.feesapplication.fragments.AddStudentFragment"
+        android:label="Add Student" >
+        <action
+            android:id="@+id/action_addStudentFragment2_to_studentListFragment"
+            app:destination="@id/studentListFragment" />
     </fragment>
 </navigation>
