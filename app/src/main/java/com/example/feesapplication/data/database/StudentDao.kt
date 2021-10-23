@@ -1,6 +1,7 @@
-package com.example.feesapplication.data
+package com.example.feesapplication.data.database
 
-import android.content.ClipData
+
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 
@@ -15,6 +16,11 @@ interface StudentDao{
 
     @Delete
     suspend fun delete(student: Student)
+
+    // Flow used instead of LiveData
+
+    @Query("SELECT * FROM students ORDER BY id ASC")
+    fun getAllData(): LiveData<List<Student>>
 
 
 

@@ -1,8 +1,8 @@
 package com.example.feesapplication.data
 
 import android.app.Application
-import com.example.feesapplication.data.StudentRoomDatabase
+import com.example.feesapplication.data.database.StudentRoomDatabase
 
 class StudentApplication : Application(){
-    val database: StudentRoomDatabase by lazy {StudentRoomDatabase.getDatabase( this)}
+    val database: StudentRoomDatabase by lazy { StudentRoomDatabase.getDatabase( this)}
 }

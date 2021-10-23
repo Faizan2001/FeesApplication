@@ -1,11 +1,11 @@
-package com.example.feesapplication.data
+package com.example.feesapplication.data.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.example.feesapplication.data.Converter
 
 @Database(entities = [Student::class], version = 1, exportSchema = false)
+@TypeConverters(Converter::class)
 abstract class StudentRoomDatabase : RoomDatabase() {
 
     abstract fun studentDao() : StudentDao

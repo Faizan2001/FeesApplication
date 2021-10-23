@@ -1,10 +1,9 @@
 package com.example.feesapplication.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.feesapplication.R
 import com.example.feesapplication.databinding.DashboardFragmentBinding
 
@@ -22,12 +21,18 @@ class DashboardFragment : Fragment() {
         _binding = DashboardFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
+        binding.dashboardLayout.setOnClickListener {
+        findNavController().navigate(R.id.action_dashboardFragment_to_studentListFragment) }
 
 
-
-
+        //Set Menu
+        setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+       inflater.inflate(R.menu.dashboard_menu, menu)
     }
 
 }

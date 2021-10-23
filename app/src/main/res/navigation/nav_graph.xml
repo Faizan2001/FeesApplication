@@ -11,13 +11,24 @@
         android:label="Dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_studentListFragment"
-            app:destination="@id/studentListFragment" />
+            app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_dashboardFragment_to_addBatchFragment"
-            app:destination="@id/addBatchFragment" />
+            app:destination="@id/addBatchFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_dashboardFragment_to_addStudentFragment2"
             app:destination="@id/addStudentFragment2" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentListFragment"
@@ -44,5 +55,14 @@
         <action
             android:id="@+id/action_addStudentFragment2_to_studentListFragment"
             app:destination="@id/studentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.feesapplication.ReportFragment"
+        android:label="report_fragment"
+        tools:layout="@layout/report_fragment" >
+        <action
+            android:id="@+id/action_reportFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

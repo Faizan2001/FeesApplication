@@ -1,26 +1,21 @@
 package com.example.feesapplication.fragments
 
 import android.os.Bundle
-import android.view.*
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.example.feesapplication.R
 
 
-class StudentListFragment : Fragment() {
+class ReportFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        setHasOptionsMenu(true)
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.student_list_fragment, container, false)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-       inflater.inflate(R.menu.student_list_menu, menu)
+        return inflater.inflate(R.layout.report_fragment, container, false)
     }
 
 
