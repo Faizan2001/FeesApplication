@@ -38,7 +38,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="26" />
+                android:maxLength="26"
+                android:textColor="?attr/editTextColor"
+                android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,12 +54,13 @@
             android:layout_marginEnd="200dp"
             android:background="@drawable/textview_background"
             android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="5dp"
             android:text="@string/_16_00"
+            android:textColor="?attr/editTextColor"
             android:textSize="24sp"
             app:drawableLeftCompat="@drawable/ic_baseline_access_time_filled_24"
             app:drawableTint="@color/icons"
-            android:paddingStart="12dp"
-            android:paddingEnd="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/batchNameField" />
@@ -103,6 +106,8 @@
             android:hint="@string/select_days"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
+            android:text="@string/days"
+            android:textColor="?attr/editTextColor"
             android:textSize="20sp"
             app:drawableLeftCompat="@drawable/ic_calendar"
             app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"

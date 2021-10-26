@@ -47,6 +47,11 @@
         <action
             android:id="@+id/action_addBatchFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+        <argument
+            android:name="selectedDaysString"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="Select Days" />
     </fragment>
     <fragment
         android:id="@+id/addStudentFragment2"
