@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 // import com.example.feesapplication.DayPickerDialogFragment
@@ -18,6 +19,7 @@ import com.example.feesapplication.R
 import com.example.feesapplication.StudentViewModel
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
+import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.databinding.AddBatchFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -32,10 +34,12 @@ import kotlin.collections.ArrayList
 class AddBatchFragment : Fragment(){
 
     private val studentViewModel : StudentViewModel by viewModels()
+    private val sharedViewModel : SharedViewModel by viewModels()
 
-    private lateinit var  TimePickerTime : String
-    private lateinit var DatePickerDAy : String
 
+    private lateinit var timePickerTime : String
+
+    private  lateinit var dayPickerDays : String
 
     private var _binding: AddBatchFragmentBinding? = null
     private val binding get() = _binding!!
@@ -87,11 +91,11 @@ class AddBatchFragment : Fragment(){
             val min = picker.minute
 
             if (picker.minute < 10) {
-                TimePickerTime =  h.toString().plus(":0").plus(min.toString())
-                binding.startTimeField.setText(TimePickerTime)
+                timePickerTime =  h.toString().plus(":0").plus(min.toString())
+                binding.startTimeField.text = timePickerTime
             } else {
-                TimePickerTime = "$h:$min"
-                binding.startTimeField.setText(TimePickerTime)
+                timePickerTime = "$h:$min"
+                binding.startTimeField.text = timePickerTime
             }
 
 
@@ -143,6 +147,7 @@ class AddBatchFragment : Fragment(){
                             checkedArray[j] = false
                             daysList.clear()
                             selectedDays = ""
+                            binding.tvDay.text = ""
                         }
                         Toast.makeText(
                             activity,
@@ -170,11 +175,11 @@ class AddBatchFragment : Fragment(){
             }
 
             selectedDays = stringBuilder.toString()
-            DatePickerDAy = selectedDays
+            dayPickerDays = selectedDays
 
             Log.d("DAYS", selectedDays)
 
-            binding.tvDay.setText(DatePickerDAy)
+            binding.tvDay.text = dayPickerDays
             binding.tvDay.textSize = 15F
 
         })
@@ -189,14 +194,13 @@ class AddBatchFragment : Fragment(){
                 checkedArray[j] = false
                 daysList.clear()
                 selectedDays = ""
+                binding.tvDay.text = ""
             }
 
         })
 
         alertBuilder?.create()
         alertBuilder?.show()
-
-
 
     }
 
@@ -215,7 +219,7 @@ class AddBatchFragment : Fragment(){
 
         if (item.itemId == R.id.save_batch) {
 
-            insertDataToDb()
+            insertBatchToDb()
 
         }
 
@@ -225,14 +229,14 @@ class AddBatchFragment : Fragment(){
 
     // INSERT DATA TO DATABASE
 
-    private fun insertDataToDb() {
+    private fun insertBatchToDb() {
 
         val batchNameField = binding.batchNameField.editText?.text.toString()
         Log.d("Text grabbed", batchNameField)
         val timePickerTime = binding.timePickerButton.text.toString()
         val daysPicked = binding.tvDay.text.toString()
 
-        val validation = verifyInputData(batchNameField, timePickerTime, daysPicked)
+        val validation = sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, daysPicked)
         if (validation) {
             //Green Signal - Enter data to database
            val newBatchData = Batch(
@@ -250,15 +254,11 @@ class AddBatchFragment : Fragment(){
 
     }
 
-    private fun verifyInputData(vbatcNameField: String, vtimePickerTime: String, vdaysPicked: String): Boolean {
-
-        return if(TextUtils.isEmpty(vbatcNameField) || TextUtils.isEmpty(vtimePickerTime) || TextUtils.isEmpty(vdaysPicked))
-        {
-            false
-        } else !(vbatcNameField.isEmpty() || vtimePickerTime.isEmpty() || vdaysPicked.isEmpty())
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
+
 
 
 

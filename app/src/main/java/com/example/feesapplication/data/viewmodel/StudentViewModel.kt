@@ -14,11 +14,14 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     private val studentDao = StudentRoomDatabase.getDatabase(application).studentDao()
     private val repository: StudentRepository
 
-    private val getAllData: LiveData<List<Student>>
+    val getAllStudentData: LiveData<List<Student>>
+     val getAllBatchData: LiveData<List<Batch>>
+
 
     init {
         repository = StudentRepository(studentDao)
-        getAllData = repository.getAllData
+        getAllStudentData = repository.getAllStudentData
+        getAllBatchData = repository.getAllBatchData
     }
 
     fun insertBatch(batch: Batch) {

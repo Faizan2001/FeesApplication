@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
     <data>
-
+        <variable
+            name="AddStudent"
+            type="com.example.feesapplication.fragments.AddStudentFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,76 +17,85 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/studentNameField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/MyTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/name"
-            app:startIconDrawable="@drawable/ic_name_icon"
-            app:startIconTint="@color/primaryColor"
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_name_icon"
+            app:startIconTint="@color/icons">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
                 android:maxLength="31"
-                android:layout_height="wrap_content" />
+                android:textColor="?attr/editTextColor"
+                android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/contactNumberField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/MyTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/contact_number"
-            app:startIconDrawable="@drawable/ic_call_icon"
-            app:startIconTint="@color/primaryColor"
-            app:helperText=" "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/studentNameField">
+            app:layout_constraintTop_toBottomOf="@+id/studentNameField"
+            app:startIconDrawable="@drawable/ic_call_icon"
+            app:startIconTint="@color/icons">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="?attr/editTextColor"
+                android:textStyle="normal" />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/feesField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            style="@style/MyTextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            app:startIconDrawable="@drawable/ic_baseline_payments_24"
-            app:startIconTint="@color/primaryColor"
+            android:layout_marginEnd="200dp"
             android:hint="@string/fees"
             app:helperText=" "
             app:helperTextTextColor="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contactNumberField">
+            app:layout_constraintTop_toBottomOf="@+id/contactNumberField"
+            app:startIconDrawable="@drawable/ic_baseline_payments_24"
+            app:startIconTint="@color/icons">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="?attr/editTextColor"
+                android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/MyTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -96,29 +108,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feesField"
             app:startIconDrawable="@drawable/ic_email_24"
-            app:startIconTint="@color/primaryColor">
+            app:startIconTint="@color/icons">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?attr/editTextColor"
+                android:textStyle="normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="148dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/batchNameStudent"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="212dp"
             android:gravity="center|top"
-            android:text="TextView"
-            android:textSize="16sp"
+            android:text="Batch Name :"
+            android:textColor="?attr/editTextColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feesStatusField"
+            style="@style/MyBorderLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="35dp"
+            app:layout_constraintBottom_toTopOf="@+id/emailField"
+            android:hint="Fees Status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/feesField"
+            app:layout_constraintTop_toBottomOf="@+id/contactNumberField"
+            app:startIconDrawable="@drawable/ic_baseline_price_check_24"
+            app:startIconTint="@color/icons">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:textColor="?attr/editTextColor"
+                android:textStyle="bold|italic" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

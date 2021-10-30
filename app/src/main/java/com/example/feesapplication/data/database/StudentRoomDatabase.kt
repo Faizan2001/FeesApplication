@@ -6,7 +6,7 @@ import com.example.feesapplication.data.Converter
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 
-@Database(entities = [Student::class, Batch::class], version = 1, exportSchema = false)
+@Database(entities = [Student::class, Batch::class], version = 4, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class StudentRoomDatabase : RoomDatabase() {
 

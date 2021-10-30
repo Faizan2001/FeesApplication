@@ -7,7 +7,8 @@ import com.example.feesapplication.data.database.entities.Batch
 
 class StudentRepository(private val studentDao: StudentDao) {
 
-    val getAllData: LiveData<List<Student>> = studentDao.getAllData()
+    val getAllStudentData: LiveData<List<Student>> = studentDao.getAllStudentData()
+    val getAllBatchData : LiveData<List<Batch>> = studentDao.getAllBatchData()
 
     suspend fun insertStudent(student: Student){
       studentDao.insertStudent(student)

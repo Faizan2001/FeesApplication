@@ -10,7 +10,8 @@
         app:showAsAction="ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single">
 
         <item
              android:id="@+id/dashboard_sortBy"

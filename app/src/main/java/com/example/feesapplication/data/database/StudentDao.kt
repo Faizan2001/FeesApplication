@@ -24,7 +24,10 @@ interface StudentDao{
     suspend fun delete(student: Student)
 
     @Query("SELECT * FROM students ORDER BY studentName ASC")
-    fun getAllData(): LiveData<List<Student>>
+    fun getAllStudentData(): LiveData<List<Student>>
+
+    @Query("SELECT * FROM batches ORDER BY batchName ASC")
+    fun getAllBatchData(): LiveData<List<Batch>>
 
     @Transaction
     @Query("SELECT * FROM batches WHERE batchName = :batchName")

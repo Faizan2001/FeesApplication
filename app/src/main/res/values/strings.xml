@@ -27,4 +27,12 @@
     <string name="select_time">Select Time</string>
     <string name="cancel">Cancel</string>
     <string name="decline">Decline</string>
+    <string name="none">None</string>
+    <string name="my_title">My Title</string>
+
+    <string-array name="feesStatuses">
+        <item>None</item>
+        <item>Paid</item>
+        <item>Unpaid</item>
+    </string-array>
 </resources>
