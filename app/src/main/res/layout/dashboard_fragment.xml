@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
@@ -48,12 +49,12 @@
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:layout_marginBottom="294dp"
+            android:emptyDatabase="@{sharedViewModel.emptyDatabase}"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
             app:srcCompat="@drawable/ic_no_data" />
 
         <TextView
@@ -62,36 +63,13 @@
             android:layout_height="wrap_content"
             android:alpha="0.5"
             android:text="@string/no_data"
+            android:emptyDatabase="@{sharedViewModel.emptyDatabase}"
             android:textSize="18sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/recyclerView"
             app:layout_constraintTop_toBottomOf="@+id/no_data_imageView" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="297dp"
-            android:layout_marginBottom="28dp"
-            android:text="Button"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/no_data_imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="13dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/no_data_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -37,21 +37,13 @@ class DashboardFragment : Fragment() {
         binding.sharedViewModel = sharedViewModel
 
 
-        val recyclerView = binding.recyclerView
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        //Setup RecyclerView
+       setupRecyclerView()
         
         studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer {
             data -> adapter.setData(data)
         })
 
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_addStudentFragment2)
-        }
-
-        binding.button2.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_studentListFragment)
-        }
 
 
 

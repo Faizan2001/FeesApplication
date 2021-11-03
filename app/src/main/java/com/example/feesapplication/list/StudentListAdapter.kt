@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.databinding.StudentRowLayoutBinding
+import com.example.feesapplication.fragments.DashboardFragmentDirections
 
 
 class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>() {
@@ -40,6 +41,7 @@ class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>
 
         val currentStudent = studentList[position]
         holder.bind(currentStudent)
+
 
     }
 

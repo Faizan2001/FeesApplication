@@ -12,17 +12,11 @@ import kotlinx.coroutines.launch
 class StudentViewModel(application: Application): AndroidViewModel(application) {
 
     private val studentDao = StudentRoomDatabase.getDatabase(application).studentDao()
-    private val repository: StudentRepository
+    private val repository: StudentRepository = StudentRepository(studentDao)
 
-    val getAllStudentData: LiveData<List<Student>>
-     val getAllBatchData: LiveData<List<Batch>>
+    val getAllStudentData: LiveData<List<Student>> = repository.getAllStudentData
+    val getAllBatchData: LiveData<List<Batch>> = repository.getAllBatchData
 
-
-    init {
-        repository = StudentRepository(studentDao)
-        getAllStudentData = repository.getAllStudentData
-        getAllBatchData = repository.getAllBatchData
-    }
 
     fun insertBatch(batch: Batch) {
 
@@ -38,6 +32,10 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
             repository.insertStudent(student)
         }
 
+    }
+
+    fun studentsInBatch(batchName: String) : LiveData<List<Student>> {
+        return repository.studentsInBatch(batchName)
     }
 
 

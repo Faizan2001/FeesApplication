@@ -11,13 +11,22 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.example.feesapplication.MainActivity
 import com.example.feesapplication.R
 import com.example.feesapplication.data.FeeStatus
+import com.example.feesapplication.data.database.entities.Batch
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
 
+    /** ============================= List Fragment ============================= */
+
+    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    fun checkIfDatabaseEmpty(batches: List<Batch>){
+        emptyDatabase.value = batches.isEmpty()
+    }
 
 
     fun verifyBatchInputData(vbatcNameField: String, vtimePickerTime: String, vdaysPicked: String): Boolean {

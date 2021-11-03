@@ -41,6 +41,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         val currentBatch = batchList[position]
         holder.bind(currentBatch)
 
+
     }
 
     fun setData(batch: List<Batch>){

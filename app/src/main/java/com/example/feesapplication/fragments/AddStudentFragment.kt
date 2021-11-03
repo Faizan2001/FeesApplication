@@ -11,6 +11,7 @@ import com.example.feesapplication.databinding.AddStudentFragmentBinding
 import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.feesapplication.StudentViewModel
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
@@ -18,10 +19,14 @@ import com.example.feesapplication.data.viewmodel.SharedViewModel
 
 class AddStudentFragment : Fragment() {
 
+    private val args by navArgs<AddStudentFragmentArgs>()
+
     private val studentViewModel : StudentViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by viewModels()
 
+
     private lateinit var feeStatusSaved : String
+    private lateinit var batchNameSaved : String
 
     private var _binding: AddStudentFragmentBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +47,13 @@ class AddStudentFragment : Fragment() {
 
         // Inflate the layout for this fragment
         _binding = AddStudentFragmentBinding.inflate(layoutInflater, container, false)
-        binding.lifecycleOwner = this
+
+
+
+        batchNameSaved = args.currentBatchName
+        binding.batchNameStudent.text = batchNameSaved
+
+
 
 
 
@@ -80,7 +91,6 @@ class AddStudentFragment : Fragment() {
         val contactNumber = binding.contactNumberField.editText?.text.toString()
         val feesField = binding.feesField.editText?.text.toString()
         val emailField = binding.emailField.editText?.text.toString()
-        val batchName = ""
 
 
         val validation = sharedViewModel.verifyStudentInputData(studentNameField, contactNumber, feesField, feeStatusSaved, emailField)
@@ -92,13 +102,13 @@ class AddStudentFragment : Fragment() {
                 feesAmount = feesField.toDouble(),
                 feesStatus = sharedViewModel.parseFeesStatus(feeStatusSaved),
                 studentEmail = emailField,
-                batchName = " "// FIGURE OUT
+                batchName = batchNameSaved
 
             )
 
             studentViewModel.insertStudent(newStudentData)
             Toast.makeText(requireContext(),"Successfully added student!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addStudentFragment2_to_studentListFragment)
+            findNavController().navigate(R.id.action_addStudentFragment2_to_dashboardFragment)
         } else {
             Toast.makeText(requireContext(),"Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }

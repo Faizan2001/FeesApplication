@@ -1,11 +1,19 @@
 package com.example.feesapplication.updatedata
 
 import android.renderscript.RenderScript
+import android.view.View
+import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.feesapplication.R
 import com.example.feesapplication.data.FeeStatus
+import com.example.feesapplication.data.database.entities.Batch
+import com.example.feesapplication.fragments.DashboardFragmentDirections
+import com.example.feesapplication.fragments.StudentListFragment
+import com.example.feesapplication.fragments.StudentListFragmentDirections
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BindingAdapter {
@@ -22,6 +30,29 @@ class BindingAdapter {
                 }
             }
         }
+
+        @BindingAdapter("android:emptyDatabase")
+        @JvmStatic
+        fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
+            when(emptyDatabase.value){
+                true -> view.visibility = View.VISIBLE
+                false -> view.visibility = View.INVISIBLE
+            }
+        }
+
+        @BindingAdapter("android:sendBatchToStudentListFragment")
+        @JvmStatic
+        fun sendBatchToStudentListFragment(view: ConstraintLayout, currentBatch: Batch) {
+            view.setOnClickListener {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToStudentListFragment(currentBatch)
+                view.findNavController().navigate(action)
+            }
+        }
+
+
+
+
+
 
       /*  @BindingAdapter("android:feesStatusColor")
         @JvmStatic

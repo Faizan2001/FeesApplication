@@ -1,11 +1,12 @@
 package com.example.feesapplication.data.database
 
 
+
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
-import com.example.feesapplication.data.database.relation.BatchWithStudents
 
 
 @Dao
@@ -30,8 +31,8 @@ interface StudentDao{
     fun getAllBatchData(): LiveData<List<Batch>>
 
     @Transaction
-    @Query("SELECT * FROM batches WHERE batchName = :batchName")
-    suspend fun getBatchWithStudents(batchName: String): List<BatchWithStudents>
+    @Query("SELECT * FROM students WHERE batchName = :batchName")
+    fun getBatchWithStudents(batchName: String): LiveData<List<Student>>
 
 
 
