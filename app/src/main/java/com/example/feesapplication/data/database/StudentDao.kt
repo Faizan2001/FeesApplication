@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -23,6 +24,9 @@ interface StudentDao{
 
     @Delete
     suspend fun delete(student: Student)
+
+    @Query("DELETE FROM students WHERE batchName = :batchName ")
+    suspend fun deleteAllStudents(batchName: String)
 
     @Query("SELECT * FROM students ORDER BY studentName ASC")
     fun getAllStudentData(): LiveData<List<Student>>

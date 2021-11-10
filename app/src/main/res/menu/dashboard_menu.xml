@@ -6,7 +6,6 @@
         android:id="@+id/student_search"
         android:title="@string/search"
         android:icon="@drawable/ic_search_icon"
-        android:iconTint="@color/white"
         app:showAsAction="ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
@@ -27,5 +26,6 @@
                 </menu>
         </item>
     </group>
+
 
 </menu>

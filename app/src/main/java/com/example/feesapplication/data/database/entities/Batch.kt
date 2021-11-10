@@ -13,4 +13,4 @@ import kotlinx.parcelize.Parcelize
 data class Batch(
     @PrimaryKey(autoGenerate = false) val batchName : String,
     @ColumnInfo(name = "batchTime") val batchTime : String,
-    @ColumnInfo(name = "batchDays") val batchDays : String) :Parcelable
+    @ColumnInfo(name = "batchDays") val batchDays : String) : Parcelable

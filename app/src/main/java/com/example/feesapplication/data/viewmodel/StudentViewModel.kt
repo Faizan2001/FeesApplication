@@ -7,6 +7,7 @@ import com.example.feesapplication.data.database.StudentRoomDatabase
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.repository.StudentRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class StudentViewModel(application: Application): AndroidViewModel(application) {
@@ -37,6 +38,13 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     fun studentsInBatch(batchName: String) : LiveData<List<Student>> {
         return repository.studentsInBatch(batchName)
     }
+
+    fun deleteAllStudents(batchName: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllStudents(batchName)
+        }
+    }
+
 
 
 

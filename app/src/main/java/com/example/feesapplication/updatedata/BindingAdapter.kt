@@ -31,18 +31,10 @@ class BindingAdapter {
             }
         }
 
-        @BindingAdapter("android:emptyDatabase")
-        @JvmStatic
-        fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
-            when(emptyDatabase.value){
-                true -> view.visibility = View.VISIBLE
-                false -> view.visibility = View.INVISIBLE
-            }
-        }
-
         @BindingAdapter("android:sendBatchToStudentListFragment")
         @JvmStatic
         fun sendBatchToStudentListFragment(view: ConstraintLayout, currentBatch: Batch) {
+
             view.setOnClickListener {
                 val action = DashboardFragmentDirections.actionDashboardFragmentToStudentListFragment(currentBatch)
                 view.findNavController().navigate(action)

@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.feesapplication.StudentViewModel
+import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 
@@ -24,9 +25,9 @@ class AddStudentFragment : Fragment() {
     private val studentViewModel : StudentViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by viewModels()
 
-
     private lateinit var feeStatusSaved : String
     private lateinit var batchNameSaved : String
+    private lateinit var currentBatch: Batch
 
     private var _binding: AddStudentFragmentBinding? = null
     private val binding get() = _binding!!
@@ -50,7 +51,8 @@ class AddStudentFragment : Fragment() {
 
 
 
-        batchNameSaved = args.currentBatchName
+        batchNameSaved = args.currentBatch.batchName
+        currentBatch = args.currentBatch
         binding.batchNameStudent.text = batchNameSaved
 
 
@@ -108,7 +110,8 @@ class AddStudentFragment : Fragment() {
 
             studentViewModel.insertStudent(newStudentData)
             Toast.makeText(requireContext(),"Successfully added student!", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_addStudentFragment2_to_dashboardFragment)
+            val action = AddStudentFragmentDirections.actionAddStudentFragment2ToStudentListFragment(currentBatch)
+            findNavController().navigate(action)
         } else {
             Toast.makeText(requireContext(),"Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }

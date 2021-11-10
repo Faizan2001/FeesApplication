@@ -29,6 +29,7 @@
     <string name="decline">Decline</string>
     <string name="none">None</string>
     <string name="my_title">My Title</string>
+    <string name="no_students_added">No Students Added</string>
 
     <string-array name="feesStatuses">
         <item>None</item>

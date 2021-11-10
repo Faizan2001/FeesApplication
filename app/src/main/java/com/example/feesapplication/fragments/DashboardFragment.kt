@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feesapplication.R
 import com.example.feesapplication.StudentViewModel
@@ -40,9 +39,12 @@ class DashboardFragment : Fragment() {
         //Setup RecyclerView
        setupRecyclerView()
         
-        studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer {
-            data -> adapter.setData(data)
+        studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
+            adapter.setData(data)
+            sharedViewModel.checkIfBatchDatabaseEmpty(data)
         })
+
+        sharedViewModel.emptyBatchDatabase.observe(viewLifecycleOwner, Observer { showViews(it)})
 
 
 
@@ -53,6 +55,16 @@ class DashboardFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    private fun showViews(emptyBatchDatabase : Boolean) {
+        if(emptyBatchDatabase) {
+            binding.noDataImageView.visibility = View.VISIBLE
+            binding.noDataTextView.visibility = View.VISIBLE
+        } else {
+            binding.noDataImageView.visibility = View.INVISIBLE
+            binding.noDataTextView.visibility = View.INVISIBLE
+        }
     }
 
     private fun setupRecyclerView() {

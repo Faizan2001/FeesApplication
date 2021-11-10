@@ -9,5 +9,27 @@
         android:iconTint="@color/white"
         app:showAsAction="ifRoom" />
 
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/dashboard_sortBy"
+            android:title="@string/sort_by" >
+            <menu>
+                <item
+                    android:id="@+id/menu_paid_fees"
+                    android:title="@string/paid" />
+                <item
+                    android:id="@+id/menu_unpaid_fees"
+                    android:title="@string/unpaid" />
+
+            </menu>
+        </item>
+    </group>
+
+    <item
+        android:id="@+id/delete_all"
+        android:title="Delete all" />
+
 
 </menu>

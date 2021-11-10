@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.database.StudentDao
 import com.example.feesapplication.data.database.entities.Batch
+import kotlinx.coroutines.flow.Flow
 
 class StudentRepository(private val studentDao: StudentDao) {
 
@@ -19,6 +20,10 @@ class StudentRepository(private val studentDao: StudentDao) {
 
     suspend fun insertBatch(batch: Batch) {
         studentDao.insertBatch(batch)
+    }
+
+    suspend fun deleteAllStudents(batchName: String) {
+        studentDao.deleteAllStudents(batchName)
     }
 
     fun studentsInBatch(batchName : String) : LiveData<List<Student>> {
