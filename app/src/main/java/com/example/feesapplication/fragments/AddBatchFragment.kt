@@ -3,7 +3,6 @@ package com.example.feesapplication.fragments
 import android.content.DialogInterface
 
 import android.os.Bundle
-import android.text.TextUtils
 
 import android.text.format.DateFormat.is24HourFormat
 import android.util.Log
@@ -11,14 +10,12 @@ import android.view.*
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 // import com.example.feesapplication.DayPickerDialogFragment
 import com.example.feesapplication.R
-import com.example.feesapplication.StudentViewModel
+import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.data.database.entities.Batch
-import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.databinding.AddBatchFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -131,35 +128,22 @@ class AddBatchFragment : Fragment(){
                 if (checked) {
 
                     daysList.add(index)
-                    Collections.sort(daysList)
+                    daysList.sort()
 
 
                 } else {
 
-                    try {
-                        daysList.removeAt(index)
-                    } catch (e: Exception) {
 
-                        Log.d("Exception", "FACED!")
+                        daysList.drop(index)
+                        daysList.remove(index)
+                        checkedArray[index] = false
 
 
-                        for (j in checkedArray.indices) {
-                            checkedArray[j] = false
-                            daysList.clear()
-                            selectedDays = ""
-                            binding.tvDay.text = ""
-                        }
-                        Toast.makeText(
-                            activity,
-                            "Oops! Please tap 'Clear All' and try again",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
                 }
 
             })
 
-        alertBuilder?.setPositiveButton("OK", DialogInterface.OnClickListener { _, _ ->
+        alertBuilder?.setPositiveButton("Confirm", DialogInterface.OnClickListener { _, _ ->
 
 
             val stringBuilder = StringBuilder()
@@ -233,7 +217,7 @@ class AddBatchFragment : Fragment(){
 
         val batchNameField = binding.batchNameField.editText?.text.toString()
         Log.d("Text grabbed", batchNameField)
-        val timePickerTime = binding.timePickerButton.text.toString()
+        val timePickerTime = binding.startTimeField.text.toString()
         val daysPicked = binding.tvDay.text.toString()
 
         val validation = sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, daysPicked)

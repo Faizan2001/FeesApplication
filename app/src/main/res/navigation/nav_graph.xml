@@ -18,10 +18,19 @@
             app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_dashboardFragment_to_reportFragment"
-            app:destination="@id/reportFragment" />
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_dashboardFragment_to_studentListFragment"
-            app:destination="@id/studentListFragment" />
+            app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/addBatchFragment"
@@ -31,6 +40,10 @@
         <action
             android:id="@+id/action_addBatchFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -44,13 +57,12 @@
         android:name="com.example.feesapplication.fragments.AddStudentFragment"
         android:label="Add Student" >
         <action
-            android:id="@+id/action_addStudentFragment2_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
-            app:popUpTo="@id/dashboardFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_addStudentFragment2_to_studentListFragment"
             app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/studentListFragment"
             app:popUpToInclusive="true" />
         <argument
@@ -65,18 +77,32 @@
         <action
             android:id="@+id/action_reportFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/studentListFragment"
         android:name="com.example.feesapplication.fragments.StudentListFragment"
-        android:label="StudentListFragment" >
+        android:label="Student List">
         <action
             android:id="@+id/action_studentListFragment_to_addStudentFragment2"
-            app:destination="@id/addStudentFragment2" />
+            app:destination="@id/addStudentFragment2"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <argument
             android:name="currentBatch"
-            app:argType="com.example.feesapplication.data.database.entities.Batch" />
+            app:argType="com.example.feesapplication.data.database.entities.Batch"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_studentListFragment_self"
+            app:destination="@id/studentListFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

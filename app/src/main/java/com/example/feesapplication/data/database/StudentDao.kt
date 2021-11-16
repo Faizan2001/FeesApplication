@@ -23,10 +23,15 @@ interface StudentDao{
     suspend fun update(student: Student)
 
     @Delete
-    suspend fun delete(student: Student)
+    suspend fun deleteStudent(student: Student)
+
+    @Delete
+    suspend fun deleteBatch(batch: Batch)
+
 
     @Query("DELETE FROM students WHERE batchName = :batchName ")
     suspend fun deleteAllStudents(batchName: String)
+
 
     @Query("SELECT * FROM students ORDER BY studentName ASC")
     fun getAllStudentData(): LiveData<List<Student>>
@@ -37,6 +42,23 @@ interface StudentDao{
     @Transaction
     @Query("SELECT * FROM students WHERE batchName = :batchName")
     fun getBatchWithStudents(batchName: String): LiveData<List<Student>>
+
+    @Query("SELECT * FROM batches WHERE batchName LIKE :searchQuery")
+    fun searchBatchDatabase(searchQuery: String): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM students WHERE batchName = :vBatchName AND studentName LIKE :searchQuery")
+    fun searchStudentInBatch(vBatchName: String, searchQuery: String): LiveData<List<Student>>
+
+    @Query("SELECT * FROM students WHERE studentName LIKE :searchQuery")
+    fun searchStudentDatabase(searchQuery: String): LiveData<List<Student>>
+
+
+    @Query("SELECT * FROM students ORDER BY CASE WHEN status LIKE 'U%' THEN 1 WHEN status LIKE 'P%' THEN 2 WHEN status LIKE 'N%' THEN 3 END")
+    fun sortByUnpaid(): LiveData<List<Student>>
+
+    @Query("SELECT * FROM students ORDER BY CASE WHEN status LIKE 'P%' THEN 1 WHEN status LIKE 'U%' THEN 2 WHEN status LIKE 'N%' THEN 3 END")
+    fun sortByPaid(): LiveData<List<Student>>
+
 
 
 

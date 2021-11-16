@@ -20,14 +20,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/batchNameField"
             style="@style/MyTextInputLayout"
-            app:boxStrokeColor="@color/icons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/batch_name"
-            app:hintTextColor="@color/hintColor"
             app:counterEnabled="true"
             app:counterMaxLength="25"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,25 +47,26 @@
 
         <TextView
             android:id="@+id/startTimeField"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_width="180dp"
+            android:layout_height="65dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="200dp"
             android:background="@drawable/textview_background"
             android:gravity="center"
             android:hint="0:0"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
             android:textColor="?attr/editTextColor"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="normal"
             app:drawableLeftCompat="@drawable/ic_baseline_access_time_filled_24"
             app:drawableTint="@color/icons"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/batchNameField" />
+            app:layout_constraintTop_toBottomOf="@+id/batchNameField"
+            app:layout_constraintVertical_bias="0.003" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -85,22 +84,26 @@
 
         <Button
             android:id="@+id/timePickerButton"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="35dp"
             android:backgroundTint="@color/icons"
+            android:padding="5dp"
             android:text="@string/select_time"
             app:layout_constraintBottom_toTopOf="@+id/tv_day"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/startTimeField"
             app:layout_constraintTop_toBottomOf="@+id/batchNameField"
-            app:layout_constraintVertical_bias="0.255" />
+            app:layout_constraintVertical_bias="0.117" />
 
         <TextView
             android:id="@+id/tv_day"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="65dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="33dp"
             android:layout_marginEnd="32dp"
@@ -116,10 +119,12 @@
             app:drawableLeftCompat="@drawable/ic_calendar"
             app:drawableRightCompat="@drawable/ic_baseline_arrow_drop_down_24"
             app:drawableTint="@color/icons"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startTimeField" />
+            app:layout_constraintTop_toBottomOf="@+id/startTimeField"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

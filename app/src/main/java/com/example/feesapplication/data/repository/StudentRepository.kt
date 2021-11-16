@@ -12,6 +12,8 @@ class StudentRepository(private val studentDao: StudentDao) {
     val getAllStudentData: LiveData<List<Student>> = studentDao.getAllStudentData()
     val getAllBatchData : LiveData<List<Batch>> = studentDao.getAllBatchData()
 
+    val sortByUnpaid: LiveData<List<Student>> = studentDao.sortByUnpaid()
+    val sortByPaid: LiveData<List<Student>> = studentDao.sortByPaid()
 
     suspend fun insertStudent(student: Student){
       studentDao.insertStudent(student)
@@ -22,6 +24,14 @@ class StudentRepository(private val studentDao: StudentDao) {
         studentDao.insertBatch(batch)
     }
 
+    suspend fun deleteStudent(student: Student) {
+        studentDao.deleteStudent(student)
+    }
+
+    suspend fun deleteBatch(batch: Batch) {
+        studentDao.deleteBatch(batch)
+    }
+
     suspend fun deleteAllStudents(batchName: String) {
         studentDao.deleteAllStudents(batchName)
     }
@@ -29,6 +39,22 @@ class StudentRepository(private val studentDao: StudentDao) {
     fun studentsInBatch(batchName : String) : LiveData<List<Student>> {
         return studentDao.getBatchWithStudents(batchName)
     }
+
+    fun searchBatchDatabase(searchQuery: String): LiveData<List<Batch>> {
+        return studentDao.searchBatchDatabase(searchQuery)
+    }
+
+    fun searchStudentInBatch(vBatchName: String, searchQuery: String): LiveData<List<Student>> {
+        return studentDao.searchStudentInBatch(vBatchName, searchQuery)
+    }
+
+    fun searchStudentDatabase(searchQuery: String): LiveData<List<Student>> {
+        return studentDao.searchStudentDatabase(searchQuery)
+    }
+
+
+
+
 
 
 

@@ -24,11 +24,14 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:paddingTop="8dp"
+            android:layoutAnimation="@anim/recyclerview_anim"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -47,14 +50,16 @@
 
         <ImageView
             android:id="@+id/no_data_imageView"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="294dp"
-            android:visibility="invisible"
+            android:layout_width="175dp"
+            android:layout_height="160dp"
+            android:emptyDatabase="@{sharedViewModel.emptyBatchDatabase}"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintHorizontal_bias="0.548"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499"
             app:srcCompat="@drawable/ic_no_data" />
 
         <TextView
@@ -62,13 +67,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.5"
+            android:emptyDatabase="@{sharedViewModel.emptyBatchDatabase}"
             android:text="@string/no_data"
             android:textSize="18sp"
-            android:visibility="invisible"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/recyclerView"
-            app:layout_constraintTop_toBottomOf="@+id/no_data_imageView" />
+            app:layout_constraintTop_toTopOf="@+id/recyclerView"
+            app:layout_constraintVertical_bias="0.61" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

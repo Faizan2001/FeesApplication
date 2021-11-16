@@ -22,7 +22,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     /** ============================= Dashboard Fragment ============================= */
 
-    val emptyBatchDatabase : MutableLiveData<Boolean> = MutableLiveData(true)
+    val emptyBatchDatabase : MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfBatchDatabaseEmpty(batch: List<Batch>) {
         emptyBatchDatabase.value = batch.isEmpty()
@@ -31,7 +31,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     /** ============================= Student Fragment ============================= */
 
 
-    val emptyStudentDatabase : MutableLiveData<Boolean> = MutableLiveData(true)
+    val emptyStudentDatabase : MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfStudentDatabaseEmpty(student: List<Student>) {
         emptyStudentDatabase.value = student.isEmpty()

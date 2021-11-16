@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1638888888888889" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/batch_search.xml" value="0.21203703703703702" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/custom_outlined_edittext.xml" value="0.14907407407407408" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic__add_icon.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic__save_icon.xml" value="0.403125" />
@@ -18,7 +19,7 @@
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_money_icon.xml" value="0.17407407407407408" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_name_icon.xml" value="0.17407407407407408" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_no_data.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_no_data.xml" value="0.403125" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_no_student.xml" value="0.10555555555555556" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_no_student_found.xml" value="0.10555555555555556" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/ic_search_icon.xml" value="0.19166666666666668" />
@@ -27,19 +28,19 @@
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/text_color_edittext_outline.xml" value="0.1" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/drawable/textview_background.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/activity_main.xml" value="0.18059777102330293" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_batch_fragment.xml" value="0.24584717607973422" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_student_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_batch_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/add_student_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/cardview_fragment.xml" value="0.18059777102330293" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/dashboard_fragment.xml" value="0.19101123595505617" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/dashboard_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/dropdown_item.xml" value="0.18" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/report_fragment.xml" value="0.22" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/row_layout.xml" value="0.1" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/student_list_fragment.xml" value="0.29512893982808025" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/student_row_layout.xml" value="0.1" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/row_layout.xml" value="0.33" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/student_list_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/layout/student_row_layout.xml" value="0.25" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/add_batch_menu.xml" value="0.31296296296296294" />
         <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/add_student_menu.xml" value="0.31296296296296294" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/dashboard_menu.xml" value="0.33" />
-        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/student_list_menu.xml" value="0.31296296296296294" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/dashboard_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Faizan/AndroidStudioProjects/FeesApplication/app/src/main/res/menu/student_list_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

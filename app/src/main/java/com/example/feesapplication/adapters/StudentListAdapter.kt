@@ -1,16 +1,16 @@
-package com.example.feesapplication.list
+package com.example.feesapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.databinding.StudentRowLayoutBinding
-import com.example.feesapplication.fragments.DashboardFragmentDirections
 
 
 class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>() {
 
-    private var studentList = emptyList<Student>()
+    var studentList = emptyList<Student>()
 
     class MyViewHolder(private val binding: StudentRowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -46,7 +46,9 @@ class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>
     }
 
     fun setStudentData(student: List<Student>){
+        val studentDiffUtil = StudentDiffUtil(studentList, student)
+        val studentDiffResult = DiffUtil.calculateDiff(studentDiffUtil)
         this.studentList = student
-        notifyDataSetChanged()
+        studentDiffResult.dispatchUpdatesTo(this)
     }
 }

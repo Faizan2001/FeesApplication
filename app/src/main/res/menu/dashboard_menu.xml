@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <item
-        android:id="@+id/student_search"
+        android:id="@+id/batch_search"
         android:title="@string/search"
-        android:icon="@drawable/ic_search_icon"
-        app:showAsAction="ifRoom"
+        android:icon="@drawable/batch_search"
+        app:showAsAction="always|withText|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
     <group

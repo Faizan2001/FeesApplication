@@ -1,7 +1,8 @@
-package com.example.feesapplication.list
+package com.example.feesapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.databinding.RowLayoutBinding
@@ -9,7 +10,7 @@ import com.example.feesapplication.databinding.RowLayoutBinding
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var batchList = emptyList<Batch>()
+     var batchList = emptyList<Batch>()
 
     class MyViewHolder(private val binding: RowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -45,7 +46,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     fun setData(batch: List<Batch>){
+        val batchDiffUtil = BatchDiffUtil(batchList, batch)
+        val batchDiffResult = DiffUtil.calculateDiff(batchDiffUtil)
         this.batchList = batch
-        notifyDataSetChanged()
+        batchDiffResult.dispatchUpdatesTo(this)
+
     }
 }

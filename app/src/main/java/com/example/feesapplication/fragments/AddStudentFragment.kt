@@ -1,7 +1,6 @@
 package com.example.feesapplication.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -12,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.feesapplication.StudentViewModel
+import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
@@ -25,7 +24,7 @@ class AddStudentFragment : Fragment() {
     private val studentViewModel : StudentViewModel by viewModels()
     private val sharedViewModel : SharedViewModel by viewModels()
 
-    private lateinit var feeStatusSaved : String
+    private var feeStatusSaved = "None"
     private lateinit var batchNameSaved : String
     private lateinit var currentBatch: Batch
 
@@ -51,9 +50,6 @@ class AddStudentFragment : Fragment() {
 
 
 
-        batchNameSaved = args.currentBatch.batchName
-        currentBatch = args.currentBatch
-        binding.batchNameStudent.text = batchNameSaved
 
 
 
@@ -62,14 +58,24 @@ class AddStudentFragment : Fragment() {
 
         // Set Menu
         setHasOptionsMenu(true)
+
         binding.autoCompleteTextView.onItemClickListener =
             OnItemClickListener { parent, view, position, rowId ->
                 val selection = parent.getItemAtPosition(position) as String
                 feeStatusSaved = selection
-                Log.d("FOund", feeStatusSaved)
             }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        batchNameSaved = args.currentBatch.batchName
+        currentBatch = args.currentBatch
+        binding.batchNameStudent.text = "Batch : $batchNameSaved"
+
     }
 
 
