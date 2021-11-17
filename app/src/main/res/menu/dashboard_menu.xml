@@ -15,17 +15,36 @@
         android:checkableBehavior="single">
 
         <item
-             android:id="@+id/dashboard_sortBy"
-            android:title="@string/sort_by" >
+            android:id="@+id/dashboard_sortBydays"
+            android:title="Sort By Days" >
             <menu>
                 <item
-                    android:id="@+id/menu_paid_fees"
-                    android:title="@string/paid" />
+                    android:id="@+id/showAllBatches"
+                    android:title="Show All Batches" />
                 <item
-                    android:id="@+id/menu_unpaid_fees"
-                    android:title="@string/unpaid" />
+                    android:id="@+id/sunday_menu"
+                    android:title="Sunday" />
+                <item
+                    android:id="@+id/monday_menu"
+                    android:title="Monday" />
 
-                </menu>
+                <item
+                    android:id="@+id/tuesday_menu"
+                    android:title="Tuesday" />
+                <item
+                    android:id="@+id/wednesday_menu"
+                    android:title="Wednesday" />
+                <item
+                    android:id="@+id/thursday_menu"
+                    android:title="Thursday" />
+                <item
+                    android:id="@+id/friday_menu"
+                    android:title="Friday" />
+                <item
+                    android:id="@+id/saturday_menu"
+                    android:title="Saturday" />
+
+            </menu>
         </item>
     </group>
 

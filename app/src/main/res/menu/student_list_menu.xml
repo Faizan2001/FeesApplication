@@ -21,7 +21,7 @@
 
         <item
             android:id="@+id/dashboard_sortBy"
-            android:title="@string/sort_by" >
+            android:title="@string/sort_by_status" >
             <menu>
                 <item
                     android:id="@+id/menu_paid_fees"
@@ -33,6 +33,9 @@
             </menu>
         </item>
     </group>
+
+
+
 
     <item
         android:id="@+id/delete_all"

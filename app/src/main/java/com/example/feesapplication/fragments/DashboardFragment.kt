@@ -68,6 +68,35 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         searchView?.setOnQueryTextListener(this)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.showAllBatches -> {
+                studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
+                    adapter.setData(data)
+                    sharedViewModel.checkIfBatchDatabaseEmpty(data)
+                    binding.recyclerView.scheduleLayoutAnimation()
+                })
+            }
+            R.id.sunday_menu -> {studentViewModel.sortBySunday.observe(this, Observer { adapter.setData(it) })
+                binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.monday_menu -> { studentViewModel.sortByMonday.observe(this, Observer { adapter.setData(it) })
+            binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.tuesday_menu -> { studentViewModel.sortByTuesday.observe(this, Observer { adapter.setData(it) })
+             binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.wednesday_menu -> { studentViewModel.sortByWednesday.observe(this, Observer { adapter.setData(it) })
+             binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.thursday_menu -> { studentViewModel.sortByThursday.observe(this, Observer { adapter.setData(it) })
+            binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.friday_menu -> { studentViewModel.sortByFriday.observe(this, Observer { adapter.setData(it) })
+            binding.recyclerView.scheduleLayoutAnimation()  }
+            R.id.saturday_menu -> { studentViewModel.sortBySaturday.observe(this, Observer { adapter.setData(it) })
+            binding.recyclerView.scheduleLayoutAnimation()  }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setupRecyclerView() {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
@@ -88,7 +117,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                 adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
 
                 // Restore Deleted Student
-                restoreDeletedBatch(viewHolder.itemView, deletedItem, viewHolder.bindingAdapterPosition)
+                restoreDeletedBatch(viewHolder.itemView, deletedItem)
 
             }
         }
@@ -97,16 +126,15 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
     }
 
-    private fun restoreDeletedBatch(view: View, deletedItem: Batch, position: Int) {
-        val snackbar = Snackbar.make(
+    private fun restoreDeletedBatch(view: View, deletedItem: Batch) {
+        val snackBar = Snackbar.make(
             view, "Deleted batch '${deletedItem.batchName}'",
             Snackbar.LENGTH_LONG
         )
-        snackbar.setAction("Undo"){
+        snackBar.setAction("Undo"){
             studentViewModel.insertBatch(deletedItem)
-            adapter.notifyItemChanged(position)
         }
-        snackbar.show()
+        snackBar.show()
     }
 
 

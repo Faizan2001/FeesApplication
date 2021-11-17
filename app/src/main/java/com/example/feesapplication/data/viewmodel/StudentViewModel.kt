@@ -20,6 +20,14 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     val sortByUnpaid: LiveData<List<Student>> = repository.sortByUnpaid
     val sortByPaid: LiveData<List<Student>> = repository.sortByPaid
 
+    val sortBySunday: LiveData<List<Batch>> = repository.sortBySunday
+    val sortByMonday: LiveData<List<Batch>> = repository.sortByMonday
+    val sortByTuesday: LiveData<List<Batch>> = repository.sortByTuesday
+    val sortByWednesday: LiveData<List<Batch>> = repository.sortByWednesday
+    val sortByThursday: LiveData<List<Batch>> = repository.sortByThursday
+    val sortByFriday: LiveData<List<Batch>> = repository.sortByFriday
+    val sortBySaturday: LiveData<List<Batch>> = repository.sortBySaturday
+
 
     fun insertBatch(batch: Batch) {
 

@@ -20,8 +20,8 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        targetSdkVersion 30
-        minSdkVersion 24
+        targetSdkVersion 31
+        minSdkVersion 21
     }
 
     buildFeatures {
@@ -55,6 +55,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+
 
     // Lifecycle libraries
 

@@ -218,15 +218,15 @@ class AddBatchFragment : Fragment(){
         val batchNameField = binding.batchNameField.editText?.text.toString()
         Log.d("Text grabbed", batchNameField)
         val timePickerTime = binding.startTimeField.text.toString()
-        val daysPicked = binding.tvDay.text.toString()
+       // val daysPicked = binding.tvDay.text.toString()
 
-        val validation = sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, daysPicked)
+        val validation = sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, dayPickerDays)
         if (validation) {
             //Green Signal - Enter data to database
            val newBatchData = Batch(
                batchNameField,
                timePickerTime,
-               daysPicked
+              dayPickerDays
            )
 
             studentViewModel.insertBatch(newBatchData)

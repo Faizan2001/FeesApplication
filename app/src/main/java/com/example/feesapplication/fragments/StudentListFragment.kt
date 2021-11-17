@@ -28,7 +28,6 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
     private lateinit var batchNameSaved: String
-    private lateinit var foundQuery : String
 
 
     private val args by navArgs<StudentListFragmentArgs>()

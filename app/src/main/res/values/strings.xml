@@ -30,6 +30,7 @@
     <string name="none">None</string>
     <string name="my_title">My Title</string>
     <string name="no_students_added">No Students Added</string>
+    <string name="sort_by_status">Sort By Status</string>
 
     <string-array name="feesStatuses">
         <item>None</item>

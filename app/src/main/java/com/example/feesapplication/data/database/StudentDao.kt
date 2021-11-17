@@ -52,12 +52,38 @@ interface StudentDao{
     @Query("SELECT * FROM students WHERE studentName LIKE :searchQuery")
     fun searchStudentDatabase(searchQuery: String): LiveData<List<Student>>
 
+    // Sort Fee Status
 
     @Query("SELECT * FROM students ORDER BY CASE WHEN status LIKE 'U%' THEN 1 WHEN status LIKE 'P%' THEN 2 WHEN status LIKE 'N%' THEN 3 END")
     fun sortByUnpaid(): LiveData<List<Student>>
 
     @Query("SELECT * FROM students ORDER BY CASE WHEN status LIKE 'P%' THEN 1 WHEN status LIKE 'U%' THEN 2 WHEN status LIKE 'N%' THEN 3 END")
     fun sortByPaid(): LiveData<List<Student>>
+
+    // Sort Days
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Sunday%'")
+    fun sortBySunday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Monday%'")
+    fun sortByMonday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Tuesday%'")
+    fun sortByTuesday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Wednesday%'")
+    fun sortByWednesday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Thursday%'")
+    fun sortByThursday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Friday%'")
+    fun sortByFriday(): LiveData<List<Batch>>
+
+    @Query("SELECT * FROM batches WHERE batchDays LIKE '%Saturday%'")
+    fun sortBySaturday(): LiveData<List<Batch>>
+
+
 
 
 

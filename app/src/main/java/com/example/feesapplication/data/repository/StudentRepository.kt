@@ -15,6 +15,14 @@ class StudentRepository(private val studentDao: StudentDao) {
     val sortByUnpaid: LiveData<List<Student>> = studentDao.sortByUnpaid()
     val sortByPaid: LiveData<List<Student>> = studentDao.sortByPaid()
 
+    val sortBySunday: LiveData<List<Batch>> = studentDao.sortBySunday()
+    val sortByMonday: LiveData<List<Batch>> = studentDao.sortByMonday()
+    val sortByTuesday: LiveData<List<Batch>> = studentDao.sortByTuesday()
+    val sortByWednesday: LiveData<List<Batch>> = studentDao.sortByWednesday()
+    val sortByThursday: LiveData<List<Batch>> = studentDao.sortByThursday()
+    val sortByFriday: LiveData<List<Batch>> = studentDao.sortByFriday()
+    val sortBySaturday: LiveData<List<Batch>> = studentDao.sortBySaturday()
+
     suspend fun insertStudent(student: Student){
       studentDao.insertStudent(student)
 
