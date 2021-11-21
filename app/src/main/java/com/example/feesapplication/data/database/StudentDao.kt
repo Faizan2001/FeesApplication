@@ -8,6 +8,10 @@ import androidx.room.*
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 import kotlinx.coroutines.flow.Flow
+import androidx.room.ColumnInfo
+
+
+
 
 
 @Dao
@@ -21,6 +25,7 @@ interface StudentDao{
 
     @Update
     suspend fun update(student: Student)
+
 
     @Delete
     suspend fun deleteStudent(student: Student)
@@ -42,6 +47,9 @@ interface StudentDao{
     @Transaction
     @Query("SELECT * FROM students WHERE batchName = :batchName")
     fun getBatchWithStudents(batchName: String): LiveData<List<Student>>
+
+    @Query("SELECT batchName,batchTime,batchDays FROM batches WHERE batchName LIKE :batchName")
+    fun getBatchOfStudent(batchName: String): LiveData<Batch>
 
     @Query("SELECT * FROM batches WHERE batchName LIKE :searchQuery")
     fun searchBatchDatabase(searchQuery: String): LiveData<List<Batch>>
@@ -82,6 +90,7 @@ interface StudentDao{
 
     @Query("SELECT * FROM batches WHERE batchDays LIKE '%Saturday%'")
     fun sortBySaturday(): LiveData<List<Batch>>
+
 
 
 

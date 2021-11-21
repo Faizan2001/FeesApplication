@@ -2,6 +2,7 @@ package com.example.feesapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.data.database.entities.Batch

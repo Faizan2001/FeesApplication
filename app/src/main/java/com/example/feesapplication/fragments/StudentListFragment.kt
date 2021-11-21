@@ -1,9 +1,13 @@
 package com.example.feesapplication.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,8 +21,11 @@ import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.databinding.StudentListFragmentBinding
 import com.example.feesapplication.adapters.StudentListAdapter
+import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.list.SwipeToDelete
+import com.example.feesapplication.list.utils.hideKeyboard
+import com.example.feesapplication.list.utils.observeOnce
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -70,28 +77,31 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
 
-
-
-
-
         //Set Menu
         setHasOptionsMenu(true)
+
+        //Hide Keyboard
+        hideKeyboard(requireActivity())
+
+
 
 
         return binding.root
     }
 
 
-    fun populateRecyclerView() {
+    private fun populateRecyclerView() {
         if (args.currentBatch != null) {
 
             // Get all students in batch
 
             studentViewModel.studentsInBatch(batchNameSaved).observe(viewLifecycleOwner, Observer {
                     data ->
-                sharedViewModel.checkIfStudentDatabaseEmpty(data)
                 studentListAdapter.setStudentData(data)
                 binding.studentRecyclerView.scheduleLayoutAnimation()
+                sharedViewModel.checkIfStudentDatabaseEmpty(data)
+
+
             })
         } else if (args.currentBatch == null) {
 
@@ -102,9 +112,11 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
                 binding.studentRecyclerView.scheduleLayoutAnimation()
                 sharedViewModel.checkIfStudentDatabaseEmpty(data)
 
+
             })
         }
     }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -128,38 +140,43 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+
         if (args.currentBatch != null) {
 
-            if (item.itemId == R.id.add_student) {
-                val action = args.currentBatch?.let {
-                    StudentListFragmentDirections.actionStudentListFragmentToAddStudentFragment2(
-                        it
-                    )
+            when (item.itemId) {
+                R.id.add_student -> {
+                    val action = args.currentBatch?.let {
+                        StudentListFragmentDirections.actionStudentListFragmentToAddStudentFragment2(
+                            it
+                        )
+                    }
+                    action?.let { findNavController().navigate(it) }
                 }
-                action?.let { findNavController().navigate(it) }
-            } else if (item.itemId == R.id.delete_all) {
-                confirmStudentsRemoval()
-            } else if (item.itemId == R.id.search_all_students) {
+                R.id.delete_all -> {
+                    confirmStudentsRemoval()
+                }
+                R.id.search_all_students -> {
 
-                findNavController().navigate(R.id.action_studentListFragment_self)
-                populateRecyclerView()
+                    findNavController().navigate(R.id.action_studentListFragment_self)
+                    populateRecyclerView()
 
+                }
             }
         }
 
          if (item.itemId == R.id.menu_paid_fees) {
-             studentViewModel.sortByPaid.observe(this, Observer {studentListAdapter.setStudentData(it)})
+             studentViewModel.sortByPaid.observeOnce(viewLifecycleOwner, Observer {studentListAdapter.setStudentData(it)})
+             binding.studentRecyclerView.scheduleLayoutAnimation()
         } else if (item.itemId == R.id.menu_unpaid_fees) {
-            studentViewModel.sortByUnpaid.observe(this, Observer { studentListAdapter.setStudentData(it)})
+            studentViewModel.sortByUnpaid.observeOnce(viewLifecycleOwner, Observer { studentListAdapter.setStudentData(it)})
+             binding.studentRecyclerView.scheduleLayoutAnimation()
          }
-
-
-
-
-
 
         return super.onOptionsItemSelected(item)
     }
+
+
+
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if(query != null) {
@@ -182,17 +199,19 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         if (args.currentBatch != null) {
             studentViewModel.searchStudentInBatch(batchNameSaved, searchQuery)
-                .observe(viewLifecycleOwner, Observer { list ->
+                .observeOnce(viewLifecycleOwner, Observer { list ->
                     list?.let {
                         studentListAdapter.setStudentData(it)
+                        binding.studentRecyclerView.scheduleLayoutAnimation()
 
                     }
                 })
         } else {
 
-            studentViewModel.searchStudentDatabase(searchQuery).observe(this, Observer { list ->
+            studentViewModel.searchStudentDatabase(searchQuery).observeOnce(viewLifecycleOwner, Observer { list ->
                 list?.let {
                     studentListAdapter.setStudentData(it)
+                    binding.studentRecyclerView.scheduleLayoutAnimation()
                 }
             })
         }
@@ -212,19 +231,29 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         // Swipe TO Delete
         swipeToDelete(recyclerView)
+
     }
 
      private fun swipeToDelete(studentRecyclerView: RecyclerView) {
          val swipeToDeleteCallback = object : SwipeToDelete() {
              override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
                  val deletedItem = studentListAdapter.studentList[viewHolder.bindingAdapterPosition]
+                 val builder = MaterialAlertDialogBuilder(requireContext())
+
                  // Delete Student
-
-                 studentViewModel.deleteStudent(deletedItem)
-                 studentListAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
-
+                 builder.setPositiveButton("Yes") {_,_ ->
+                     studentViewModel.deleteStudent(deletedItem)
+                     studentListAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+                     restoreDeletedStudent(viewHolder.itemView, deletedItem)
+                 }
                  // Restore Deleted Student
-                 restoreDeletedStudent(viewHolder.itemView, deletedItem, viewHolder.bindingAdapterPosition)
+                 builder.setNegativeButton("No") { _,_ -> studentViewModel.insertStudent(deletedItem) }
+                 builder.setTitle("Delete record of ${deletedItem.studentName}?")
+                 builder.setMessage("Are you sure you want to remove ${deletedItem.studentName}?")
+                 builder.setIcon(R.drawable.ic_round_delete_forever_24)
+                 builder.setCancelable(false)
+                 builder.create().show()
              }
          }
          val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
@@ -232,17 +261,22 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
      }
 
-    private fun restoreDeletedStudent(view: View, deletedItem: Student, position: Int) {
+
+
+
+
+    private fun restoreDeletedStudent(view: View, deletedItem: Student) {
         val snackBar = Snackbar.make(
             view, "Deleted record of '${deletedItem.studentName}'",
             Snackbar.LENGTH_LONG
         )
         snackBar.setAction("Undo"){
             studentViewModel.insertStudent(deletedItem)
-            studentListAdapter.notifyItemChanged(position)
         }
         snackBar.show()
     }
+
+
 
 
 

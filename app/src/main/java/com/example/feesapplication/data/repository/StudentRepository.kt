@@ -32,6 +32,10 @@ class StudentRepository(private val studentDao: StudentDao) {
         studentDao.insertBatch(batch)
     }
 
+    suspend fun updateStudent(student: Student) {
+        studentDao.update(student)
+    }
+
     suspend fun deleteStudent(student: Student) {
         studentDao.deleteStudent(student)
     }
@@ -42,6 +46,10 @@ class StudentRepository(private val studentDao: StudentDao) {
 
     suspend fun deleteAllStudents(batchName: String) {
         studentDao.deleteAllStudents(batchName)
+    }
+
+    fun getBatchOfStudent(batchName: String): LiveData<Batch> {
+        return studentDao.getBatchOfStudent(batchName)
     }
 
     fun studentsInBatch(batchName : String) : LiveData<List<Student>> {

@@ -11,6 +11,13 @@
         app:showAsAction="always|withText|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
+    <item
+        android:id="@+id/backup_records"
+        android:title="Backup Records"
+        android:icon="@drawable/ic__add_icon"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom" />
+
     <group
         android:checkableBehavior="single">
 

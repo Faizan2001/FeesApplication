@@ -49,6 +49,7 @@
             android:id="@+id/noStudents_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
             android:alpha="0.5"
             android:emptyDatabase="@{sharedViewModel.emptyStudentDatabase}"
             android:text="@string/no_students_added"

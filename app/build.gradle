@@ -55,6 +55,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.fragment:fragment-ktx:1.4.0'
 
 
     // Lifecycle libraries

@@ -36,7 +36,7 @@ class AddBatchFragment : Fragment(){
 
     private lateinit var timePickerTime : String
 
-    private  lateinit var dayPickerDays : String
+    private var dayPickerDays : String = ""
 
     private var _binding: AddBatchFragmentBinding? = null
     private val binding get() = _binding!!
@@ -231,7 +231,9 @@ class AddBatchFragment : Fragment(){
 
             studentViewModel.insertBatch(newBatchData)
             Toast.makeText(requireContext(),"Successfully added batch!", Toast.LENGTH_SHORT).show()
+
             findNavController().navigate(R.id.action_addBatchFragment_to_dashboardFragment)
+
         } else {
             Toast.makeText(requireContext(),"Please fill out all fields.", Toast.LENGTH_SHORT).show()
         }

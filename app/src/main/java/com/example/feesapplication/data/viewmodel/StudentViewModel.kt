@@ -45,6 +45,13 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
 
     }
 
+    fun updateStudent(student: Student) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateStudent(student)
+        }
+    }
+
     fun studentsInBatch(batchName: String) : LiveData<List<Student>> {
         return repository.studentsInBatch(batchName)
     }
@@ -77,6 +84,10 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
 
     fun searchStudentDatabase(searchQuery: String): LiveData<List<Student>> {
         return repository.searchStudentDatabase(searchQuery)
+    }
+
+    fun getBatchOfStudent(vBatchName: String): LiveData<Batch> {
+        return repository.getBatchOfStudent(vBatchName)
     }
 
 

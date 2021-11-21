@@ -1,4 +1,4 @@
-package com.example.feesapplication.data
+package com.example.feesapplication.data.database
 
 enum class FeeStatus {
     NONE,

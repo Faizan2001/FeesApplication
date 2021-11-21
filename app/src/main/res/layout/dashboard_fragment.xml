@@ -70,6 +70,7 @@
             android:emptyDatabase="@{sharedViewModel.emptyBatchDatabase}"
             android:text="@string/no_data"
             android:textSize="18sp"
+            android:fontFamily="@font/roboto_regular"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

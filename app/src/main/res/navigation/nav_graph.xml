@@ -104,5 +104,36 @@
             android:id="@+id/action_studentListFragment_self"
             app:destination="@id/studentListFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_studentListFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_studentListFragment_to_updateFragment"
+            app:destination="@id/updateFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.feesapplication.fragments.UpdateFragment"
+        android:label="Update Fragment" >
+        <action
+            android:id="@+id/action_updateFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/studentListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="currentStudent"
+            app:argType="com.example.feesapplication.data.database.entities.Student" />
     </fragment>
 </navigation>

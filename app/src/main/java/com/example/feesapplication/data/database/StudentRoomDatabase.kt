@@ -2,7 +2,6 @@ package com.example.feesapplication.data.database
 
 import android.content.Context
 import androidx.room.*
-import com.example.feesapplication.data.Converter
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 

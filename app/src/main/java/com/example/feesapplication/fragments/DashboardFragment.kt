@@ -1,7 +1,11 @@
 package com.example.feesapplication.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +18,12 @@ import com.example.feesapplication.databinding.DashboardFragmentBinding
 import com.example.feesapplication.adapters.ListAdapter
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.list.SwipeToDelete
+import com.example.feesapplication.list.utils.hideKeyboard
+import com.example.feesapplication.list.utils.observeOnce
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import java.io.*
+import java.lang.Exception
 
 class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -32,12 +41,14 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         //Data Binding
         _binding = DashboardFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.sharedViewModel = sharedViewModel
+
+        binding.recyclerView.scheduleLayoutAnimation()
 
 
         //Setup RecyclerView
@@ -46,8 +57,8 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         // Observing Live Data Fetched
         studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
             adapter.setData(data)
-            sharedViewModel.checkIfBatchDatabaseEmpty(data)
             binding.recyclerView.scheduleLayoutAnimation()
+            sharedViewModel.checkIfBatchDatabaseEmpty(data)
         })
 
 
@@ -56,10 +67,17 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         //Set Menu
         setHasOptionsMenu(true)
 
+        //Hide Keyboard
+        hideKeyboard(requireActivity())
+        saveReportInDeviceStorage()
+
         return binding.root
     }
 
+
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.dashboard_menu, menu)
 
         val search = menu.findItem(R.id.batch_search)
@@ -78,19 +96,19 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     binding.recyclerView.scheduleLayoutAnimation()
                 })
             }
-            R.id.sunday_menu -> {studentViewModel.sortBySunday.observe(this, Observer { adapter.setData(it) })
+            R.id.sunday_menu -> {studentViewModel.sortBySunday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
                 binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.monday_menu -> { studentViewModel.sortByMonday.observe(this, Observer { adapter.setData(it) })
+            R.id.monday_menu -> { studentViewModel.sortByMonday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
             binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.tuesday_menu -> { studentViewModel.sortByTuesday.observe(this, Observer { adapter.setData(it) })
+            R.id.tuesday_menu -> { studentViewModel.sortByTuesday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
              binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.wednesday_menu -> { studentViewModel.sortByWednesday.observe(this, Observer { adapter.setData(it) })
+            R.id.wednesday_menu -> { studentViewModel.sortByWednesday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
              binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.thursday_menu -> { studentViewModel.sortByThursday.observe(this, Observer { adapter.setData(it) })
+            R.id.thursday_menu -> { studentViewModel.sortByThursday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
             binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.friday_menu -> { studentViewModel.sortByFriday.observe(this, Observer { adapter.setData(it) })
+            R.id.friday_menu -> { studentViewModel.sortByFriday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
             binding.recyclerView.scheduleLayoutAnimation()  }
-            R.id.saturday_menu -> { studentViewModel.sortBySaturday.observe(this, Observer { adapter.setData(it) })
+            R.id.saturday_menu -> { studentViewModel.sortBySaturday.observe(viewLifecycleOwner, Observer { adapter.setData(it) })
             binding.recyclerView.scheduleLayoutAnimation()  }
         }
 
@@ -101,6 +119,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.recyclerView.scheduleLayoutAnimation()
 
 
         // Swipe to Delete
@@ -110,14 +129,26 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun swipeToDelete(batchRecyclerView: RecyclerView) {
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
                 val deletedItem = adapter.batchList[viewHolder.bindingAdapterPosition]
+                val builder = MaterialAlertDialogBuilder(requireContext())
+
                 //Delete Student
 
-                studentViewModel.deleteBatch(deletedItem)
-                adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+                builder.setPositiveButton("Yes") {_,_ ->
+                    studentViewModel.deleteBatch(deletedItem)
+                    studentViewModel.deleteAllStudents(deletedItem.batchName)
+                    adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+                    restoreDeletedBatch(viewHolder.itemView, deletedItem)
+                }
 
                 // Restore Deleted Student
-                restoreDeletedBatch(viewHolder.itemView, deletedItem)
+                builder.setNegativeButton("No") { _,_ ->  studentViewModel.insertBatch(deletedItem) }
+                builder.setTitle("Delete ${deletedItem.batchName}?")
+                builder.setMessage("Are you sure you want to remove ${deletedItem.batchName} and all of its contents?")
+                builder.setIcon(R.drawable.ic_batch_delete)
+                builder.setCancelable(false)
+                builder.create().show()
 
             }
         }
@@ -139,9 +170,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
 
-
-
-
     override fun onQueryTextSubmit(query: String?): Boolean {
        if(query != null) {
            searchInDatabase(query)
@@ -160,11 +188,37 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchInDatabase(query: String) {
         val searchQuery = "%$query%"
 
-        studentViewModel.searchBatchDatabase(searchQuery).observe(this, Observer { list ->
+        studentViewModel.searchBatchDatabase(searchQuery).observeOnce(viewLifecycleOwner, Observer { list ->
             list?.let {
                 adapter.setData(it)
+                binding.recyclerView.scheduleLayoutAnimation()
             }
         })
+
+    }
+
+    private fun saveReportInDeviceStorage() {
+        Log.d("WORKING", "YES")
+        val HEADER = "DATE,NAME,AMOUNT_DUE,AMOUNT_PAID"
+
+        var filename = "export.txt"
+
+        var path = context?.getExternalFilesDir(null)   //get file directory for this package
+        //(Android/data/.../files | ... is your app package)
+
+        //create fileOut object
+        var fileOut = File(path, filename)
+
+        //delete any file object with path and filename that already exists
+        fileOut.delete()
+
+        //create a new file
+        fileOut.createNewFile()
+
+        //append the header and a newline
+        fileOut.appendText(HEADER)
+        fileOut.appendText("\n")
+
 
     }
 
