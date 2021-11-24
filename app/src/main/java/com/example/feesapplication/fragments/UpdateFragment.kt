@@ -20,7 +20,10 @@ import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.FragmentUpdateBinding
 import com.google.android.material.chip.Chip
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.datepicker.MaterialStyledDatePickerDialog
 import java.lang.StringBuilder
+import java.util.*
 
 
 class UpdateFragment : Fragment() {
@@ -34,6 +37,8 @@ class UpdateFragment : Fragment() {
     private lateinit var currentStudent: Student
     private lateinit var monthsSaved: String
     private lateinit var currentBatch: Batch
+
+    private val MONTHS = listOf<String>("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 
     private var _binding: FragmentUpdateBinding? = null
@@ -63,13 +68,35 @@ class UpdateFragment : Fragment() {
 
 
 
+        checkForCheckedChips()
 
         //Months according to Chips checked
         binding.chipGroup.children.forEach {
             (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
 
+             if (it.isChecked) {
+
+                 val c = Calendar.getInstance()
+                 val year = c.get(Calendar.YEAR)
+                 val month = c.get(Calendar.MONTH)
+                 val day = c.get(Calendar.DAY_OF_MONTH)
+
+                 val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+
+
+                     // Display Selected date
+                     val date = "" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year
+                     Log.d("Day saved", date)
+
+                 }, year, month, day)
+
+                 dpd.show()
+
+             }
             }
         }
+
+
 
 
 
@@ -80,7 +107,6 @@ class UpdateFragment : Fragment() {
         binding.emailField.editText?.setText(args.currentStudent.studentEmail)
         binding.batchNameStudent.text = args.currentStudent.batchName
         binding.autoCompleteTextView.setText(args.currentStudent.feesStatus.toString(), false)
-        checkForCheckedChips()
 
 
         var position = 0
@@ -280,20 +306,11 @@ class UpdateFragment : Fragment() {
 
     }
 
-   /* val c = Calendar.getInstance()
+    val c = Calendar.getInstance()
     val year = c.get(Calendar.YEAR)
     val month = c.get(Calendar.MONTH)
     val day = c.get(Calendar.DAY_OF_MONTH)
 
-
-    val dpd = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-        // Display Selected date in textbox
-        lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
-
-    }, year, month, day)
-
-    dpd.show() */
 
     override fun onDestroyView() {
         super.onDestroyView()
