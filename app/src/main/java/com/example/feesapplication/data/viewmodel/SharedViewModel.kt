@@ -46,13 +46,13 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     fun parseFeesStatus(feesStatus : String): FeeStatus {
         return when(feesStatus){
             "None" -> {
-                FeeStatus.NONE}
+                FeeStatus.None}
             "Paid" -> {
-                FeeStatus.PAID}
+                FeeStatus.Paid}
             "Unpaid" -> {
-                FeeStatus.UNPAID}
+                FeeStatus.Unpaid}
 
-            else -> FeeStatus.NONE
+            else -> FeeStatus.None
         }
     }
 }

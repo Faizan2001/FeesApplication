@@ -50,9 +50,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/contact_number"
+            app:helperText=" "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentNameField"
@@ -76,8 +77,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="210dp"
             android:hint="@string/fees"
             app:helperText=" "
             app:helperTextTextColor="@color/primaryColor"
@@ -102,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:hint="@string/email"
             app:helperText=" "
@@ -116,8 +117,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/editTextColor"
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -132,30 +133,28 @@
             android:id="@+id/batchNameStudent"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center|top"
-            android:hint="Write Something"
+            android:hint="@string/write_something"
             android:textColor="?attr/editTextColor"
             android:textSize="20sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/studentNameField"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintHorizontal_bias="0.091"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailField" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/feesStatusField"
             style="@style/MyBorderLayout"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="35dp"
-            app:layout_constraintBottom_toTopOf="@+id/emailField"
-            android:hint="Fees Status"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/feesField"
             app:layout_constraintTop_toBottomOf="@+id/contactNumberField"
@@ -168,10 +167,176 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
+                android:hint="@string/status"
                 android:inputType="none"
                 android:textColor="?attr/editTextColor"
                 android:textStyle="bold|italic" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingEnd="8dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paymentInfo">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:accessibilityLiveRegion="assertive"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailField"
+                app:layout_constraintVertical_bias="0.0"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/janChip"
+                    style="@style/CustomChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="@string/january"
+                    android:textAppearance="@font/roboto_regular"
+                    android:textSize="17sp"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/febChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    android:text="@string/february"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/marChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/march"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/aprChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/april"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/mayChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/may"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/juneChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/june"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/julChip"
+                    style="@style/CustomChip"
+                    android:textAppearance="@font/roboto_regular"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/july"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/augChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    android:text="@string/august"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sepChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    android:text="@string/september"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/octChip"
+                    style="@style/CustomChip"
+                    android:textAppearance="@font/roboto_regular"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/october"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/novChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:text="@string/november"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/decChip"
+                    style="@style/CustomChip"
+                    android:checkable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/december"
+                    android:textSize="17sp"/>
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/paymentInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/payment_received_for"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/emailField"
+            app:layout_constraintTop_toBottomOf="@+id/emailField" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

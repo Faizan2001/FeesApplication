@@ -17,6 +17,11 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     val getAllStudentData: LiveData<List<Student>> = repository.getAllStudentData
     val getAllBatchData: LiveData<List<Batch>> = repository.getAllBatchData
 
+    val getBatchCount : LiveData<Int> = repository.getBatchCount
+    val getStudentCount : LiveData<Int> = repository.getStudentCount
+    val getUnpaidCount : LiveData<Int> = repository.getUnpaidCount
+    val getPaidCount : LiveData<Int> = repository.getPaidCount
+
     val sortByUnpaid: LiveData<List<Student>> = repository.sortByUnpaid
     val sortByPaid: LiveData<List<Student>> = repository.sortByPaid
 
@@ -88,6 +93,14 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
 
     fun getBatchOfStudent(vBatchName: String): LiveData<Batch> {
         return repository.getBatchOfStudent(vBatchName)
+    }
+
+    fun sortByBatchPaid(vBatchName: String): LiveData<List<Student>> {
+        return repository.sortByBatchPaid(vBatchName)
+    }
+
+    fun sortByBatchUnpaid(vBatchName: String): LiveData<List<Student>> {
+        return repository.sortByBatchUnpaid(vBatchName)
     }
 
 

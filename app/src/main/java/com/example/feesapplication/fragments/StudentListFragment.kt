@@ -1,13 +1,9 @@
 package com.example.feesapplication.fragments
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,18 +13,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.R
-import com.example.feesapplication.data.viewmodel.StudentViewModel
-import com.example.feesapplication.data.viewmodel.SharedViewModel
-import com.example.feesapplication.databinding.StudentListFragmentBinding
 import com.example.feesapplication.adapters.StudentListAdapter
-import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Student
+import com.example.feesapplication.data.viewmodel.SharedViewModel
+import com.example.feesapplication.data.viewmodel.StudentViewModel
+import com.example.feesapplication.databinding.StudentListFragmentBinding
 import com.example.feesapplication.list.SwipeToDelete
 import com.example.feesapplication.list.utils.hideKeyboard
 import com.example.feesapplication.list.utils.observeOnce
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-
 
 
 class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -48,9 +42,6 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: StudentListFragmentBinding? = null
     private val binding get() = _binding!!
-
-
-
 
 
     override fun onCreateView(
@@ -75,8 +66,6 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
         populateRecyclerView()
 
 
-
-
         //Set Menu
         setHasOptionsMenu(true)
 
@@ -95,28 +84,25 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             // Get all students in batch
 
-            studentViewModel.studentsInBatch(batchNameSaved).observe(viewLifecycleOwner, Observer {
-                    data ->
-                studentListAdapter.setStudentData(data)
-                binding.studentRecyclerView.scheduleLayoutAnimation()
-                sharedViewModel.checkIfStudentDatabaseEmpty(data)
+            studentViewModel.studentsInBatch(batchNameSaved)
+                .observe(viewLifecycleOwner, Observer { data ->
+                    studentListAdapter.setStudentData(data)
+                    sharedViewModel.checkIfStudentDatabaseEmpty(data)
+                    binding.studentRecyclerView.scheduleLayoutAnimation()
 
-
-            })
+                })
         } else if (args.currentBatch == null) {
 
             // Get all students in Database
 
             studentViewModel.getAllStudentData.observe(viewLifecycleOwner, Observer { data ->
                 studentListAdapter.setStudentData(data)
-                binding.studentRecyclerView.scheduleLayoutAnimation()
                 sharedViewModel.checkIfStudentDatabaseEmpty(data)
-
+                binding.studentRecyclerView.scheduleLayoutAnimation()
 
             })
         }
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -128,13 +114,13 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
 
-       if (args.currentBatch == null) {
-           menu.findItem(R.id.add_student).isVisible = false
-           menu.findItem(R.id.delete_all).isVisible = false
-           menu.findItem(R.id.search_all_students).isVisible = false
+        if (args.currentBatch == null) {
+            menu.findItem(R.id.add_student).isVisible = false
+            menu.findItem(R.id.delete_all).isVisible = false
+            menu.findItem(R.id.search_all_students).isVisible = false
 
 
-       }
+        }
 
     }
 
@@ -164,22 +150,57 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
 
-         if (item.itemId == R.id.menu_paid_fees) {
-             studentViewModel.sortByPaid.observeOnce(viewLifecycleOwner, Observer {studentListAdapter.setStudentData(it)})
-             binding.studentRecyclerView.scheduleLayoutAnimation()
+        if (item.itemId == R.id.menu_paid_fees) {
+
+
+            if (args.currentBatch == null) {
+
+                studentViewModel.sortByPaid.observeOnce(viewLifecycleOwner, Observer {
+                    studentListAdapter.setStudentData(it)
+                    sharedViewModel.checkIfStudentDatabaseEmpty(it)
+                    binding.studentRecyclerView.scheduleLayoutAnimation()
+                })
+
+            } else if (args.currentBatch != null) {
+
+                studentViewModel.sortByBatchPaid(batchNameSaved)
+                    .observeOnce(viewLifecycleOwner, Observer {
+                        studentListAdapter.setStudentData(it)
+                        sharedViewModel.checkIfStudentDatabaseEmpty(it)
+                        binding.studentRecyclerView.scheduleLayoutAnimation()
+                    })
+
+            }
         } else if (item.itemId == R.id.menu_unpaid_fees) {
-            studentViewModel.sortByUnpaid.observeOnce(viewLifecycleOwner, Observer { studentListAdapter.setStudentData(it)})
-             binding.studentRecyclerView.scheduleLayoutAnimation()
-         }
+
+
+            if (args.currentBatch == null) {
+
+                studentViewModel.sortByUnpaid.observeOnce(viewLifecycleOwner, Observer {
+                    studentListAdapter.setStudentData(it)
+                    sharedViewModel.checkIfStudentDatabaseEmpty(it)
+                    binding.studentRecyclerView.scheduleLayoutAnimation()
+                })
+
+            } else if (args.currentBatch != null) {
+
+                studentViewModel.sortByBatchUnpaid(batchNameSaved)
+                    .observeOnce(viewLifecycleOwner, Observer {
+                        studentListAdapter.setStudentData(it)
+                        sharedViewModel.checkIfStudentDatabaseEmpty(it)
+                        binding.studentRecyclerView.scheduleLayoutAnimation()
+                    })
+
+            }
+
+        }
 
         return super.onOptionsItemSelected(item)
     }
 
 
-
-
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query != null) {
+        if (query != null) {
             searchInStudentDatabase(query)
         }
         return true
@@ -187,7 +208,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
     override fun onQueryTextChange(query: String?): Boolean {
-        if(query != null) {
+        if (query != null) {
             searchInStudentDatabase(query)
         }
         return true
@@ -202,24 +223,25 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
                 .observeOnce(viewLifecycleOwner, Observer { list ->
                     list?.let {
                         studentListAdapter.setStudentData(it)
+                        sharedViewModel.checkIfStudentDatabaseEmpty(list)
                         binding.studentRecyclerView.scheduleLayoutAnimation()
 
                     }
                 })
-        } else {
+        } else if (args.currentBatch == null) {
 
-            studentViewModel.searchStudentDatabase(searchQuery).observeOnce(viewLifecycleOwner, Observer { list ->
-                list?.let {
-                    studentListAdapter.setStudentData(it)
-                    binding.studentRecyclerView.scheduleLayoutAnimation()
-                }
-            })
+            studentViewModel.searchStudentDatabase(searchQuery)
+                .observeOnce(viewLifecycleOwner, Observer { list ->
+                    list?.let {
+                        studentListAdapter.setStudentData(it)
+                        sharedViewModel.checkIfStudentDatabaseEmpty(list)
+                        binding.studentRecyclerView.scheduleLayoutAnimation()
+                    }
+                })
         }
 
 
     }
-
-
 
 
     private fun setupRecyclerView() {
@@ -234,35 +256,32 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     }
 
-     private fun swipeToDelete(studentRecyclerView: RecyclerView) {
-         val swipeToDeleteCallback = object : SwipeToDelete() {
-             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    private fun swipeToDelete(studentRecyclerView: RecyclerView) {
+        val swipeToDeleteCallback = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
-                 val deletedItem = studentListAdapter.studentList[viewHolder.bindingAdapterPosition]
-                 val builder = MaterialAlertDialogBuilder(requireContext())
+                val deletedItem = studentListAdapter.studentList[viewHolder.bindingAdapterPosition]
+                val builder = MaterialAlertDialogBuilder(requireContext())
 
-                 // Delete Student
-                 builder.setPositiveButton("Yes") {_,_ ->
-                     studentViewModel.deleteStudent(deletedItem)
-                     studentListAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
-                     restoreDeletedStudent(viewHolder.itemView, deletedItem)
-                 }
-                 // Restore Deleted Student
-                 builder.setNegativeButton("No") { _,_ -> studentViewModel.insertStudent(deletedItem) }
-                 builder.setTitle("Delete record of ${deletedItem.studentName}?")
-                 builder.setMessage("Are you sure you want to remove ${deletedItem.studentName}?")
-                 builder.setIcon(R.drawable.ic_round_delete_forever_24)
-                 builder.setCancelable(false)
-                 builder.create().show()
-             }
-         }
-         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
-         itemTouchHelper.attachToRecyclerView(studentRecyclerView)
+                // Delete Student
+                builder.setPositiveButton("Yes") { _, _ ->
+                    studentViewModel.deleteStudent(deletedItem)
+                    studentListAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+                    restoreDeletedStudent(viewHolder.itemView, deletedItem)
+                }
+                // Restore Deleted Student
+                builder.setNegativeButton("No") { _, _ -> studentViewModel.insertStudent(deletedItem) }
+                builder.setTitle("Delete record of ${deletedItem.studentName}?")
+                builder.setMessage("Are you sure you want to remove ${deletedItem.studentName}?")
+                builder.setIcon(R.drawable.ic_round_delete_forever_24)
+                builder.setCancelable(false)
+                builder.create().show()
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(studentRecyclerView)
 
-     }
-
-
-
+    }
 
 
     private fun restoreDeletedStudent(view: View, deletedItem: Student) {
@@ -270,30 +289,28 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             view, "Deleted record of '${deletedItem.studentName}'",
             Snackbar.LENGTH_LONG
         )
-        snackBar.setAction("Undo"){
+        snackBar.setAction("Undo") {
             studentViewModel.insertStudent(deletedItem)
         }
         snackBar.show()
     }
 
 
-
-
-
     private fun confirmStudentsRemoval() {
         val builder = MaterialAlertDialogBuilder(requireContext())
 
 
-        builder.setPositiveButton("Yes") {_,_ ->
+        builder.setPositiveButton("Yes") { _, _ ->
             studentViewModel.deleteAllStudents(batchNameSaved)
-            Toast.makeText((
-                    requireContext()),
+            Toast.makeText(
+                (
+                        requireContext()),
                 "Sucessfully Removed all Students from $batchNameSaved",
                 Toast.LENGTH_SHORT
-                    ).show()
+            ).show()
         }
 
-        builder.setNegativeButton("No") { _,_ -> }
+        builder.setNegativeButton("No") { _, _ -> }
         builder.setTitle("Delete students from $batchNameSaved?")
         builder.setMessage("Are you sure you want to remove all students from ${batchNameSaved}?")
         builder.create().show()

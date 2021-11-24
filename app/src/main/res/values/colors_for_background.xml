@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.dark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="color">@color/black</item>
+    </style>
+
+    <style name="Theme.light" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="color">@color/white</item>
+    </style>
+</resources>

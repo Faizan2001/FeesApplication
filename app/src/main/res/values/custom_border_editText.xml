@@ -7,6 +7,6 @@
         <!-- The color of the label when it is collapsed and the text field is active -->
         <item name="hintTextColor">@color/icons</item>
         <!-- The color of the label in all other text field states (such as resting and disabled) -->
-        <item name="android:textColorHint">@color/greyColor</item>
+        <item name="android:textColorHint">@color/grayColor</item>
     </style>
 </resources>

@@ -126,23 +126,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <TextView
             android:id="@+id/batchNameStudent"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center|top"
-            android:hint="Write Something"
+            android:hint="@string/write_something"
             android:textColor="?attr/editTextColor"
             android:textSize="20sp"
             android:textStyle="normal"
-            android:fontFamily="@font/roboto_regular"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/studentNameField"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailField" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/feesStatusField"
@@ -154,7 +156,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="35dp"
             app:layout_constraintBottom_toTopOf="@+id/emailField"
-            android:hint="Fees Status"
+            android:hint="@string/fees_status"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/feesField"
             app:layout_constraintTop_toBottomOf="@+id/contactNumberField"
@@ -171,6 +173,159 @@
                 android:textColor="?attr/editTextColor"
                 android:textStyle="bold|italic" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingEnd="8dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paymentInfo"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:accessibilityLiveRegion="assertive"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailField"
+                app:layout_constraintVertical_bias="0.0"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/janChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomChip"
+                    android:textAppearance="@font/roboto_regular"
+                    android:text="January"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/febChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="February"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/marChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="March"
+                    android:textSize="17sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/aprChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="April"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/mayChip"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomChip"
+                    android:text="May"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/juneChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="June"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/julChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="July"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/augChip"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomChip"
+                    android:text="August"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sepChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomChip"
+                    android:textAppearance="@font/roboto_regular"
+                    android:text="September"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/octChip"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomChip"
+                    android:text="October"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/novChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    style="@style/CustomChip"
+                    android:text="November"
+                    android:textSize="17sp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/decChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@font/roboto_regular"
+                    android:layout_marginEnd="30dp"
+                    style="@style/CustomChip"
+                    android:text="December"
+                    android:textSize="17sp"/>
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/paymentInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Received For:"
+            app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/emailField"
+            app:layout_constraintTop_toBottomOf="@+id/emailField" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

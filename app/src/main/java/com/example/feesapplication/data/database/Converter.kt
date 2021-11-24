@@ -13,4 +13,6 @@ class Converter {
     fun toFeeStatus(feeStatus:String): FeeStatus {
         return FeeStatus.valueOf(feeStatus)
     }
+
+
 }

@@ -33,6 +33,40 @@
             app:layout_constraintVertical_bias="0.0">
 
 
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="18dp"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total_fees"
+                app:layout_constraintVertical_bias="0.0">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/report_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="16sp"
+                        tools:text=" \n adasd awds wdsdw\n sdbasdbjasbdKHJWGDVASHBNDVGHWADVASNBDVAGWHDV  \N NADSBASHJDBajsnbdahdbasnmdbajhsbdfsjadhfbaskdbsjkhbejnfglks \n ansdjkasndkjasbdhabdjhagwdjhsbdagwvdgjahbdjhasbdawgdajkshbdjhvbjahfbrgbdskjfngvkm,xcgnsidjncvmk \n bdfsdhjbf vashjfgasdfasefsfe" />
+                </LinearLayout>
+            </ScrollView>
+
             <TextView
                 android:id="@+id/title_text"
                 android:layout_width="0dp"
@@ -42,7 +76,6 @@
                 android:layout_marginEnd="32dp"
                 android:fontFamily="@font/roboto_regular"
                 android:maxLength="40"
-                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="normal|bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,33 +84,51 @@
                 tools:text="Month of September" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/fees_status"
+                android:id="@+id/cardView"
                 android:layout_width="0dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                app:cardBackgroundColor="@color/icons"
                 android:layout_marginEnd="16dp"
-                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/icons"
+                app:cardCornerRadius="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_text" />
 
             <TextView
-                android:id="@+id/batch_time"
+                android:id="@+id/paid_fees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/unavailable"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <TextView
+                android:id="@+id/total_fees"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:maxLength="150"
-                android:fontFamily="@font/roboto_regular"
-                android:maxLines="10"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/title_text"
-                app:layout_constraintTop_toBottomOf="@+id/fees_status" />
+                android:layout_marginStart="16dp"
+                android:text="@string/unavailable"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/paid_fees" />
+
+            <TextView
+                android:id="@+id/unpaid_fees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/unavailable"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

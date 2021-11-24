@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:maxLength="26"
-                android:textColor="?attr/editTextColor"
                 android:textSize="20sp"
                 android:textStyle="normal" />
 
@@ -49,15 +48,14 @@
         <TextView
             android:id="@+id/startTimeField"
             android:layout_width="180dp"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/textview_background"
             android:gravity="center"
-            android:hint="0:0"
+            android:hint="@string/_0_0"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
-            android:textColor="?attr/editTextColor"
             android:textSize="26sp"
             android:textStyle="normal"
             app:drawableLeftCompat="@drawable/ic_baseline_access_time_filled_24"
@@ -89,19 +87,21 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="29dp"
             android:backgroundTint="@color/icons"
-            android:padding="5dp"
-            android:text="@string/select_time"
             android:fontFamily="@font/roboto_regular"
+            android:hint="@string/select_days"
+            android:textColorHint="@color/white"
+            android:padding="5dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_day"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/startTimeField"
             app:layout_constraintTop_toBottomOf="@+id/batchNameField"
-            app:layout_constraintVertical_bias="0.117" />
+            app:layout_constraintVertical_bias="0.117"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <TextView
             android:id="@+id/tv_day"
@@ -116,7 +116,6 @@
             android:hint="@string/select_days"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
-            android:textColor="?attr/editTextColor"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_regular"
             android:textStyle="normal"
@@ -128,7 +127,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/startTimeField"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:focusable="true" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

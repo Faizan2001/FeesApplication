@@ -5,18 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.util.Log
-
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
-
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.feesapplication.R
@@ -25,20 +20,13 @@ import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.fragments.DashboardFragmentDirections
 import com.example.feesapplication.fragments.StudentListFragmentDirections
-import com.example.feesapplication.fragments.UpdateFragment
-import com.example.feesapplication.fragments.UpdateFragmentDirections
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.Exception
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class BindingAdapter {
 
 
-
     companion object {
-
 
 
         @BindingAdapter("android:navigateToAddBatchFragment")
@@ -67,8 +55,6 @@ class BindingAdapter {
         }
 
 
-
-
         @BindingAdapter("android:emptyDatabase")
         @JvmStatic
         fun emptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
@@ -87,35 +73,48 @@ class BindingAdapter {
                 //FeeStatus.PAID ->  {cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context, R.color.green))}
                 //  FeeStatus.UNPAID ->  {cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context, R.color.red))}
 
-                FeeStatus.NONE -> {
+                FeeStatus.None -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
 
-                      cardView.setCardBackgroundColor(cardView.context.getColor(R.color.greyColor))
+                        cardView.setCardBackgroundColor(cardView.context.getColor(R.color.grayColor))
 
                     } else {
-                        cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context, R.color.greyColor))
+                        cardView.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                cardView.context,
+                                R.color.grayColor
+                            )
+                        )
                     }
                 }
-                FeeStatus.PAID -> {
+                FeeStatus.Paid -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-
 
 
                         cardView.setCardBackgroundColor(cardView.context.getColor(R.color.green))
 
                     } else {
-                        cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context, R.color.green))
+                        cardView.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                cardView.context,
+                                R.color.green
+                            )
+                        )
                     }
                 }
-                FeeStatus.UNPAID -> {
+                FeeStatus.Unpaid -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                         cardView.setCardBackgroundColor(cardView.context.getColor(R.color.red))
 
                     } else {
-                         cardView.setCardBackgroundColor(ContextCompat.getColor(cardView.context, R.color.red))
+                        cardView.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                cardView.context,
+                                R.color.red
+                            )
+                        )
                     }
                 }
 
@@ -129,23 +128,27 @@ class BindingAdapter {
         fun onOptionsCardView(cardView: CardView, currentStudent: Student) {
 
 
-
-            cardView.setOnClickListener{
+            cardView.setOnClickListener {
                 val popUp = PopupMenu(cardView.context, it)
                 popUp.menuInflater.inflate(R.menu.student_options_menu, popUp.menu)
                 popUp.setOnMenuItemClickListener { menuItem: MenuItem ->
 
-                    when(menuItem.itemId) {
-                        R.id.update_student -> { val action =
-                            StudentListFragmentDirections.actionStudentListFragmentToUpdateFragment(currentStudent)
-                            cardView.findNavController().navigate(action)}
+                    when (menuItem.itemId) {
+                        R.id.update_student -> {
+                            val action =
+                                StudentListFragmentDirections.actionStudentListFragmentToUpdateFragment(
+                                    currentStudent
+                                )
+                            cardView.findNavController().navigate(action)
+                        }
 
                         R.id.call_student -> {
-                            val callIntent: Intent = Uri.parse("tel:${currentStudent.studentNumber}").let { number ->
-                                Intent(Intent.ACTION_DIAL, number)
-                            }
+                            val callIntent: Intent =
+                                Intent(Intent.ACTION_DIAL,
+                                    Uri.parse("tel:${currentStudent.studentNumber}")
+                                )
 
-                           cardView.context.startActivity(callIntent)
+                            cardView.context.startActivity(callIntent)
 
                         }
                         R.id.use_another -> {
@@ -186,11 +189,7 @@ class BindingAdapter {
             }
 
 
-
-
         }
-
-
 
 
     }

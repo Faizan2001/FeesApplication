@@ -13,8 +13,10 @@ import kotlinx.parcelize.Parcelize
 data class Student(
     @PrimaryKey(autoGenerate = false) val studentName: String,
     @ColumnInfo(name = "number") val studentNumber: Long,
-    @ColumnInfo(name = "fees") val feesAmount: Double,
+    @ColumnInfo(name = "fees") val feesAmount: Long,
     @ColumnInfo(name = "status") var feesStatus: FeeStatus,
     @ColumnInfo(name = "email") val studentEmail: String,
-    @ColumnInfo(name = "batchName") val batchName: String) : Parcelable
+    @ColumnInfo(name = "batchName") val batchName: String,
+    @ColumnInfo(name = "monthsPaid") val monthsPaid: String) : Parcelable
+
 

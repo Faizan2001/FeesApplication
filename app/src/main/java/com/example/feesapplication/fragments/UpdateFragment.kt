@@ -1,37 +1,38 @@
 package com.example.feesapplication.fragments
 
-import android.content.Intent
-import android.net.Uri
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import androidx.fragment.app.Fragment
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.children
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavGraph
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.feesapplication.R
+import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.FragmentUpdateBinding
+import com.google.android.material.chip.Chip
+import java.lang.StringBuilder
 
 
 class UpdateFragment : Fragment() {
 
     private val args by navArgs<UpdateFragmentArgs>()
 
-    private val studentViewModel : StudentViewModel by viewModels()
-    private val sharedViewModel : SharedViewModel by viewModels()
+    private val studentViewModel: StudentViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     private var feeStatusSaved = "None"
     private lateinit var currentStudent: Student
+    private lateinit var monthsSaved: String
     private lateinit var currentBatch: Batch
 
 
@@ -55,11 +56,20 @@ class UpdateFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(layoutInflater, container, false)
         currentStudent = args.currentStudent
-        studentViewModel.getBatchOfStudent(args.currentStudent.batchName).observe(viewLifecycleOwner, {
-            currentBatch = it
-        })
+        studentViewModel.getBatchOfStudent(args.currentStudent.batchName)
+            .observe(viewLifecycleOwner, {
+                currentBatch = it
+            })
 
 
+
+
+        //Months according to Chips checked
+        binding.chipGroup.children.forEach {
+            (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
+
+            }
+        }
 
 
 
@@ -70,15 +80,31 @@ class UpdateFragment : Fragment() {
         binding.emailField.editText?.setText(args.currentStudent.studentEmail)
         binding.batchNameStudent.text = args.currentStudent.batchName
         binding.autoCompleteTextView.setText(args.currentStudent.feesStatus.toString(), false)
+        checkForCheckedChips()
 
 
-
-
-        binding.autoCompleteTextView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, rowId ->
-                val selection = parent.getItemAtPosition(position) as String
-                feeStatusSaved = selection
+        var position = 0
+        position = when (args.currentStudent.feesStatus) {
+            FeeStatus.None -> {
+                0
             }
+            FeeStatus.Paid -> {
+                1
+            }
+            FeeStatus.Unpaid -> {
+                3
+            }
+        }
+
+        binding.autoCompleteTextView.listSelection = position
+        feeStatusSaved = binding.autoCompleteTextView.text.toString()
+        binding.autoCompleteTextView.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val selection = parent.getItemAtPosition(position) as String
+                 feeStatusSaved = selection
+            }
+
+
 
 
 
@@ -95,7 +121,7 @@ class UpdateFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.update_student) {
+        if (item.itemId == R.id.update_student) {
 
             updateStudentToDb()
 
@@ -103,8 +129,114 @@ class UpdateFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun checkForCheckedChips() {
+
+        val stringRetrieved = args.currentStudent.monthsPaid
+        Log.d("Show", "Tags $stringRetrieved")
+
+
+           if(stringRetrieved.contains("January", true)) {
+                binding.janChip.isChecked = true
+            }
+            if( stringRetrieved.contains("February",true)) {
+                binding.febChip.isChecked = true
+            }
+            if (stringRetrieved.contains("March",true)) {
+                binding.marChip.isChecked = true
+            }
+            if (stringRetrieved.contains("April",true)) {
+                binding.aprChip.isChecked = true
+            }
+            if (stringRetrieved.contains("May",true)) {
+                binding.mayChip.isChecked = true
+            }
+            if (stringRetrieved.contains("June",true)) {
+                binding.juneChip.isChecked = true
+            }
+            if (stringRetrieved.contains("July",true)) {
+                binding.julChip.isChecked = true
+            }
+            if(stringRetrieved.contains("August",true)) {
+                binding.augChip.isChecked = true
+            }
+            if (stringRetrieved.contains("September",true))  {
+                binding.sepChip.isChecked = true
+            }
+            if (stringRetrieved.contains("October",true))  {
+                binding.octChip.isChecked = true
+            }
+            if (stringRetrieved.contains("November",true))  {
+                binding.novChip.isChecked = true
+            }
+            if (stringRetrieved.contains("December",true))  {
+                binding.decChip.isChecked = true
+            }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
     private fun updateStudentToDb() {
+
+        val stringMonths = StringBuilder()
+
+        binding.chipGroup.checkedChipIds.forEach {
+            when {
+                it.equals(binding.janChip.id) -> {
+                    stringMonths.append("January, ")
+                }
+                it.equals(binding.febChip.id) -> {
+                    stringMonths.append("February, ")
+                }
+                it.equals(binding.marChip.id) -> {
+                    stringMonths.append("March, ")
+                }
+                it.equals(binding.aprChip.id) -> {
+                    stringMonths.append("April, ")
+                }
+                it.equals(binding.mayChip.id) -> {
+                    stringMonths.append("May, ")
+                }
+                it.equals(binding.juneChip.id) -> {
+                    stringMonths.append("June, ")
+                }
+                it.equals(binding.julChip.id) -> {
+                    stringMonths.append("July, ")
+                }
+                it.equals(binding.augChip.id) -> {
+                    stringMonths.append("August, ")
+                }
+                it.equals(binding.sepChip.id) -> {
+                    stringMonths.append("September, ")
+                }
+                it.equals(binding.octChip.id) -> {
+                    stringMonths.append("October, ")
+                }
+                it.equals(binding.novChip.id) -> {
+                    stringMonths.append("November, ")
+                }
+                it.equals(binding.decChip.id) -> {
+                    stringMonths.append("December")
+                }
+
+                else -> {stringMonths.append("Empty")}
+
+            }
+        }
+
+
+
+
+        monthsSaved = stringMonths.toString()
 
         val studentNameField = binding.studentNameField.editText?.text.toString()
         val contactNumber = binding.contactNumberField.editText?.text.toString()
@@ -112,51 +244,61 @@ class UpdateFragment : Fragment() {
         val emailField = binding.emailField.editText?.text.toString()
 
 
-        val validation = sharedViewModel.verifyStudentInputData(studentNameField, contactNumber, feesField, feeStatusSaved, emailField)
+        val validation = sharedViewModel.verifyStudentInputData(
+            studentNameField,
+            contactNumber,
+            feesField,
+            feeStatusSaved,
+            emailField
+        )
         if (validation) {
             // Green signal to save data into database
             val newStudentData = Student(
                 studentName = studentNameField,
                 studentNumber = contactNumber.toLong(),
-                feesAmount = feesField.toDouble(),
+                feesAmount = feesField.toLong(),
                 feesStatus = sharedViewModel.parseFeesStatus(feeStatusSaved),
                 studentEmail = emailField,
-                batchName = args.currentStudent.batchName
+                batchName = args.currentStudent.batchName,
+                monthsPaid = monthsSaved
 
             )
 
             studentViewModel.updateStudent(newStudentData)
-            Toast.makeText(requireContext(),"Successfully updated student!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Successfully updated student!", Toast.LENGTH_SHORT)
+                .show()
 
-            val action = UpdateFragmentDirections.actionUpdateFragmentToStudentListFragment(currentBatch)
+            val action =
+                UpdateFragmentDirections.actionUpdateFragmentToStudentListFragment(currentBatch)
             findNavController().navigate(action)
 
-        /*    val navOptions = NavOptions
-                .Builder()
-                .setEnterAnim(R.anim.from_left)
-                .setExitAnim(R.anim.to_right)
-                .setPopEnterAnim(R.anim.from_left)
-                .setPopExitAnim(R.anim.to_right)
-                .setPopUpTo(R.id.studentListFragment, true)
-                .build()
-
-
-
-
-            findNavController().navigate(action, navOptions) */
         } else {
-            Toast.makeText(requireContext(),"Please fill out all fields.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
+                .show()
         }
 
 
     }
 
+   /* val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    val month = c.get(Calendar.MONTH)
+    val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+    val dpd = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+        // Display Selected date in textbox
+        lblDate.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+
+    }, year, month, day)
+
+    dpd.show() */
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
 
 }

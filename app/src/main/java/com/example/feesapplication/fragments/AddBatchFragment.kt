@@ -1,42 +1,37 @@
 package com.example.feesapplication.fragments
 
+// import com.example.feesapplication.DayPickerDialogFragment
+
 import android.content.DialogInterface
-
 import android.os.Bundle
-
 import android.text.format.DateFormat.is24HourFormat
 import android.util.Log
 import android.view.*
 import android.widget.Toast
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-// import com.example.feesapplication.DayPickerDialogFragment
 import com.example.feesapplication.R
-import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.viewmodel.SharedViewModel
+import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.AddBatchFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.lang.Exception
-import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class AddBatchFragment : Fragment(){
+class AddBatchFragment : Fragment() {
 
-    private val studentViewModel : StudentViewModel by viewModels()
-    private val sharedViewModel : SharedViewModel by viewModels()
+    private val studentViewModel: StudentViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
 
-    private lateinit var timePickerTime : String
+    private lateinit var timePickerTime: String
 
-    private var dayPickerDays : String = ""
+    private var dayPickerDays: String = ""
 
     private var _binding: AddBatchFragmentBinding? = null
     private val binding get() = _binding!!
@@ -45,7 +40,6 @@ class AddBatchFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
 
 
         // Set Menu
@@ -60,7 +54,7 @@ class AddBatchFragment : Fragment(){
         }
 
 
-      binding.tvDay.setOnClickListener{ showAlertDialog() }
+        binding.tvDay.setOnClickListener { showAlertDialog() }
 
 
 
@@ -72,7 +66,7 @@ class AddBatchFragment : Fragment(){
 
     private fun openTimePicker() {
         val isSystem24Hour = is24HourFormat(requireContext())
-        val clockFormat = if(isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+        val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
 
         val picker = MaterialTimePicker.Builder()
             .setTimeFormat(clockFormat)
@@ -88,7 +82,7 @@ class AddBatchFragment : Fragment(){
             val min = picker.minute
 
             if (picker.minute < 10) {
-                timePickerTime =  h.toString().plus(":0").plus(min.toString())
+                timePickerTime = h.toString().plus(":0").plus(min.toString())
                 binding.startTimeField.text = timePickerTime
             } else {
                 timePickerTime = "$h:$min"
@@ -96,15 +90,14 @@ class AddBatchFragment : Fragment(){
             }
 
 
-
         }
     }
 
     // DAY SELECTOR
 
-    fun showAlertDialog() {
+    private fun showAlertDialog() {
 
-        var selectedDays : String
+        var selectedDays: String
 
 
         val alertBuilder = activity?.let { MaterialAlertDialogBuilder(it) }
@@ -134,9 +127,9 @@ class AddBatchFragment : Fragment(){
                 } else {
 
 
-                        daysList.drop(index)
-                        daysList.remove(index)
-                        checkedArray[index] = false
+                    daysList.drop(index)
+                    daysList.remove(index)
+                    checkedArray[index] = false
 
 
                 }
@@ -189,14 +182,8 @@ class AddBatchFragment : Fragment(){
     }
 
 
-
-
-
-
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-       inflater.inflate(R.menu.add_batch_menu, menu)
+        inflater.inflate(R.menu.add_batch_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -218,24 +205,26 @@ class AddBatchFragment : Fragment(){
         val batchNameField = binding.batchNameField.editText?.text.toString()
         Log.d("Text grabbed", batchNameField)
         val timePickerTime = binding.startTimeField.text.toString()
-       // val daysPicked = binding.tvDay.text.toString()
+        // val daysPicked = binding.tvDay.text.toString()
 
-        val validation = sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, dayPickerDays)
+        val validation =
+            sharedViewModel.verifyBatchInputData(batchNameField, timePickerTime, dayPickerDays)
         if (validation) {
             //Green Signal - Enter data to database
-           val newBatchData = Batch(
-               batchNameField,
-               timePickerTime,
-              dayPickerDays
-           )
+            val newBatchData = Batch(
+                batchNameField,
+                timePickerTime,
+                dayPickerDays
+            )
 
             studentViewModel.insertBatch(newBatchData)
-            Toast.makeText(requireContext(),"Successfully added batch!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Successfully added batch!", Toast.LENGTH_SHORT).show()
 
             findNavController().navigate(R.id.action_addBatchFragment_to_dashboardFragment)
 
         } else {
-            Toast.makeText(requireContext(),"Please fill out all fields.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
+                .show()
         }
 
     }
@@ -244,8 +233,6 @@ class AddBatchFragment : Fragment(){
         super.onDestroy()
         _binding = null
     }
-
-
 
 
 }

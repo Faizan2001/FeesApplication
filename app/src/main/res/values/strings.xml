@@ -31,7 +31,26 @@
     <string name="my_title">My Title</string>
     <string name="no_students_added">No Students Added</string>
     <string name="sort_by_status">Sort By Status</string>
-
+    <string name="write_something">Write Something</string>
+    <string name="status">Status</string>
+    <string name="_0_0">0:0</string>
+    <string name="textview">TextView</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="view_report">View Report</string>
+    <string name="fees_status">Fees Status</string>
+    <string name="june">June</string>
+    <string name="april">April</string>
+    <string name="november">November</string>
+    <string name="july">July</string>
+    <string name="october">October</string>
+    <string name="may">May</string>
+    <string name="february">February</string>
+    <string name="september">September</string>
+    <string name="august">August</string>
+    <string name="january">January</string>
+    <string name="december">December</string>
+    <string name="march">March</string>
+    <string name="payment_received_for">Payment Received For:</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>

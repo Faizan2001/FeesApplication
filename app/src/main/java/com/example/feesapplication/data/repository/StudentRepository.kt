@@ -12,6 +12,11 @@ class StudentRepository(private val studentDao: StudentDao) {
     val getAllStudentData: LiveData<List<Student>> = studentDao.getAllStudentData()
     val getAllBatchData : LiveData<List<Batch>> = studentDao.getAllBatchData()
 
+    val getBatchCount : LiveData<Int> = studentDao.getBatchCount()
+    val getStudentCount : LiveData<Int> = studentDao.getStudentCount()
+    val getUnpaidCount : LiveData<Int> = studentDao.getUnpaidCount()
+    val getPaidCount : LiveData<Int> = studentDao.getPaidCount()
+
     val sortByUnpaid: LiveData<List<Student>> = studentDao.sortByUnpaid()
     val sortByPaid: LiveData<List<Student>> = studentDao.sortByPaid()
 
@@ -22,6 +27,8 @@ class StudentRepository(private val studentDao: StudentDao) {
     val sortByThursday: LiveData<List<Batch>> = studentDao.sortByThursday()
     val sortByFriday: LiveData<List<Batch>> = studentDao.sortByFriday()
     val sortBySaturday: LiveData<List<Batch>> = studentDao.sortBySaturday()
+
+
 
     suspend fun insertStudent(student: Student){
       studentDao.insertStudent(student)
@@ -66,6 +73,14 @@ class StudentRepository(private val studentDao: StudentDao) {
 
     fun searchStudentDatabase(searchQuery: String): LiveData<List<Student>> {
         return studentDao.searchStudentDatabase(searchQuery)
+    }
+
+     fun sortByBatchUnpaid(batchName: String): LiveData<List<Student>> {
+        return studentDao.sortByBatchUnpaid(batchName)
+    }
+
+    fun sortByBatchPaid(batchName: String): LiveData<List<Student>> {
+        return studentDao.sortByBatchPaid(batchName)
     }
 
 

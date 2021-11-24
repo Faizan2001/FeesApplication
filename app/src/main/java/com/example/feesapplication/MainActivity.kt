@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
+
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -19,6 +22,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navController = navHostFragment.navController
         // Set up the action bar for use with the NavController
         NavigationUI.setupActionBarWithNavController(this, navController)
+
+        val builder = VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
     }
 
 
