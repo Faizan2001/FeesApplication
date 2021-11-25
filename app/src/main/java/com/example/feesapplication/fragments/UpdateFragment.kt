@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,6 +22,7 @@ import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.FragmentUpdateBinding
 import com.google.android.material.chip.Chip
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog
 import java.lang.StringBuilder
@@ -67,16 +70,18 @@ class UpdateFragment : Fragment() {
             })
 
 
-
+        // Update pre-existing Checked Chips
         checkForCheckedChips()
 
-        //Months according to Chips checked
-        binding.chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
 
-             if (it.isChecked) {
 
-                 val c = Calendar.getInstance()
+
+
+
+
+
+
+        /*  val c = Calendar.getInstance()
                  val year = c.get(Calendar.YEAR)
                  val month = c.get(Calendar.MONTH)
                  val day = c.get(Calendar.DAY_OF_MONTH)
@@ -90,11 +95,7 @@ class UpdateFragment : Fragment() {
 
                  }, year, month, day)
 
-                 dpd.show()
-
-             }
-            }
-        }
+                 dpd.show() */
 
 
 
@@ -202,6 +203,226 @@ class UpdateFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val today = MaterialDatePicker.todayInUtcMilliseconds()
+        val calendar = Calendar.getInstance(TimeZone.getDefault())
+
+        calendar.timeInMillis = today
+
+        calendar[Calendar.MONTH] = Calendar.JANUARY
+        val jan = calendar.timeInMillis
+
+        calendar.timeInMillis = today
+        calendar[Calendar.MONTH] = Calendar.DECEMBER
+        val dec = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.FEBRUARY
+        val feb = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.MARCH
+        val mar = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.APRIL
+        val apr = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.MAY
+        val may = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.JUNE
+        val jun = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.JULY
+        val jul = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.AUGUST
+        val aug = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.SEPTEMBER
+        val sep = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.OCTOBER
+        val oct = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.NOVEMBER
+        val nov = calendar.timeInMillis
+
+        //Months according to Chips checked
+        binding.chipGroup.children.forEach {
+            (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
+
+                if (it.isChecked) {
+                    when (it.id) {
+                        R.id.janChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(jan)
+                                .setOpenAt(jan)
+                                .setEnd(jan)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.febChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(feb)
+                                .setOpenAt(feb)
+                                .setEnd(feb)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.marChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(mar)
+                                .setOpenAt(mar)
+                                .setEnd(mar)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.aprChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(apr)
+                                .setOpenAt(apr)
+                                .setEnd(apr)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.mayChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(may)
+                                .setOpenAt(may)
+                                .setEnd(may)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.juneChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(jun)
+                                .setOpenAt(jun)
+                                .setEnd(jun)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.julChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(jul)
+                                .setOpenAt(jul)
+                                .setEnd(jul)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.augChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(jun)
+                                .setOpenAt(jun)
+                                .setEnd(jun)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.sepChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(sep)
+                                .setOpenAt(sep)
+                                .setEnd(sep)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.octChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(oct)
+                                .setOpenAt(oct)
+                                .setEnd(oct)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.novChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(nov)
+                                .setOpenAt(nov)
+                                .setEnd(nov)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+                        R.id.decChip -> { val constraintsBuilder =
+                            CalendarConstraints.Builder()
+                                .setStart(dec)
+                                .setOpenAt(dec)
+                                .setEnd(dec)
+
+                            val datePicker = MaterialDatePicker.Builder.datePicker()
+                                .setTitleText("Date Selection")
+                                .setCalendarConstraints(constraintsBuilder.build())
+                                .build()
+
+                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                        }
+
+
+
+
+                    }
+
+
+                }
+            }
+        }
+    }
+
 
 
 
@@ -305,11 +526,6 @@ class UpdateFragment : Fragment() {
 
 
     }
-
-    val c = Calendar.getInstance()
-    val year = c.get(Calendar.YEAR)
-    val month = c.get(Calendar.MONTH)
-    val day = c.get(Calendar.DAY_OF_MONTH)
 
 
     override fun onDestroyView() {

@@ -259,19 +259,19 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     bText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     sText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     reportViewText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     titleText.text = "Good Evening"
