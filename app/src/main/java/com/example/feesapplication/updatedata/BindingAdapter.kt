@@ -144,7 +144,8 @@ class BindingAdapter {
 
                         R.id.call_student -> {
                             val callIntent: Intent =
-                                Intent(Intent.ACTION_DIAL,
+                                Intent(
+                                    Intent.ACTION_DIAL,
                                     Uri.parse("tel:${currentStudent.studentNumber}")
                                 )
 

@@ -1,7 +1,10 @@
 package com.example.feesapplication.data.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 
@@ -9,7 +12,7 @@ import com.example.feesapplication.data.database.entities.Student
 @TypeConverters(Converter::class)
 abstract class StudentRoomDatabase : RoomDatabase() {
 
-    abstract fun studentDao() : StudentDao
+    abstract fun studentDao(): StudentDao
 
     companion object {
         @Volatile
@@ -18,7 +21,7 @@ abstract class StudentRoomDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                   StudentRoomDatabase::class.java,
+                    StudentRoomDatabase::class.java,
                     "student_database"
                 )
                     .fallbackToDestructiveMigration()
@@ -28,7 +31,6 @@ abstract class StudentRoomDatabase : RoomDatabase() {
             }
         }
     }
-
 
 
 }

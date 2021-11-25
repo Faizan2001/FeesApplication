@@ -1,13 +1,11 @@
 package com.example.feesapplication.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,8 +17,6 @@ import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.AddStudentFragmentBinding
 import com.google.android.material.chip.Chip
-import java.lang.StringBuilder
-import java.util.*
 
 
 class AddStudentFragment : Fragment() {
@@ -56,16 +52,12 @@ class AddStudentFragment : Fragment() {
         _binding = AddStudentFragmentBinding.inflate(layoutInflater, container, false)
 
 
-
-
-
-       //Months according to Chips checked
+        //Months according to Chips checked
         binding.chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
+            (it as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
 
             }
         }
-
 
 
         // Set Menu
@@ -113,7 +105,6 @@ class AddStudentFragment : Fragment() {
     }
 
 
-
     private fun insertStudentToDb() {
 
 
@@ -158,7 +149,9 @@ class AddStudentFragment : Fragment() {
                     stringMonths.append("December")
                 }
 
-                else -> {stringMonths.append("Empty")}
+                else -> {
+                    stringMonths.append("Empty")
+                }
 
             }
         }

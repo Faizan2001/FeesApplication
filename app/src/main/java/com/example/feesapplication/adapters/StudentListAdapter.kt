@@ -1,26 +1,16 @@
 package com.example.feesapplication.adapters
 
 import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.feesapplication.R
-import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.databinding.StudentRowLayoutBinding
 
 
-class StudentListAdapter() : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>() {
+class StudentListAdapter : RecyclerView.Adapter<StudentListAdapter.MyViewHolder>() {
 
     var studentList = emptyList<Student>()
-
-
-
-
 
 
     class MyViewHolder(private val binding: StudentRowLayoutBinding) :
@@ -59,7 +49,6 @@ class StudentListAdapter() : RecyclerView.Adapter<StudentListAdapter.MyViewHolde
 
 
     }
-
 
 
     fun setStudentData(student: List<Student>) {

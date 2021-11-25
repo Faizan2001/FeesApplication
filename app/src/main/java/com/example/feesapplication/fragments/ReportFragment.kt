@@ -135,7 +135,6 @@ class ReportFragment : Fragment() {
                 }
 
 
-
             }
 
             reportGathered = stringBuilder.toString()

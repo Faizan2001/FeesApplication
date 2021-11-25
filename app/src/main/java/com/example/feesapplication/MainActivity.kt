@@ -1,12 +1,12 @@
 package com.example.feesapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import android.os.StrictMode
-import android.os.StrictMode.VmPolicy
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
