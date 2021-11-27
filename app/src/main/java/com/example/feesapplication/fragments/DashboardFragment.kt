@@ -23,6 +23,10 @@ import com.example.feesapplication.list.utils.observeOnce
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -35,11 +39,17 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     private val binding get() = _binding!!
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayShowCustomEnabled(false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
 
         //Data Binding

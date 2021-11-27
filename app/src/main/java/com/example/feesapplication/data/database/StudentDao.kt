@@ -3,15 +3,11 @@ package com.example.feesapplication.data.database
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
-import kotlinx.coroutines.flow.Flow
-import androidx.room.ColumnInfo
-
-
-
+import androidx.room.Dao
+import androidx.room.OnConflictStrategy
 
 
 @Dao
@@ -35,7 +31,7 @@ interface StudentDao{
 
 
     @Query("DELETE FROM students WHERE batchName = :batchName ")
-    suspend fun deleteAllStudents(batchName: String)
+    fun deleteAllStudents(batchName: String)
 
     @Query("SELECT COUNT(*) FROM batches")
     fun getBatchCount(): LiveData<Int>

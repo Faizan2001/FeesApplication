@@ -124,10 +124,10 @@ class ReportFragment : Fragment() {
 
                 fileOut.appendText("\n")
                 fileOut.appendText("${(i) + 1}," + student[i].studentName + "," + student[i].studentNumber + "," + student[i].studentEmail + "," + student[i].batchName + "," + student[i].feesAmount + "," + student[i].feesStatus)
-                stringBuilder.append("${(i) + 1}) " + student[i].studentName + " [" + student[i].batchName + "]: Current Status : " + student[i].feesStatus.toString() + ", " + student[i].feesAmount.toString() + "\n" + "Months Paid: " + student[i].monthsPaid + "\n" + "\n" + "Contact Number: " + student[i].studentNumber.toString() + ", Mail: " + student[i].studentEmail)
+                stringBuilder.append("${(i) + 1}) " + student[i].studentName + " [" + student[i].batchName + "]: Current Status : " + student[i].feesStatus.toString() + ", " + student[i].feesAmount.toString() + "\n" + "Months Paid: " + student[i].monthsPaid + "\n" + "\n" + "Contact Number: " + student[i].studentNumber.toString() + ",\n Mail: " + student[i].studentEmail)
                 stringBuilder.append("\n")
                 stringBuilder.append("\n")
-                stringBuilder.append("━━━━━━━━━━━━━")
+                stringBuilder.append("━━━━━━━━━━━━━━━━")
                 stringBuilder.append("\n")
                 stringBuilder.append("\n")
                 if (student[i].feesStatus.toString().contains("Paid", false)) {

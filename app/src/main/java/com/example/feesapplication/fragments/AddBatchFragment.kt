@@ -61,8 +61,8 @@ class AddBatchFragment : Fragment() {
         return binding.root
 
     }
-
     // TIME PICKER
+
 
     private fun openTimePicker() {
         val isSystem24Hour = is24HourFormat(requireContext())
@@ -218,9 +218,8 @@ class AddBatchFragment : Fragment() {
             )
 
             studentViewModel.insertBatch(newBatchData)
-            Toast.makeText(requireContext(), "Successfully added batch!", Toast.LENGTH_SHORT).show()
-
-            findNavController().navigate(R.id.action_addBatchFragment_to_dashboardFragment)
+            Toast.makeText(this.context, "Successfully added batch!", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
 
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)

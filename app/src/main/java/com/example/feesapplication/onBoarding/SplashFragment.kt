@@ -1,0 +1,48 @@
+package com.example.feesapplication.onBoarding
+
+import android.content.Context
+import android.os.Bundle
+import android.os.Handler
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.feesapplication.R
+import androidx.appcompat.app.AppCompatActivity
+
+
+
+
+class SplashFragment : Fragment() {
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        Handler().postDelayed({
+            if (checkIfFinishedOnBoarding()) {
+                findNavController().navigate(R.id.action_splashFragment_to_dashboardFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+            }
+        }, 1500)
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_splash, container, false)
+    }
+
+    private fun checkIfFinishedOnBoarding() : Boolean {
+        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Finished", false)
+    }
+
+
+}

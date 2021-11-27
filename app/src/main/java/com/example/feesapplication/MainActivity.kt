@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
+import androidx.navigation.ui.AppBarConfiguration
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val builder = VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
+
+
     }
 
 

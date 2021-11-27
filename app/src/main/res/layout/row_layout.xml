@@ -65,7 +65,6 @@
                 android:fontFamily="@font/roboto_regular"
                 android:maxLength="40"
                 android:text="@{batchInfo.batchName}"
-                android:textColor="?attr/editTextColor"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
