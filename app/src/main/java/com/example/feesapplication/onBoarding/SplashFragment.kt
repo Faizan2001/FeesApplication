@@ -3,15 +3,13 @@ package com.example.feesapplication.onBoarding
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.feesapplication.R
-import androidx.appcompat.app.AppCompatActivity
-
-
 
 
 class SplashFragment : Fragment() {
@@ -39,7 +37,7 @@ class SplashFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    private fun checkIfFinishedOnBoarding() : Boolean {
+    private fun checkIfFinishedOnBoarding(): Boolean {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("Finished", false)
     }

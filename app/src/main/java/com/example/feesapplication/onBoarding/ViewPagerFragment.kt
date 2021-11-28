@@ -1,13 +1,10 @@
 package com.example.feesapplication.onBoarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.ViewPager
-import com.example.feesapplication.R
-import com.example.feesapplication.databinding.AddBatchFragmentBinding
+import androidx.fragment.app.Fragment
 import com.example.feesapplication.databinding.FragmentViewPagerBinding
 import com.example.feesapplication.onBoarding.onboardingScreens.First
 import com.example.feesapplication.onBoarding.onboardingScreens.Second

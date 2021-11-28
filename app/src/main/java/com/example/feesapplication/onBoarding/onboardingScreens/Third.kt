@@ -2,18 +2,14 @@ package com.example.feesapplication.onBoarding.onboardingScreens
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.example.feesapplication.R
 import com.example.feesapplication.databinding.FragmentThirdBinding
-import com.example.feesapplication.databinding.FragmentViewPagerBinding
-import androidx.appcompat.app.AppCompatActivity
-
-
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,12 +29,12 @@ class Third : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       _binding = FragmentThirdBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentThirdBinding.inflate(layoutInflater, container, false)
 
 
 
         binding.nextButtonThird.setOnClickListener {
-           findNavController().navigate(R.id.action_viewPagerFragment_to_dashboardFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_dashboardFragment)
             finishedOnBoarding()
         }
 

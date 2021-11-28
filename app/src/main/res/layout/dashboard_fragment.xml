@@ -40,6 +40,7 @@
                 android:id="@+id/imageView_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:notEmptyDatabase="@{sharedViewModel.emptyBatchDatabase}"
                 android:background="@drawable/row_item_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,17 +168,16 @@
 
         <ImageView
             android:id="@+id/no_data_imageView"
-            android:layout_width="175dp"
-            android:layout_height="160dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:emptyDatabase="@{sharedViewModel.emptyBatchDatabase}"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.548"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499"
-            app:srcCompat="@drawable/ic_no_data" />
+            app:srcCompat="@drawable/ic_batch_not_added" />
 
         <TextView
             android:id="@+id/no_data_textView"

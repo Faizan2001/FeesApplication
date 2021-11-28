@@ -1,21 +1,19 @@
 package com.example.feesapplication.data.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.database.StudentDao
 import com.example.feesapplication.data.database.entities.Batch
-import kotlinx.coroutines.flow.Flow
+import com.example.feesapplication.data.database.entities.Student
 
 class StudentRepository(private val studentDao: StudentDao) {
 
     val getAllStudentData: LiveData<List<Student>> = studentDao.getAllStudentData()
-    val getAllBatchData : LiveData<List<Batch>> = studentDao.getAllBatchData()
+    val getAllBatchData: LiveData<List<Batch>> = studentDao.getAllBatchData()
 
-    val getBatchCount : LiveData<Int> = studentDao.getBatchCount()
-    val getStudentCount : LiveData<Int> = studentDao.getStudentCount()
-    val getUnpaidCount : LiveData<Int> = studentDao.getUnpaidCount()
-    val getPaidCount : LiveData<Int> = studentDao.getPaidCount()
+    val getBatchCount: LiveData<Int> = studentDao.getBatchCount()
+    val getStudentCount: LiveData<Int> = studentDao.getStudentCount()
+    val getUnpaidCount: LiveData<Int> = studentDao.getUnpaidCount()
+    val getPaidCount: LiveData<Int> = studentDao.getPaidCount()
 
     val sortByUnpaid: LiveData<List<Student>> = studentDao.sortByUnpaid()
     val sortByPaid: LiveData<List<Student>> = studentDao.sortByPaid()
@@ -29,9 +27,8 @@ class StudentRepository(private val studentDao: StudentDao) {
     val sortBySaturday: LiveData<List<Batch>> = studentDao.sortBySaturday()
 
 
-
-    suspend fun insertStudent(student: Student){
-      studentDao.insertStudent(student)
+    suspend fun insertStudent(student: Student) {
+        studentDao.insertStudent(student)
 
     }
 
@@ -59,7 +56,7 @@ class StudentRepository(private val studentDao: StudentDao) {
         return studentDao.getBatchOfStudent(batchName)
     }
 
-    fun studentsInBatch(batchName : String) : LiveData<List<Student>> {
+    fun studentsInBatch(batchName: String): LiveData<List<Student>> {
         return studentDao.getBatchWithStudents(batchName)
     }
 
@@ -75,19 +72,13 @@ class StudentRepository(private val studentDao: StudentDao) {
         return studentDao.searchStudentDatabase(searchQuery)
     }
 
-     fun sortByBatchUnpaid(batchName: String): LiveData<List<Student>> {
+    fun sortByBatchUnpaid(batchName: String): LiveData<List<Student>> {
         return studentDao.sortByBatchUnpaid(batchName)
     }
 
     fun sortByBatchPaid(batchName: String): LiveData<List<Student>> {
         return studentDao.sortByBatchPaid(batchName)
     }
-
-
-
-
-
-
 
 
 }

@@ -6,7 +6,7 @@ import com.example.feesapplication.data.database.entities.Student
 class StudentDiffUtil(
     private val oldList: List<Student>,
     private val newList: List<Student>
-): DiffUtil.Callback() {
+) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
     }
@@ -26,8 +26,6 @@ class StudentDiffUtil(
                 && oldList[oldItemPosition].feesStatus == newList[newItemPosition].feesStatus
                 && oldList[oldItemPosition].studentEmail == newList[newItemPosition].studentEmail
                 && oldList[oldItemPosition].batchName == newList[newItemPosition].batchName
-
-
 
 
     }

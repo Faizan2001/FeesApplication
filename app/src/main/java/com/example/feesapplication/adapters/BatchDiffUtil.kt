@@ -6,17 +6,17 @@ import com.example.feesapplication.data.database.entities.Batch
 class BatchDiffUtil(
     private val oldList: List<Batch>,
     private val newList: List<Batch>
-): DiffUtil.Callback() {
+) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
-       return oldList.size
+        return oldList.size
     }
 
     override fun getNewListSize(): Int {
-      return newList.size
+        return newList.size
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-      return oldList[oldItemPosition] === newList[newItemPosition]
+        return oldList[oldItemPosition] === newList[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

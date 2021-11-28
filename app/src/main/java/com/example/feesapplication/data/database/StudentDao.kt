@@ -1,17 +1,14 @@
 package com.example.feesapplication.data.database
 
 
-
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
-import androidx.room.Dao
-import androidx.room.OnConflictStrategy
 
 
 @Dao
-interface StudentDao{
+interface StudentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBatch(batch: Batch)
@@ -44,10 +41,6 @@ interface StudentDao{
 
     @Query("SELECT COUNT(*) FROM students WHERE status LIKE 'P%'")
     fun getPaidCount(): LiveData<Int>
-
-
-
-
 
 
     @Query("SELECT * FROM students ORDER BY studentName ASC")
@@ -108,15 +101,6 @@ interface StudentDao{
 
     @Query("SELECT * FROM batches WHERE batchDays LIKE '%Saturday%'")
     fun sortBySaturday(): LiveData<List<Batch>>
-
-
-
-
-
-
-
-
-
 
 
 }

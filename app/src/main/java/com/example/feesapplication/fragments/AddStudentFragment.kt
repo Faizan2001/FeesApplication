@@ -1,13 +1,11 @@
 package com.example.feesapplication.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,7 +19,6 @@ import com.example.feesapplication.databinding.AddStudentFragmentBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import java.lang.StringBuilder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +34,22 @@ class AddStudentFragment : Fragment() {
     private lateinit var batchNameSaved: String
     private lateinit var currentBatch: Batch
 
-    private val MONTHS by lazy { mutableListOf<String>("0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0") }
+    private val MONTHS by lazy {
+        mutableListOf<String>(
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+        )
+    }
 
     private var _binding: AddStudentFragmentBinding? = null
     private val binding get() = _binding!!
@@ -61,16 +73,12 @@ class AddStudentFragment : Fragment() {
         _binding = AddStudentFragmentBinding.inflate(layoutInflater, container, false)
 
 
-
-
-
-       //Months according to Chips checked
+        //Months according to Chips checked
         binding.chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
+            (it as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
 
             }
         }
-
 
 
         // Set Menu
@@ -152,221 +160,229 @@ class AddStudentFragment : Fragment() {
         }
 
 
-
         //Months according to Chips checked
         binding.chipGroup.children.forEach { selectedChip ->
-            (selectedChip as Chip).setOnCheckedChangeListener{ buttonView, isChecked ->
-
+            (selectedChip as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
 
 
                 if (selectedChip.isChecked) {
                     when (selectedChip.id) {
-                        R.id.janChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(jan)
-                                .setOpenAt(jan)
-                                .setEnd(jan)
+                        R.id.janChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(jan)
+                                    .setOpenAt(jan)
+                                    .setEnd(jan)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[0] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[0]} Jan marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.febChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(feb)
-                                .setOpenAt(feb)
-                                .setEnd(feb)
+                        R.id.febChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(feb)
+                                    .setOpenAt(feb)
+                                    .setEnd(feb)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[1] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[1]} Feb marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.marChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(mar)
-                                .setOpenAt(mar)
-                                .setEnd(mar)
+                        R.id.marChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(mar)
+                                    .setOpenAt(mar)
+                                    .setEnd(mar)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[2] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[2]} Mar marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.aprChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(apr)
-                                .setOpenAt(apr)
-                                .setEnd(apr)
+                        R.id.aprChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(apr)
+                                    .setOpenAt(apr)
+                                    .setEnd(apr)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[3] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[3]} Apr marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.mayChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(may)
-                                .setOpenAt(may)
-                                .setEnd(may)
+                        R.id.mayChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(may)
+                                    .setOpenAt(may)
+                                    .setEnd(may)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[4] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[4]} May marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.juneChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(jun)
-                                .setOpenAt(jun)
-                                .setEnd(jun)
+                        R.id.juneChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(jun)
+                                    .setOpenAt(jun)
+                                    .setEnd(jun)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[5] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[5]} Jun marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.julChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(jul)
-                                .setOpenAt(jul)
-                                .setEnd(jul)
+                        R.id.julChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(jul)
+                                    .setOpenAt(jul)
+                                    .setEnd(jul)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[6] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[6]} Jul marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.augChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(jun)
-                                .setOpenAt(jun)
-                                .setEnd(jun)
+                        R.id.augChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(jun)
+                                    .setOpenAt(jun)
+                                    .setEnd(jun)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
-                                MONTHS[7]  = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[7]} Aug marked", Toast.LENGTH_SHORT).show()
+                                MONTHS[7] = outputDateFormat.format(it)
                             }
                         }
-                        R.id.sepChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(sep)
-                                .setOpenAt(sep)
-                                .setEnd(sep)
+                        R.id.sepChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(sep)
+                                    .setOpenAt(sep)
+                                    .setEnd(sep)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[8] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[8]} Sep marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.octChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(oct)
-                                .setOpenAt(oct)
-                                .setEnd(oct)
+                        R.id.octChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(oct)
+                                    .setOpenAt(oct)
+                                    .setEnd(oct)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[9] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[9]} Oct marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-                        R.id.novChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(nov)
-                                .setOpenAt(nov)
-                                .setEnd(nov)
+                        R.id.novChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(nov)
+                                    .setOpenAt(nov)
+                                    .setEnd(nov)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
-                                MONTHS[10]  = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[10]} Nov marked", Toast.LENGTH_SHORT).show()
+                                MONTHS[10] = outputDateFormat.format(it)
                             }
                         }
-                        R.id.decChip -> { val constraintsBuilder =
-                            CalendarConstraints.Builder()
-                                .setStart(dec)
-                                .setOpenAt(dec)
-                                .setEnd(dec)
+                        R.id.decChip -> {
+                            val constraintsBuilder =
+                                CalendarConstraints.Builder()
+                                    .setStart(dec)
+                                    .setOpenAt(dec)
+                                    .setEnd(dec)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
                                 .setCalendarConstraints(constraintsBuilder.build())
                                 .build()
 
-                            datePicker.show(requireActivity().supportFragmentManager, "tag" )
+                            datePicker.show(requireActivity().supportFragmentManager, "tag")
+                            datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[11] = outputDateFormat.format(it)
-                                Toast.makeText(this.context, "${MONTHS[11]} Dec Marked", Toast.LENGTH_SHORT).show()
                             }
                         }
-
-
 
 
                     }
@@ -392,7 +408,6 @@ class AddStudentFragment : Fragment() {
     }
 
 
-
     private fun insertStudentToDb() {
 
 
@@ -405,40 +420,42 @@ class AddStudentFragment : Fragment() {
                     stringMonths.append("(${MONTHS[0]} January) ")
                 }
                 it.equals(binding.febChip.id) -> {
-                    stringMonths.append("(${MONTHS[1]} February) ")
+                    stringMonths.append("\n(${MONTHS[1]} February) ")
                 }
                 it.equals(binding.marChip.id) -> {
-                    stringMonths.append("(${MONTHS[2]} March) ")
+                    stringMonths.append("\n(${MONTHS[2]} March) ")
                 }
                 it.equals(binding.aprChip.id) -> {
-                    stringMonths.append("(${MONTHS[3]} April) ")
+                    stringMonths.append("\n(${MONTHS[3]} April) ")
                 }
                 it.equals(binding.mayChip.id) -> {
-                    stringMonths.append("(${MONTHS[4]} May) ")
+                    stringMonths.append("\n(${MONTHS[4]} May) ")
                 }
                 it.equals(binding.juneChip.id) -> {
-                    stringMonths.append("(${MONTHS[5]} June) ")
+                    stringMonths.append("\n(${MONTHS[5]} June) ")
                 }
                 it.equals(binding.julChip.id) -> {
-                    stringMonths.append("(${MONTHS[6]} July) ")
+                    stringMonths.append("\n(${MONTHS[6]} July) ")
                 }
                 it.equals(binding.augChip.id) -> {
-                    stringMonths.append("(${MONTHS[7]} August) ")
+                    stringMonths.append("\n(${MONTHS[7]} August) ")
                 }
                 it.equals(binding.sepChip.id) -> {
-                    stringMonths.append("(${MONTHS[8]} September) ")
+                    stringMonths.append("\n(${MONTHS[8]} September) ")
                 }
                 it.equals(binding.octChip.id) -> {
-                    stringMonths.append("(${MONTHS[9]} October) ")
+                    stringMonths.append("\n(${MONTHS[9]} October) ")
                 }
                 it.equals(binding.novChip.id) -> {
-                    stringMonths.append("(${MONTHS[10]} November) ")
+                    stringMonths.append("\n(${MONTHS[10]} November) ")
                 }
                 it.equals(binding.decChip.id) -> {
-                    stringMonths.append("(${MONTHS[11]} December)")
+                    stringMonths.append("\n(${MONTHS[11]} December)")
                 }
 
-                else -> {stringMonths.append("Empty")}
+                else -> {
+                    stringMonths.append("Empty")
+                }
 
             }
         }
@@ -472,11 +489,11 @@ class AddStudentFragment : Fragment() {
             Toast.makeText(requireContext(), "Successfully added student!", Toast.LENGTH_SHORT)
                 .show()
             findNavController().popBackStack()
-          /*  val action =
-                AddStudentFragmentDirections.actionAddStudentFragment2ToStudentListFragment(
-                    currentBatch
-                )
-            findNavController().navigate(action) */
+            /*  val action =
+                  AddStudentFragmentDirections.actionAddStudentFragment2ToStudentListFragment(
+                      currentBatch
+                  )
+              findNavController().navigate(action) */
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
                 .show()

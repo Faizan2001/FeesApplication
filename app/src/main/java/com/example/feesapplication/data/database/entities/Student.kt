@@ -16,6 +16,7 @@ data class Student(
     @ColumnInfo(name = "status") var feesStatus: FeeStatus,
     @ColumnInfo(name = "email") val studentEmail: String,
     @ColumnInfo(name = "batchName") val batchName: String,
-    @ColumnInfo(name = "monthsPaid") val monthsPaid: String) : Parcelable
+    @ColumnInfo(name = "monthsPaid") val monthsPaid: String
+) : Parcelable
 
 

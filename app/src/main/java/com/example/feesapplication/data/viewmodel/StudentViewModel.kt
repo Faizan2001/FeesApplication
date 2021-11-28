@@ -1,15 +1,17 @@
 package com.example.feesapplication.data.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.example.feesapplication.data.database.entities.Student
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.feesapplication.data.database.StudentRoomDatabase
 import com.example.feesapplication.data.database.entities.Batch
+import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.repository.StudentRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StudentViewModel(application: Application): AndroidViewModel(application) {
+class StudentViewModel(application: Application) : AndroidViewModel(application) {
 
     private val studentDao = StudentRoomDatabase.getDatabase(application).studentDao()
     private val repository: StudentRepository = StudentRepository(studentDao)
@@ -17,10 +19,10 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     val getAllStudentData: LiveData<List<Student>> = repository.getAllStudentData
     val getAllBatchData: LiveData<List<Batch>> = repository.getAllBatchData
 
-    val getBatchCount : LiveData<Int> = repository.getBatchCount
-    val getStudentCount : LiveData<Int> = repository.getStudentCount
-    val getUnpaidCount : LiveData<Int> = repository.getUnpaidCount
-    val getPaidCount : LiveData<Int> = repository.getPaidCount
+    val getBatchCount: LiveData<Int> = repository.getBatchCount
+    val getStudentCount: LiveData<Int> = repository.getStudentCount
+    val getUnpaidCount: LiveData<Int> = repository.getUnpaidCount
+    val getPaidCount: LiveData<Int> = repository.getPaidCount
 
     val sortByUnpaid: LiveData<List<Student>> = repository.sortByUnpaid
     val sortByPaid: LiveData<List<Student>> = repository.sortByPaid
@@ -57,7 +59,7 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun studentsInBatch(batchName: String) : LiveData<List<Student>> {
+    fun studentsInBatch(batchName: String): LiveData<List<Student>> {
         return repository.studentsInBatch(batchName)
     }
 
@@ -79,11 +81,11 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun searchBatchDatabase(searchQuery: String): LiveData<List<Batch>>{
+    fun searchBatchDatabase(searchQuery: String): LiveData<List<Batch>> {
         return repository.searchBatchDatabase(searchQuery)
     }
 
-    fun searchStudentInBatch(vBatchName: String, searchQuery: String): LiveData<List<Student>>{
+    fun searchStudentInBatch(vBatchName: String, searchQuery: String): LiveData<List<Student>> {
         return repository.searchStudentInBatch(vBatchName, searchQuery)
     }
 
@@ -102,8 +104,6 @@ class StudentViewModel(application: Application): AndroidViewModel(application) 
     fun sortByBatchUnpaid(vBatchName: String): LiveData<List<Student>> {
         return repository.sortByBatchUnpaid(vBatchName)
     }
-
-
 
 
 }

@@ -64,6 +64,15 @@ class BindingAdapter {
             }
         }
 
+        @BindingAdapter("android:notEmptyDatabase")
+        @JvmStatic
+        fun notEmptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
+            when (emptyDatabase.value) {
+                true -> view.visibility = View.INVISIBLE
+                false -> view.visibility = View.VISIBLE
+            }
+        }
+
 
         @BindingAdapter("android:feesStatusColor")
         @JvmStatic
@@ -144,7 +153,8 @@ class BindingAdapter {
 
                         R.id.call_student -> {
                             val callIntent: Intent =
-                                Intent(Intent.ACTION_DIAL,
+                                Intent(
+                                    Intent.ACTION_DIAL,
                                     Uri.parse("tel:${currentStudent.studentNumber}")
                                 )
 
@@ -196,6 +206,3 @@ class BindingAdapter {
 
 
 }
-
-//  FeeStatus.PAID ->  {cardView.setCardBackgroundColor(cardView.context.getColor(R.color.green))}
-//                FeeStatus.UNPAID ->  {cardView.setCardBackgroundColor(cardView.context.getColor(R.color.red))}
