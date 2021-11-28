@@ -25,7 +25,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
-            android:hint="@string/batch_name"
+            android:hint="@string/enter_batch_name"
             app:counterEnabled="true"
             app:counterMaxLength="40"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:maxLength="26"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="normal" />
 
@@ -53,7 +54,8 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/textview_background"
             android:gravity="center"
-            android:hint="@string/_0_0"
+            android:hint="-:-"
+            android:textColorHint="@color/white"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
             android:textSize="26sp"
@@ -63,24 +65,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/batchNameField"
             app:layout_constraintVertical_bias="0.003" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="158dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="211dp" />
 
         <Button
             android:id="@+id/timePickerButton"
@@ -114,8 +103,10 @@
             android:clickable="true"
             android:gravity="center"
             android:hint="@string/select_days"
+            android:textColorHint="@color/white"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_regular"
             android:textStyle="normal"

@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">FeesApplication</string>
+    <string name="app_name">Feenance</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_data">No Data</string>
     <string name="day">Day</string>
     <string name="start_time">Start Time</string>
-    <string name="enter_batch_name">Enter batch name</string>
     <string name="label">labell</string>
     <string name="days">Days</string>
     <string name="batch_name">Batch Name</string>
@@ -51,16 +50,9 @@
     <string name="december">December</string>
     <string name="march">March</string>
     <string name="payment_received_for">Payment Received For:</string>
-
-    <!-- OnBoarding -->
-    <string name="title_on_boarding_first_slide">Welcome</string>
-    <string name="description_on_boarding_first_slide">Find your desired car parts, make a request and get them as soon as possible!</string>
-    <string name="title_on_boarding_second_slide">Use VIN code</string>
-    <string name="description_on_boarding_second_slide">Input VIN code of your car to specify car parts</string>
-    <string name="title_on_boarding_third_slide">Make a request</string>
-    <string name="description_on_boarding_third_slide">Request an order with the chosen products from the shopping cart</string>
-    <string name="title_button_get_started">Get Started</string>
-
+    <string name="enter_batch_name">Enter batch name</string>
+    <string name="no_report_data">No report Data</string>
+    <string name="please_add_students_first">Please add students first!</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>

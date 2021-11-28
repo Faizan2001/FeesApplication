@@ -36,10 +36,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
                 android:inputType="text"
                 android:maxLength="31"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,8 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
                 android:inputType="number"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
 
@@ -91,8 +91,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:inputType="numberDecimal"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,16 +117,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="148dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -139,8 +134,8 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center|top"
+            android:textColor="@color/white"
             android:hint="@string/write_something"
-            android:textColor="?attr/editTextColor"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/studentNameField"
@@ -169,10 +164,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/status"
                 android:inputType="none"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="bold|italic" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -339,6 +334,7 @@
             android:layout_height="wrap_content"
             android:text="@string/payment_received_for"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/emailField"

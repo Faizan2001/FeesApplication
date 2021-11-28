@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 import com.example.feesapplication.data.database.FeeStatus
 import kotlinx.parcelize.Parcelize
 
-
-@Entity(tableName = "students")
 @Parcelize
+@Entity(tableName = "students")
 data class Student(
     @PrimaryKey(autoGenerate = false) val studentName: String,
     @ColumnInfo(name = "number") val studentNumber: Long,

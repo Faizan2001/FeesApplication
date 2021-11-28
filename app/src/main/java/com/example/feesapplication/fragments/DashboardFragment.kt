@@ -2,6 +2,7 @@ package com.example.feesapplication.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,6 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
+
 class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val studentViewModel: StudentViewModel by viewModels()
@@ -40,6 +42,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayShowCustomEnabled(false)
+        (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
 
         //Data Binding
@@ -59,11 +65,13 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         //Setup RecyclerView
         setupRecyclerView()
 
+
         // Observing Live Data Fetched
         studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
             adapter.setData(data)
             binding.recyclerView.scheduleLayoutAnimation()
             sharedViewModel.checkIfBatchDatabaseEmpty(data)
+
         })
 
 

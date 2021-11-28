@@ -13,12 +13,19 @@
             type="com.example.feesapplication.data.database.entities.Batch" />
 
 
+            <variable
+                name = "sharedViewModel"
+                type= "com.example.feesapplication.data.viewmodel.SharedViewModel" />
+
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/report_layout"
@@ -42,7 +49,7 @@
                 android:clipToPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/total_fees"
                 app:layout_constraintVertical_bias="0.0">

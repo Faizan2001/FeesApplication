@@ -9,6 +9,7 @@ import com.example.feesapplication.data.database.entities.Student
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
+
     /** ============================= Dashboard Fragment ============================= */
 
     val emptyBatchDatabase: MutableLiveData<Boolean> = MutableLiveData(false)

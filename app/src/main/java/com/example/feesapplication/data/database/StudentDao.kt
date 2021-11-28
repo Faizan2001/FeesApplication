@@ -28,7 +28,7 @@ interface StudentDao {
 
 
     @Query("DELETE FROM students WHERE batchName = :batchName ")
-    suspend fun deleteAllStudents(batchName: String)
+    fun deleteAllStudents(batchName: String)
 
     @Query("SELECT COUNT(*) FROM batches")
     fun getBatchCount(): LiveData<Int>

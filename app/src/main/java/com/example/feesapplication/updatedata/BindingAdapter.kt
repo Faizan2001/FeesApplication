@@ -64,6 +64,15 @@ class BindingAdapter {
             }
         }
 
+        @BindingAdapter("android:notEmptyDatabase")
+        @JvmStatic
+        fun notEmptyDatabase(view: View, emptyDatabase: MutableLiveData<Boolean>) {
+            when (emptyDatabase.value) {
+                true -> view.visibility = View.INVISIBLE
+                false -> view.visibility = View.VISIBLE
+            }
+        }
+
 
         @BindingAdapter("android:feesStatusColor")
         @JvmStatic
@@ -197,6 +206,3 @@ class BindingAdapter {
 
 
 }
-
-//  FeeStatus.PAID ->  {cardView.setCardBackgroundColor(cardView.context.getColor(R.color.green))}
-//                FeeStatus.UNPAID ->  {cardView.setCardBackgroundColor(cardView.context.getColor(R.color.red))}

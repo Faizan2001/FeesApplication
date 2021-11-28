@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val builder = VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
+
+
     }
 
 

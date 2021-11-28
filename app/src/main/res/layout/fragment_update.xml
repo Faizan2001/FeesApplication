@@ -40,9 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
                 android:maxLength="31"
-                android:textColor="?attr/editTextColor"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:inputType="number"
-                android:textColor="?attr/editTextColor"
+                android:textColor="@color/white"
                 android:textStyle="normal" />
 
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:fontFamily="@font/roboto_regular"
-                android:textColor="?attr/editTextColor"
+                android:textColor="@color/white"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +121,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/editTextColor"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
                 android:textStyle="normal" />
 
@@ -139,7 +139,7 @@
             android:fontFamily="@font/roboto_regular"
             android:gravity="center|top"
             android:hint="@string/write_something"
-            android:textColor="?attr/editTextColor"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/studentNameField"
@@ -169,7 +169,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
                 android:inputType="none"
-                android:textColor="?attr/editTextColor"
+                android:textColor="@color/white"
                 android:textStyle="bold|italic" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -323,6 +323,7 @@
             android:layout_height="wrap_content"
             android:text="@string/payment_received_for"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/emailField"
