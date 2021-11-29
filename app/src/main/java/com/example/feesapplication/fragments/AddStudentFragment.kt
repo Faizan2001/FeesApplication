@@ -486,8 +486,6 @@ class AddStudentFragment : Fragment() {
             )
 
             studentViewModel.insertStudent(newStudentData)
-            Toast.makeText(requireContext(), "Successfully added student!", Toast.LENGTH_SHORT)
-                .show()
             findNavController().popBackStack()
             /*  val action =
                   AddStudentFragmentDirections.actionAddStudentFragment2ToStudentListFragment(

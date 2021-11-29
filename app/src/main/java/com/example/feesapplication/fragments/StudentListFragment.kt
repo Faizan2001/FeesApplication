@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feesapplication.R
 import com.example.feesapplication.adapters.StudentListAdapter
+import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
@@ -48,7 +48,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         //Data Binding
@@ -85,7 +85,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             // Get all students in batch
 
             studentViewModel.studentsInBatch(batchNameSaved)
-                .observe(viewLifecycleOwner, Observer { data ->
+                .observe(viewLifecycleOwner, { data ->
                     studentListAdapter.setStudentData(data)
                     sharedViewModel.checkIfStudentDatabaseEmpty(data)
                     binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -95,7 +95,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             // Get all students in Database
 
-            studentViewModel.getAllStudentData.observe(viewLifecycleOwner, Observer { data ->
+            studentViewModel.getAllStudentData.observe(viewLifecycleOwner, { data ->
                 studentListAdapter.setStudentData(data)
                 sharedViewModel.checkIfStudentDatabaseEmpty(data)
                 binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -114,10 +114,12 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
         searchView?.isSubmitButtonEnabled = true
         searchView?.setOnQueryTextListener(this)
 
+
         if (args.currentBatch == null) {
             menu.findItem(R.id.add_student).isVisible = false
             menu.findItem(R.id.delete_all).isVisible = false
             menu.findItem(R.id.search_all_students).isVisible = false
+            menu.findItem(R.id.reset_batch).isVisible = false
 
 
         }
@@ -138,9 +140,53 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     action?.let { findNavController().navigate(it) }
                 }
+                R.id.reset_batch -> {
+
+                    val builder = MaterialAlertDialogBuilder(requireActivity())
+
+
+                    builder.setPositiveButton("Yes") { _, _ ->
+
+                        studentViewModel.studentsInBatch(batchNameSaved).observeOnce(
+                            viewLifecycleOwner,
+                            { student ->
+                                for (i in student.indices) {
+
+                                    val updatedStudentData = Student(
+                                        studentName = student[i].studentName,
+                                        studentNumber = student[i].studentNumber,
+                                        feesAmount = student[i].feesAmount,
+                                        feesStatus = FeeStatus.Unpaid,
+                                        studentEmail = student[i].studentEmail,
+                                        batchName = student[i].batchName,
+                                        monthsPaid = student[i].monthsPaid
+
+                                    )
+
+                                    studentViewModel.updateStudent(updatedStudentData)
+
+                                }
+
+                            })
+
+                        Toast.makeText(
+                            (requireContext()),
+                            "Successfully reset batch to Unpaid",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    builder.setNegativeButton("No") { _, _ -> }
+                    builder.setTitle("Reset to Unpaid?")
+                    builder.setIcon(R.drawable.ic_reset_unpaid)
+                    builder.setMessage("Are you sure you want to reset batch records to Unpaid status?")
+                    builder.create().show()
+
+                }
                 R.id.delete_all -> {
                     confirmStudentsRemoval()
                 }
+
                 R.id.search_all_students -> {
 
                     findNavController().navigate(R.id.action_studentListFragment_self)
@@ -155,7 +201,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             if (args.currentBatch == null) {
 
-                studentViewModel.sortByPaid.observeOnce(viewLifecycleOwner, Observer {
+                studentViewModel.sortByPaid.observeOnce(viewLifecycleOwner, {
                     studentListAdapter.setStudentData(it)
                     sharedViewModel.checkIfStudentDatabaseEmpty(it)
                     binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -164,7 +210,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             } else if (args.currentBatch != null) {
 
                 studentViewModel.sortByBatchPaid(batchNameSaved)
-                    .observeOnce(viewLifecycleOwner, Observer {
+                    .observeOnce(viewLifecycleOwner, {
                         studentListAdapter.setStudentData(it)
                         sharedViewModel.checkIfStudentDatabaseEmpty(it)
                         binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -176,7 +222,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
             if (args.currentBatch == null) {
 
-                studentViewModel.sortByUnpaid.observeOnce(viewLifecycleOwner, Observer {
+                studentViewModel.sortByUnpaid.observeOnce(viewLifecycleOwner, {
                     studentListAdapter.setStudentData(it)
                     sharedViewModel.checkIfStudentDatabaseEmpty(it)
                     binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -185,7 +231,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             } else if (args.currentBatch != null) {
 
                 studentViewModel.sortByBatchUnpaid(batchNameSaved)
-                    .observeOnce(viewLifecycleOwner, Observer {
+                    .observeOnce(viewLifecycleOwner, {
                         studentListAdapter.setStudentData(it)
                         sharedViewModel.checkIfStudentDatabaseEmpty(it)
                         binding.studentRecyclerView.scheduleLayoutAnimation()
@@ -220,7 +266,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         if (args.currentBatch != null) {
             studentViewModel.searchStudentInBatch(batchNameSaved, searchQuery)
-                .observeOnce(viewLifecycleOwner, Observer { list ->
+                .observeOnce(viewLifecycleOwner, { list ->
                     list?.let {
                         studentListAdapter.setStudentData(it)
                         sharedViewModel.checkIfStudentDatabaseEmpty(list)
@@ -231,7 +277,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
         } else if (args.currentBatch == null) {
 
             studentViewModel.searchStudentDatabase(searchQuery)
-                .observeOnce(viewLifecycleOwner, Observer { list ->
+                .observeOnce(viewLifecycleOwner, { list ->
                     list?.let {
                         studentListAdapter.setStudentData(it)
                         sharedViewModel.checkIfStudentDatabaseEmpty(list)
@@ -273,7 +319,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
                 builder.setNegativeButton("No") { _, _ -> studentViewModel.insertStudent(deletedItem) }
                 builder.setTitle("Delete record of ${deletedItem.studentName}?")
                 builder.setMessage("Are you sure you want to remove ${deletedItem.studentName}?")
-                builder.setIcon(R.drawable.ic_round_delete_forever_24)
+                builder.setIcon(R.drawable.ic_delete_student)
                 builder.setCancelable(false)
                 builder.create().show()
             }
@@ -305,7 +351,7 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
             Toast.makeText(
                 (
                         requireContext()),
-                "Sucessfully Removed all Students from $batchNameSaved",
+                "Successfully Removed all Students from $batchNameSaved",
                 Toast.LENGTH_SHORT
             ).show()
         }

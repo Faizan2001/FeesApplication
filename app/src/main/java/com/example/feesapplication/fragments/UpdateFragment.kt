@@ -483,37 +483,37 @@ class UpdateFragment : Fragment() {
                     stringMonths.append("(${MONTHS[0]} January) ")
                 }
                 it.equals(binding.febChip.id) -> {
-                    stringMonths.append("(${MONTHS[1]} February) ")
+                    stringMonths.append("\n(${MONTHS[1]} February) ")
                 }
                 it.equals(binding.marChip.id) -> {
-                    stringMonths.append("(${MONTHS[2]} March) ")
+                    stringMonths.append("\n(${MONTHS[2]} March) ")
                 }
                 it.equals(binding.aprChip.id) -> {
-                    stringMonths.append("(${MONTHS[3]} April) ")
+                    stringMonths.append("\n(${MONTHS[3]} April) ")
                 }
                 it.equals(binding.mayChip.id) -> {
-                    stringMonths.append("(${MONTHS[4]} May) ")
+                    stringMonths.append("\n(${MONTHS[4]} May) ")
                 }
                 it.equals(binding.juneChip.id) -> {
-                    stringMonths.append("(${MONTHS[5]} June) ")
+                    stringMonths.append("\n(${MONTHS[5]} June) ")
                 }
                 it.equals(binding.julChip.id) -> {
-                    stringMonths.append("(${MONTHS[6]} July) ")
+                    stringMonths.append("\n(${MONTHS[6]} July) ")
                 }
                 it.equals(binding.augChip.id) -> {
-                    stringMonths.append("(${MONTHS[7]} August) ")
+                    stringMonths.append("\n(${MONTHS[7]} August) ")
                 }
                 it.equals(binding.sepChip.id) -> {
-                    stringMonths.append("(${MONTHS[8]} September) ")
+                    stringMonths.append("\n(${MONTHS[8]} September) ")
                 }
                 it.equals(binding.octChip.id) -> {
-                    stringMonths.append("(${MONTHS[9]} October) ")
+                    stringMonths.append("\n(${MONTHS[9]} October) ")
                 }
                 it.equals(binding.novChip.id) -> {
-                    stringMonths.append("(${MONTHS[10]} November) ")
+                    stringMonths.append("\n(${MONTHS[10]} November) ")
                 }
                 it.equals(binding.decChip.id) -> {
-                    stringMonths.append("(${MONTHS[11]} December)")
+                    stringMonths.append("\n(${MONTHS[11]} December)")
                 }
 
                 else -> {

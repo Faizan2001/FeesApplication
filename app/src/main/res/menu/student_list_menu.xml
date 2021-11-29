@@ -35,16 +35,20 @@
         </item>
     </group>
 
+    <item
+        android:id="@+id/search_all_students"
+        android:title="Search all Students" />
 
+    <item
+        android:id="@+id/reset_batch"
+        android:title="Reset batch to Unpaid">
+    </item>
 
 
     <item
         android:id="@+id/delete_all"
-        android:title="Delete all" />
+        android:title="Delete everything here" />
 
-    <item
-        android:id="@+id/search_all_students"
-        android:title="Search All Students" />
 
 
 </menu>

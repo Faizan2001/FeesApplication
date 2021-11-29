@@ -2,19 +2,21 @@ package com.example.feesapplication.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.feesapplication.R
 import com.example.feesapplication.adapters.ListAdapter
+import com.example.feesapplication.data.database.FeeStatus
 import com.example.feesapplication.data.database.entities.Batch
+import com.example.feesapplication.data.database.entities.Student
 import com.example.feesapplication.data.viewmodel.SharedViewModel
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.DashboardFragmentBinding
@@ -67,7 +69,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
         // Observing Live Data Fetched
-        studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
+        studentViewModel.getAllBatchData.observe(viewLifecycleOwner, { data ->
             adapter.setData(data)
             binding.recyclerView.scheduleLayoutAnimation()
             sharedViewModel.checkIfBatchDatabaseEmpty(data)
@@ -99,15 +101,52 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
+            R.id.reset_all -> {
+                val builder = MaterialAlertDialogBuilder(requireActivity())
+
+
+                builder.setPositiveButton("Yes") { _, _ ->
+
+                    studentViewModel.getAllStudentData.observeOnce(
+                        viewLifecycleOwner,
+                        { student ->
+                            for (i in student.indices) {
+
+                                val updatedStudentData = Student(
+                                    studentName = student[i].studentName,
+                                    studentNumber = student[i].studentNumber,
+                                    feesAmount = student[i].feesAmount,
+                                    feesStatus = FeeStatus.Unpaid,
+                                    studentEmail = student[i].studentEmail,
+                                    batchName = student[i].batchName,
+                                    monthsPaid = student[i].monthsPaid
+
+                                )
+
+                                studentViewModel.updateStudent(updatedStudentData)
+
+                            }
+
+                        })
+
+                }
+
+                builder.setNegativeButton("No") { _, _ -> }
+                builder.setTitle("Reset all?")
+                builder.setIcon(R.drawable.ic_reset_unpaid)
+                builder.setMessage("Are you sure you want to reset all records to Unpaid status?")
+                builder.create().show()
+
+            }
             R.id.showAllBatches -> {
-                studentViewModel.getAllBatchData.observe(viewLifecycleOwner, Observer { data ->
+                studentViewModel.getAllBatchData.observe(viewLifecycleOwner, { data ->
                     adapter.setData(data)
                     sharedViewModel.checkIfBatchDatabaseEmpty(data)
                     binding.recyclerView.scheduleLayoutAnimation()
                 })
             }
             R.id.sunday_menu -> {
-                studentViewModel.sortBySunday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortBySunday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -115,7 +154,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.monday_menu -> {
-                studentViewModel.sortByMonday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortByMonday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -123,7 +162,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.tuesday_menu -> {
-                studentViewModel.sortByTuesday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortByTuesday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -131,7 +170,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.wednesday_menu -> {
-                studentViewModel.sortByWednesday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortByWednesday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -139,7 +178,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.thursday_menu -> {
-                studentViewModel.sortByThursday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortByThursday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -147,7 +186,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.friday_menu -> {
-                studentViewModel.sortByFriday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortByFriday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -155,7 +194,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             R.id.saturday_menu -> {
-                studentViewModel.sortBySaturday.observe(viewLifecycleOwner, Observer {
+                studentViewModel.sortBySaturday.observe(viewLifecycleOwner, {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(it)
                     binding.recyclerView.scheduleLayoutAnimation()
@@ -194,27 +233,27 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     bText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     sText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     reportViewText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
-                    titleText.text = "Good Morning"
+                    titleText.text = getString(R.string.good_m)
                 }
-                studentViewModel.getBatchCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getBatchCount.observe(viewLifecycleOwner, {
                     binding.bText.text = "Batches: $it"
                 })
-                studentViewModel.getStudentCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getStudentCount.observe(viewLifecycleOwner, {
                     binding.sText.text = "Students: $it"
                 })
             }
@@ -230,27 +269,27 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     bText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     sText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     reportViewText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.primaryDarkColor
+                            R.color.white
                         )
                     )
                     titleText.text = "Good Afternoon"
                 }
-                studentViewModel.getBatchCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getBatchCount.observe(viewLifecycleOwner, {
                     binding.bText.text = "Batches: $it"
                 })
-                studentViewModel.getStudentCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getStudentCount.observe(viewLifecycleOwner, {
                     binding.sText.text = "Students: $it"
                 })
 
@@ -284,10 +323,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     )
                     titleText.text = "Good Evening"
                 }
-                studentViewModel.getBatchCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getBatchCount.observe(viewLifecycleOwner, {
                     binding.bText.text = "Batches: $it"
                 })
-                studentViewModel.getStudentCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getStudentCount.observe(viewLifecycleOwner, {
                     binding.sText.text = "Students: $it"
                 })
             }
@@ -305,10 +344,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     )
                     titleText.text = "Good Evening"
                 }
-                studentViewModel.getBatchCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getBatchCount.observe(viewLifecycleOwner, {
                     binding.bText.text = "Batches: $it"
                 })
-                studentViewModel.getStudentCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getStudentCount.observe(viewLifecycleOwner, {
                     binding.sText.text = "Students: $it"
                 })
             }
@@ -326,10 +365,10 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     )
                     titleText.text = "Hello"
                 }
-                studentViewModel.getBatchCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getBatchCount.observe(viewLifecycleOwner, {
                     binding.bText.text = "Batches: $it"
                 })
-                studentViewModel.getStudentCount.observe(viewLifecycleOwner, Observer {
+                studentViewModel.getStudentCount.observe(viewLifecycleOwner, {
                     binding.sText.text = "Students: $it"
                 })
             }
@@ -399,7 +438,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         val searchQuery = "%$query%"
 
         studentViewModel.searchBatchDatabase(searchQuery)
-            .observeOnce(viewLifecycleOwner, Observer { list ->
+            .observeOnce(viewLifecycleOwner, { list ->
                 list?.let {
                     adapter.setData(it)
                     sharedViewModel.checkIfBatchDatabaseEmpty(list)

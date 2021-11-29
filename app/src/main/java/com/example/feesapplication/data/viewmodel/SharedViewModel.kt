@@ -10,21 +10,24 @@ import com.example.feesapplication.data.database.entities.Student
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
 
+    val createdBatchDatabase: MutableLiveData<Boolean> = MutableLiveData(true)
+
     /** ============================= Dashboard Fragment ============================= */
 
     val emptyBatchDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfBatchDatabaseEmpty(batch: List<Batch>) {
         emptyBatchDatabase.value = batch.isEmpty()
+        createdBatchDatabase.value = batch.isEmpty()
     }
 
     fun verifyBatchInputData(
-        vBatcNameField: String,
+        vBatchNameField: String,
         vTimePickerTime: String,
         vDaysPicked: String
     ): Boolean {
 
-        return !(vBatcNameField.isEmpty() || vTimePickerTime.isEmpty() || vDaysPicked.isEmpty())
+        return !(vBatchNameField.isEmpty() || vTimePickerTime.isEmpty() || vDaysPicked.isEmpty())
 
     }
 

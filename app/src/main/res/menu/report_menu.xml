@@ -5,7 +5,7 @@
         android:id="@+id/save_report"
         android:title="Save Report"
         android:iconTint="@color/white"
-        android:icon="@drawable/ic_round_cloud_upload_24"
+        android:icon="@drawable/ic_make_pdf"
         app:showAsAction="ifRoom" />
 
 

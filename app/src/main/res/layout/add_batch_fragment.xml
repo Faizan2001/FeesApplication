@@ -81,7 +81,7 @@
             android:layout_marginBottom="29dp"
             android:backgroundTint="@color/icons"
             android:fontFamily="@font/roboto_regular"
-            android:hint="@string/select_days"
+            android:hint="@string/select_time"
             android:textColorHint="@color/white"
             android:padding="5dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_day"

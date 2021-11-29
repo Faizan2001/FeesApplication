@@ -218,7 +218,6 @@ class AddBatchFragment : Fragment() {
             )
 
             studentViewModel.insertBatch(newBatchData)
-            Toast.makeText(this.context, "Successfully added batch!", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
 
         } else {
