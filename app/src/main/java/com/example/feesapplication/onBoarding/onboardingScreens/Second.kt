@@ -31,7 +31,7 @@ class Second : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         binding.nextButtonSecond.setOnClickListener {
-            viewPager?.currentItem = 2
+            viewPager?.currentItem = 3
         }
 
 

@@ -9,6 +9,7 @@ import com.example.feesapplication.databinding.FragmentViewPagerBinding
 import com.example.feesapplication.onBoarding.onboardingScreens.First
 import com.example.feesapplication.onBoarding.onboardingScreens.Second
 import com.example.feesapplication.onBoarding.onboardingScreens.Third
+import com.example.feesapplication.onBoarding.onboardingScreens.Welcome
 
 
 class ViewPagerFragment : Fragment() {
@@ -25,6 +26,7 @@ class ViewPagerFragment : Fragment() {
 
 
         val fragmentList = arrayListOf<Fragment>(
+            Welcome(),
             First(),
             Second(),
             Third()

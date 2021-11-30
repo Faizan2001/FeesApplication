@@ -19,7 +19,6 @@ interface StudentDao {
     @Update
     suspend fun update(student: Student)
 
-
     @Delete
     suspend fun deleteStudent(student: Student)
 
@@ -43,7 +42,7 @@ interface StudentDao {
     fun getPaidCount(): LiveData<Int>
 
 
-    @Query("SELECT * FROM students ORDER BY studentName ASC")
+    @Query("SELECT * FROM students ORDER BY batchName ASC")
     fun getAllStudentData(): LiveData<List<Student>>
 
     @Query("SELECT * FROM batches ORDER BY batchName ASC")

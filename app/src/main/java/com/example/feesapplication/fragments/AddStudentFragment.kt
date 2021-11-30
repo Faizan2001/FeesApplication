@@ -108,7 +108,7 @@ class AddStudentFragment : Fragment() {
 
         batchNameSaved = args.currentBatch.batchName
         currentBatch = args.currentBatch
-        binding.batchNameStudent.text = "Batch : $batchNameSaved"
+        binding.batchNameStudent.text = "$batchNameSaved"
 
         // Open Date Picker if any of the chips are clicked on and save input
 
@@ -184,6 +184,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[0] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.janChip.isChecked = false
+                            }
                         }
                         R.id.febChip -> {
                             val constraintsBuilder =
@@ -201,6 +204,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[1] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.febChip.isChecked = false
                             }
                         }
                         R.id.marChip -> {
@@ -220,6 +226,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[2] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.marChip.isChecked = false
+                            }
                         }
                         R.id.aprChip -> {
                             val constraintsBuilder =
@@ -237,6 +246,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[3] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.aprChip.isChecked = false
                             }
                         }
                         R.id.mayChip -> {
@@ -256,6 +268,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[4] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.mayChip.isChecked = false
+                            }
                         }
                         R.id.juneChip -> {
                             val constraintsBuilder =
@@ -273,6 +288,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[5] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.juneChip.isChecked = false
                             }
                         }
                         R.id.julChip -> {
@@ -292,13 +310,16 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[6] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.julChip.isChecked = false
+                            }
                         }
                         R.id.augChip -> {
                             val constraintsBuilder =
                                 CalendarConstraints.Builder()
-                                    .setStart(jun)
-                                    .setOpenAt(jun)
-                                    .setEnd(jun)
+                                    .setStart(aug)
+                                    .setOpenAt(aug)
+                                    .setEnd(aug)
 
                             val datePicker = MaterialDatePicker.Builder.datePicker()
                                 .setTitleText("Paid on")
@@ -309,6 +330,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[7] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.augChip.isChecked = false
                             }
                         }
                         R.id.sepChip -> {
@@ -328,6 +352,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[8] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.sepChip.isChecked = false
+                            }
                         }
                         R.id.octChip -> {
                             val constraintsBuilder =
@@ -345,6 +372,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[9] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.octChip.isChecked = false
                             }
                         }
                         R.id.novChip -> {
@@ -364,6 +394,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[10] = outputDateFormat.format(it)
                             }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.novChip.isChecked = false
+                            }
                         }
                         R.id.decChip -> {
                             val constraintsBuilder =
@@ -381,6 +414,9 @@ class AddStudentFragment : Fragment() {
                             datePicker.isCancelable = false
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[11] = outputDateFormat.format(it)
+                            }
+                            datePicker.addOnNegativeButtonClickListener{
+                                binding.decChip.isChecked = false
                             }
                         }
 

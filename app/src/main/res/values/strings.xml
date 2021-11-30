@@ -54,6 +54,10 @@
     <string name="no_report_data">No report Data</string>
     <string name="please_add_students_first">Please add students first!</string>
     <string name="good_m">Good Morning</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="thank_you_for_installing">Thank you for installing!</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>
