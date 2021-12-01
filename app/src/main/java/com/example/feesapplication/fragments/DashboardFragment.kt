@@ -1,9 +1,12 @@
 package com.example.feesapplication.fragments
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -38,6 +41,12 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
     private val binding get() = _binding!!
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +56,6 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayShowCustomEnabled(false)
         (activity as AppCompatActivity?)!!.supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
 
         //Data Binding
         _binding = DashboardFragmentBinding.inflate(inflater, container, false)
@@ -62,6 +70,7 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
         //Set scenery and text of Greeting Image
         setSceneryAndDataForTime()
 
+        checkForPermissions()
 
         //Setup RecyclerView
         setupRecyclerView()
@@ -84,6 +93,24 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
         return binding.root
+    }
+
+    private fun checkForPermissions() {
+
+        val hasReadPermission = ContextCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+
+
+
+        if (!hasReadPermission) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                PackageManager.PERMISSION_GRANTED
+            )
+        }
     }
 
 

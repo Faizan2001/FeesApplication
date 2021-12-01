@@ -16,9 +16,9 @@ class Second : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onCreateView(
@@ -32,6 +32,10 @@ class Second : Fragment() {
 
         binding.nextButtonSecond.setOnClickListener {
             viewPager?.currentItem = 3
+        }
+
+        binding.previousToFirst.setOnClickListener {
+            viewPager?.currentItem = 1
         }
 
 

@@ -54,7 +54,7 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/textview_background"
             android:gravity="center"
-            android:hint="-:-"
+            android:hint="@string/placeholder_time"
             android:textColorHint="@color/white"
             android:paddingStart="12dp"
             android:paddingEnd="5dp"

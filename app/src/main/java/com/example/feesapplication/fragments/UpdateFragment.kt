@@ -37,7 +37,7 @@ class UpdateFragment : Fragment() {
     private lateinit var currentBatch: Batch
 
     private val MONTHS by lazy {
-        mutableListOf<String>(
+        mutableListOf(
             "0",
             "0",
             "0",
@@ -70,7 +70,7 @@ class UpdateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateBinding.inflate(layoutInflater, container, false)
         currentStudent = args.currentStudent
@@ -95,8 +95,7 @@ class UpdateFragment : Fragment() {
         binding.autoCompleteTextView.setText(args.currentStudent.feesStatus.toString(), false)
 
 
-        var position = 0
-        position = when (args.currentStudent.feesStatus) {
+        val position: Int = when (args.currentStudent.feesStatus) {
             FeeStatus.None -> {
                 0
             }
@@ -111,8 +110,8 @@ class UpdateFragment : Fragment() {
         binding.autoCompleteTextView.listSelection = position
         feeStatusSaved = binding.autoCompleteTextView.text.toString()
         binding.autoCompleteTextView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, _, position, _ ->
-                val selection = parent.getItemAtPosition(position) as String
+            AdapterView.OnItemClickListener { parent, _, position1, _ ->
+                val selection = parent.getItemAtPosition(position1) as String
                 feeStatusSaved = selection
             }
 
@@ -241,7 +240,7 @@ class UpdateFragment : Fragment() {
 
         //Months according to Chips checked
         binding.chipGroup.children.forEach { selectedChip ->
-            (selectedChip as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
+            (selectedChip as Chip).setOnCheckedChangeListener { _, _ ->
 
 
                 if (selectedChip.isChecked) {
@@ -263,7 +262,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[0] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.janChip.isChecked = false
                             }
                         }
@@ -284,7 +283,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[1] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.febChip.isChecked = false
                             }
                         }
@@ -305,7 +304,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[2] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.marChip.isChecked = false
                             }
                         }
@@ -326,7 +325,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[3] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.aprChip.isChecked = false
                             }
                         }
@@ -347,7 +346,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[4] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.mayChip.isChecked = false
                             }
                         }
@@ -368,7 +367,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[5] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.juneChip.isChecked = false
                             }
                         }
@@ -389,7 +388,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[6] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.julChip.isChecked = false
                             }
                         }
@@ -410,7 +409,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[7] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.augChip.isChecked = false
                             }
                         }
@@ -431,7 +430,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[8] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.sepChip.isChecked = false
                             }
                         }
@@ -452,7 +451,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[9] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.octChip.isChecked = false
                             }
                         }
@@ -473,7 +472,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[10] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.novChip.isChecked = false
 
                             }
@@ -495,7 +494,7 @@ class UpdateFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[11] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.decChip.isChecked = false
                             }
                         }
@@ -590,9 +589,6 @@ class UpdateFragment : Fragment() {
             Toast.makeText(requireContext(), "Successfully updated student!", Toast.LENGTH_SHORT)
                 .show()
 
-            /*   val action =
-                   UpdateFragmentDirections.actionUpdateFragmentToStudentListFragment(currentBatch)
-               findNavController().navigate(action) */
             findNavController().popBackStack()
 
         } else {

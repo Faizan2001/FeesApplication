@@ -58,6 +58,11 @@
     <string name="next">Next</string>
     <string name="finish">Finish</string>
     <string name="thank_you_for_installing">Thank you for installing!</string>
+    <string name="placeholder_time">-:-</string>
+    <string name="adds_batch">Adds batch</string>
+    <string name="no_data_added">No data added</string>
+    <string name="previous">Previous</string>
+    <string name="go_back">Go Back</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>

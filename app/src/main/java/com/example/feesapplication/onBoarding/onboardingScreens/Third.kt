@@ -8,20 +8,19 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.feesapplication.R
 import com.example.feesapplication.databinding.FragmentThirdBinding
 
-
-// TODO: Rename parameter arguments, choose names that match
 
 class Third : Fragment() {
 
     private var _binding: FragmentThirdBinding? = null
     private val binding get() = _binding!!
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onCreateView(
@@ -32,10 +31,15 @@ class Third : Fragment() {
         _binding = FragmentThirdBinding.inflate(layoutInflater, container, false)
 
 
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         binding.nextButtonThird.setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_dashboardFragment)
             finishedOnBoarding()
+        }
+
+        binding.goBackButton.setOnClickListener {
+            viewPager?.currentItem = 2
         }
 
 

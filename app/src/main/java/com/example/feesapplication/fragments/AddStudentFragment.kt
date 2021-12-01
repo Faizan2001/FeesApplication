@@ -35,7 +35,7 @@ class AddStudentFragment : Fragment() {
     private lateinit var currentBatch: Batch
 
     private val MONTHS by lazy {
-        mutableListOf<String>(
+        mutableListOf(
             "0",
             "0",
             "0",
@@ -67,7 +67,7 @@ class AddStudentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate the layout for this fragment
         _binding = AddStudentFragmentBinding.inflate(layoutInflater, container, false)
@@ -75,7 +75,7 @@ class AddStudentFragment : Fragment() {
 
         //Months according to Chips checked
         binding.chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
+            (it as Chip).setOnCheckedChangeListener { _, _ ->
 
             }
         }
@@ -108,7 +108,7 @@ class AddStudentFragment : Fragment() {
 
         batchNameSaved = args.currentBatch.batchName
         currentBatch = args.currentBatch
-        binding.batchNameStudent.text = "$batchNameSaved"
+        binding.batchNameStudent.text = batchNameSaved
 
         // Open Date Picker if any of the chips are clicked on and save input
 
@@ -162,7 +162,7 @@ class AddStudentFragment : Fragment() {
 
         //Months according to Chips checked
         binding.chipGroup.children.forEach { selectedChip ->
-            (selectedChip as Chip).setOnCheckedChangeListener { buttonView, isChecked ->
+            (selectedChip as Chip).setOnCheckedChangeListener { _, _ ->
 
 
                 if (selectedChip.isChecked) {
@@ -184,7 +184,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[0] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.janChip.isChecked = false
                             }
                         }
@@ -205,7 +205,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[1] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.febChip.isChecked = false
                             }
                         }
@@ -226,7 +226,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[2] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.marChip.isChecked = false
                             }
                         }
@@ -247,7 +247,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[3] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.aprChip.isChecked = false
                             }
                         }
@@ -268,7 +268,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[4] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.mayChip.isChecked = false
                             }
                         }
@@ -289,7 +289,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[5] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.juneChip.isChecked = false
                             }
                         }
@@ -310,7 +310,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[6] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.julChip.isChecked = false
                             }
                         }
@@ -331,7 +331,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[7] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.augChip.isChecked = false
                             }
                         }
@@ -352,7 +352,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[8] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.sepChip.isChecked = false
                             }
                         }
@@ -373,7 +373,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[9] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.octChip.isChecked = false
                             }
                         }
@@ -394,7 +394,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[10] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.novChip.isChecked = false
                             }
                         }
@@ -415,7 +415,7 @@ class AddStudentFragment : Fragment() {
                             datePicker.addOnPositiveButtonClickListener {
                                 MONTHS[11] = outputDateFormat.format(it)
                             }
-                            datePicker.addOnNegativeButtonClickListener{
+                            datePicker.addOnNegativeButtonClickListener {
                                 binding.decChip.isChecked = false
                             }
                         }

@@ -16,11 +16,10 @@ class First : Fragment() {
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +32,10 @@ class First : Fragment() {
 
         binding.nextButton.setOnClickListener {
             viewPager?.currentItem = 2
+        }
+
+        binding.previousToWelcome.setOnClickListener {
+            viewPager?.currentItem = 0
         }
 
 

@@ -2,10 +2,11 @@ package com.example.feesapplication.fragments
 
 
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -16,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.feesapplication.MainActivity
 import com.example.feesapplication.R
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.ReportFragmentBinding
@@ -50,12 +52,13 @@ class ReportFragment : Fragment() {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
+
         // Inflate the layout for this fragment
         _binding = ReportFragmentBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
+        // binding.lifecycleOwner = this
 
         val mCalendar = Calendar.getInstance()
-        val month: String = mCalendar.getDisplayName(
+        val month = mCalendar.getDisplayName(
             Calendar.MONTH,
             Calendar.LONG,
             Locale.getDefault()
@@ -102,8 +105,6 @@ class ReportFragment : Fragment() {
             binding.unpaidFees.text = "Unpaid: $it"
         })
 
-        checkForPermissions()
-
 
         //Set Menu
         setHasOptionsMenu(true)
@@ -127,52 +128,21 @@ class ReportFragment : Fragment() {
 
                 createPdf()
 
-                //Intent for viewing Pdf
-                Toast.makeText(
-                    context,
-                    "Pdf successfully saved in File Manager (Downloads Folder)",
-                    Toast.LENGTH_LONG
-                ).show()
-
             }
         }
 
 
         return super.onOptionsItemSelected(item)
     }
-    ////
-
-    private fun checkForPermissions() {
-
-        val hasReadPermission = ContextCompat.checkSelfPermission(
-            requireActivity(),
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
-        val hasWritePermission = ContextCompat.checkSelfPermission(
-            requireActivity(),
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
 
 
-        if (!hasReadPermission && !hasWritePermission) {
-            ActivityCompat.requestPermissions(
-                requireActivity(), arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), PackageManager.PERMISSION_GRANTED
-            )
-        }
-    }
 
 
     private fun createPdf() {
 
-
-
         val doc = Document()
         val mCalendar = Calendar.getInstance()
-        val month: String = mCalendar.getDisplayName(
+        val month = mCalendar.getDisplayName(
             Calendar.MONTH,
             Calendar.LONG,
             Locale.getDefault()
@@ -189,6 +159,11 @@ class ReportFragment : Fragment() {
             //open the document
             doc.open()
 
+            val p0 = Paragraph(
+                "g.dev/FaizanSyed\n",
+                FontFactory.getFont("Times New Roman", 15f, Font.NORMAL)
+            )
+
 
             val p1 = Paragraph(
                 "Thank you for using Feenance\n",
@@ -200,11 +175,13 @@ class ReportFragment : Fragment() {
                 FontFactory.getFont("Times New Roman", 30f, Font.BOLDITALIC)
             )
 
+            p0.alignment = Paragraph.ALIGN_CENTER
             p1.alignment = Paragraph.ALIGN_CENTER
             p2.alignment = Paragraph.ALIGN_CENTER
 
 
 
+            doc.add(p0)
             doc.add(p1)
             doc.add(p2)
 
@@ -302,11 +279,15 @@ class ReportFragment : Fragment() {
             Log.e("PDFCreator", "ioException:$e")
         } finally {
             doc.close()
+            Toast.makeText(
+                context,
+                "Saved in File Manager (Downloads Folder)",
+                Toast.LENGTH_SHORT).show()
+
         }
 
-        if ( Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            viewPdf()
-        }
+        viewPdf()
+
     }
 
 
@@ -314,25 +295,54 @@ class ReportFragment : Fragment() {
     private fun viewPdf() {
 
         val mCalendar = Calendar.getInstance()
-        val month: String = mCalendar.getDisplayName(
+        val month = mCalendar.getDisplayName(
             Calendar.MONTH,
             Calendar.LONG,
             Locale.getDefault()
         )
 
 
-        val pdfFile =
-            File(Environment.getExternalStorageDirectory().path + "/Download/$month Report.pdf")
-        val path = Uri.fromFile(pdfFile)
 
-        // Setting the intent for pdf reader
-        val pdfIntent = Intent(Intent.ACTION_VIEW)
-        pdfIntent.setDataAndType(path, "application/pdf")
-        pdfIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        pdfIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
 
-        startActivity(pdfIntent)
 
+
+        val hasReadPermission = ContextCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if(!hasReadPermission) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), PackageManager.PERMISSION_GRANTED
+            )
+        } else {
+
+            val pdfFile =
+                File(Environment.getExternalStorageDirectory().path + "/Download/$month Report.pdf")
+
+            if (pdfFile.exists()) {
+
+                val path = Uri.fromFile(pdfFile)
+                val pdfIntent = Intent(Intent.ACTION_VIEW)
+                pdfIntent.setDataAndType(path, "application/pdf")
+                pdfIntent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY or
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                val intent = Intent.createChooser(pdfIntent, "Open File")
+                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY or
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+
+                try {
+                    startActivity(intent)
+                } catch (e : ActivityNotFoundException) {
+                    Toast.makeText(requireActivity(), "No Application available to display PDF", Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+                Toast.makeText(requireActivity(), "No PDF found to display", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 

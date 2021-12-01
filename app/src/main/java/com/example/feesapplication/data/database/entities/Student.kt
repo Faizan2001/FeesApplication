@@ -1,12 +1,14 @@
 package com.example.feesapplication.data.database.entities
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.feesapplication.data.database.FeeStatus
 import kotlinx.parcelize.Parcelize
 
+@Keep
 @Parcelize
 @Entity(tableName = "students")
 data class Student(

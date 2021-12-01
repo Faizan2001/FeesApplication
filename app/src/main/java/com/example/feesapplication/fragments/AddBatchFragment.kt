@@ -1,8 +1,6 @@
 package com.example.feesapplication.fragments
 
-// import com.example.feesapplication.DayPickerDialogFragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
 import android.util.Log
@@ -19,8 +17,6 @@ import com.example.feesapplication.databinding.AddBatchFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddBatchFragment : Fragment() {
@@ -36,10 +32,11 @@ class AddBatchFragment : Fragment() {
     private var _binding: AddBatchFragmentBinding? = null
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         // Set Menu
@@ -103,11 +100,11 @@ class AddBatchFragment : Fragment() {
         val alertBuilder = activity?.let { MaterialAlertDialogBuilder(it) }
         val checkedArray: BooleanArray
 
-        var daysList = mutableListOf<Int>()
+        val daysList = mutableListOf<Int>()
 
         val daysArray = R.array.daysList
         val newArrayList =
-            ArrayList<String>(Arrays.asList(*resources.getStringArray(R.array.daysList)))
+            ArrayList<String>(listOf(*resources.getStringArray(R.array.daysList)))
 
         checkedArray = BooleanArray(newArrayList.size)
 
@@ -116,27 +113,27 @@ class AddBatchFragment : Fragment() {
         alertBuilder?.setCancelable(false)
         alertBuilder?.setMultiChoiceItems(
             daysArray,
-            checkedArray,
-            DialogInterface.OnMultiChoiceClickListener { _, index, checked ->
-                if (checked) {
+            checkedArray
+        ) { _, index, checked ->
+            if (checked) {
 
-                    daysList.add(index)
-                    daysList.sort()
-
-
-                } else {
+                daysList.add(index)
+                daysList.sort()
 
 
-                    daysList.drop(index)
-                    daysList.remove(index)
-                    checkedArray[index] = false
+            } else {
 
 
-                }
+                daysList.drop(index)
+                daysList.remove(index)
+                checkedArray[index] = false
 
-            })
 
-        alertBuilder?.setPositiveButton("Confirm", DialogInterface.OnClickListener { _, _ ->
+            }
+
+        }
+
+        alertBuilder?.setPositiveButton("Confirm") { _, _ ->
 
 
             val stringBuilder = StringBuilder()
@@ -159,14 +156,14 @@ class AddBatchFragment : Fragment() {
             binding.tvDay.text = dayPickerDays
             binding.tvDay.textSize = 15F
 
-        })
-        alertBuilder?.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ ->
+        }
+        alertBuilder?.setNegativeButton("Cancel") { dialog, _ ->
 
             dialog.dismiss()
 
 
-        })
-        alertBuilder?.setNeutralButton("Clear All", DialogInterface.OnClickListener { _, _ ->
+        }
+        alertBuilder?.setNeutralButton("Clear All") { _, _ ->
             for (j in checkedArray.indices) {
                 checkedArray[j] = false
                 daysList.clear()
@@ -174,7 +171,7 @@ class AddBatchFragment : Fragment() {
                 binding.tvDay.text = ""
             }
 
-        })
+        }
 
         alertBuilder?.create()
         alertBuilder?.show()
