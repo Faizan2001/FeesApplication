@@ -63,6 +63,18 @@
     <string name="no_data_added">No data added</string>
     <string name="previous">Previous</string>
     <string name="go_back">Go Back</string>
+    <string name="subject">Subject</string>
+    <string name="send_mail">Send Mail</string>
+    <string name="message">Message</string>
+    <string name="email_s">Email(s)</string>
+    <string name="update">Update</string>
+    <string name="contact_another_way">Contact another way</string>
+    <string name="email_student">Email Student</string>
+    <string name="call">Call</string>
+    <string name="search_all_students">Search all Students</string>
+    <string name="email_batch">Email Batch</string>
+    <string name="reset_batch_to_unpaid">Reset Batch to Unpaid</string>
+    <string name="delete_everything_here">Delete everything here</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>

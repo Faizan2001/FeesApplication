@@ -90,7 +90,7 @@ class UpdateFragment : Fragment() {
         binding.studentNameField.editText?.setText(args.currentStudent.studentName)
         binding.contactNumberField.editText?.setText(args.currentStudent.studentNumber.toString())
         binding.feesField.editText?.setText(args.currentStudent.feesAmount.toString())
-        binding.emailField.editText?.setText(args.currentStudent.studentEmail)
+        binding.mailField.editText?.setText(args.currentStudent.studentEmail)
         binding.batchNameStudent.text = args.currentStudent.batchName
         binding.autoCompleteTextView.setText(args.currentStudent.feesStatus.toString(), false)
 
@@ -562,7 +562,7 @@ class UpdateFragment : Fragment() {
         val studentNameField = binding.studentNameField.editText?.text.toString()
         val contactNumber = binding.contactNumberField.editText?.text.toString()
         val feesField = binding.feesField.editText?.text.toString()
-        val emailField = binding.emailField.editText?.text.toString()
+        val emailField = binding.mailField.editText?.text.toString()
 
 
         val validation = sharedViewModel.verifyStudentInputData(

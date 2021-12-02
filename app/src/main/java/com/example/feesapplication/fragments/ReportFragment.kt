@@ -3,7 +3,6 @@ package com.example.feesapplication.fragments
 
 import android.Manifest
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -17,7 +16,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.feesapplication.MainActivity
 import com.example.feesapplication.R
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.ReportFragmentBinding
@@ -134,8 +132,6 @@ class ReportFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
-
-
 
 
     private fun createPdf() {
@@ -282,7 +278,8 @@ class ReportFragment : Fragment() {
             Toast.makeText(
                 context,
                 "Saved in File Manager (Downloads Folder)",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
 
         }
 
@@ -302,19 +299,18 @@ class ReportFragment : Fragment() {
         )
 
 
-
-
-
-
         val hasReadPermission = ContextCompat.checkSelfPermission(
             requireActivity(),
             Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED
 
-        if(!hasReadPermission) {
+        if (!hasReadPermission) {
             ActivityCompat.requestPermissions(
                 requireActivity(),
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), PackageManager.PERMISSION_GRANTED
+                arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ), PackageManager.PERMISSION_GRANTED
             )
         } else {
 
@@ -335,12 +331,17 @@ class ReportFragment : Fragment() {
 
                 try {
                     startActivity(intent)
-                } catch (e : ActivityNotFoundException) {
-                    Toast.makeText(requireActivity(), "No Application available to display PDF", Toast.LENGTH_SHORT).show()
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "No Application available to display PDF",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             } else {
-                Toast.makeText(requireActivity(), "No PDF found to display", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "No PDF found to display", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 

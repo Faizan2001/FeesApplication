@@ -178,6 +178,17 @@ class BindingAdapter {
 
                             cardView.context.applicationContext.startActivity(chooser)
                         }
+                        R.id.mail_Student -> {
+
+                            val emailAction =
+                                StudentListFragmentDirections.actionStudentListFragmentToEmail(
+                                    currentStudent,
+                                    null
+                                )
+                            cardView.findNavController().navigate(emailAction)
+
+                        }
+
                     }
 
 

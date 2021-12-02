@@ -2,11 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/update_student"
-        android:title="Update" />
+        android:title="@string/update" />
 
     <item android:id="@+id/call_student"
-        android:title="Call" />
+        android:title="@string/call" />
+
+    <item android:id="@+id/mail_Student"
+        android:title="@string/email_student"/>
 
     <item android:id="@+id/use_another"
-        android:title="Contact" />
+        android:title="@string/contact_another_way" />
+
+
 </menu>

@@ -28,7 +28,7 @@ import com.google.android.material.snackbar.Snackbar
 class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
-    private lateinit var batchNameSaved: String
+    lateinit var batchNameSaved: String
 
 
     private val args by navArgs<StudentListFragmentArgs>()
@@ -191,6 +191,16 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
 
                     findNavController().navigate(R.id.action_studentListFragment_self)
                     populateRecyclerView()
+
+                }
+                R.id.mail_all_students -> {
+
+                    val batchNameAction =
+                        StudentListFragmentDirections.actionStudentListFragmentToEmail(
+                            null,
+                            batchNameSaved
+                        )
+                    findNavController().navigate(batchNameAction)
 
                 }
             }

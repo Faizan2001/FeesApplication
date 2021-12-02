@@ -1,6 +1,5 @@
 package com.example.feesapplication
 
-import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
@@ -26,8 +25,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         // Set up the action bar for use with the NavController
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-                val builder = VmPolicy.Builder()
-                StrictMode.setVmPolicy(builder.build())
+        val builder = VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
 
     }
 

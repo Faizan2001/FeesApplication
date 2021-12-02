@@ -499,7 +499,7 @@ class AddStudentFragment : Fragment() {
         val studentNameField = binding.studentNameField.editText?.text.toString()
         val contactNumber = binding.contactNumberField.editText?.text.toString()
         val feesField = binding.feesField.editText?.text.toString()
-        val emailField = binding.emailField.editText?.text.toString()
+        val emailField = binding.mailField.editText?.text.toString()
 
 
         val validation = sharedViewModel.verifyStudentInputData(

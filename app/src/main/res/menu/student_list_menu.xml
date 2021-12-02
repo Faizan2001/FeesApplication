@@ -37,17 +37,22 @@
 
     <item
         android:id="@+id/search_all_students"
-        android:title="Search all Students" />
+        android:title="@string/search_all_students" />
+
+    <item
+        android:id="@+id/mail_all_students"
+        android:title="@string/email_batch" />
+
 
     <item
         android:id="@+id/reset_batch"
-        android:title="Reset batch to Unpaid">
+        android:title="@string/reset_batch_to_unpaid">
     </item>
 
 
     <item
         android:id="@+id/delete_all"
-        android:title="Delete everything here" />
+        android:title="@string/delete_everything_here" />
 
 
 
