@@ -75,6 +75,12 @@
     <string name="email_batch">Email Batch</string>
     <string name="reset_batch_to_unpaid">Reset Batch to Unpaid</string>
     <string name="delete_everything_here">Delete everything here</string>
+    <string name="number_s">Number(s)</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="sms_student">SMS Student</string>
+    <string name="name_s">Name(s)</string>
+    <string name="sms_batch">SMS batch</string>
+    <string name="sms_batch_full">SMS Batch</string>
     <string-array name="feesStatuses">
         <item>None</item>
         <item>Paid</item>

@@ -161,22 +161,15 @@ class BindingAdapter {
                             cardView.context.startActivity(callIntent)
 
                         }
-                        R.id.use_another -> {
+                        R.id.SMS -> {
 
-                            val mCalendar = Calendar.getInstance()
-                            val month: String = mCalendar.getDisplayName(
-                                Calendar.MONTH,
-                                Calendar.LONG,
-                                Locale.getDefault()
-                            )
+                            val numberAction =
+                                StudentListFragmentDirections.actionStudentListFragmentToSMS(
+                                    currentStudent,
+                                    null
+                                )
+                            cardView.findNavController().navigate(numberAction)
 
-                            val intent = Intent(Intent.ACTION_SEND).setType("text/plain")
-                            intent.putExtra(Intent.EXTRA_TEXT, month)
-                            val title = "Contact Student using"
-                            val chooser = Intent.createChooser(intent, title)
-                            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
-                            cardView.context.applicationContext.startActivity(chooser)
                         }
                         R.id.mail_Student -> {
 

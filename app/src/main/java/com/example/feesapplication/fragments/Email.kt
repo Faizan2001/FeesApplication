@@ -13,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.FragmentEmailBinding
 import com.example.feesapplication.list.utils.observeOnce
-import java.util.*
 
 class Email : Fragment() {
 
@@ -29,14 +28,8 @@ class Email : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val mCalendar = Calendar.getInstance()
-        val month = mCalendar.getDisplayName(
-            Calendar.MONTH,
-            Calendar.LONG,
-            Locale.getDefault()
-        )
 
-        _binding = FragmentEmailBinding.inflate(inflater, container, false)
+        _binding = FragmentEmailBinding.inflate(layoutInflater, container, false)
 
         val batchNameReceived = args.batchNameSent
 
@@ -46,7 +39,6 @@ class Email : Fragment() {
         if (args.emailStudent != null) {
 
             binding.mailField.editText?.setText(currentStudent?.studentEmail)
-            binding.messageField.editText?.setText("Polite Reminder for the month of $month")
 
         } else if (args.emailStudent == null) {
 
@@ -65,7 +57,6 @@ class Email : Fragment() {
                         }
 
                         binding.mailField.editText?.setText(allEmails.toString())
-                        binding.messageField.editText?.setText("Polite Reminder for the month of $month")
 
 
                     })

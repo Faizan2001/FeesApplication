@@ -203,6 +203,18 @@ class StudentListFragment : Fragment(), SearchView.OnQueryTextListener {
                     findNavController().navigate(batchNameAction)
 
                 }
+                R.id.sms_all_students -> {
+
+
+                    val smsBatchAction =
+                        StudentListFragmentDirections.actionStudentListFragmentToSMS(
+                            null,
+                            batchNameSaved
+                        )
+                    findNavController().navigate(smsBatchAction)
+
+
+                }
             }
         }
 

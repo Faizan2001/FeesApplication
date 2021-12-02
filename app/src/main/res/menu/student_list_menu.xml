@@ -43,6 +43,9 @@
         android:id="@+id/mail_all_students"
         android:title="@string/email_batch" />
 
+    <item
+        android:id="@+id/sms_all_students"
+        android:title="@string/sms_batch_full" />
 
     <item
         android:id="@+id/reset_batch"
