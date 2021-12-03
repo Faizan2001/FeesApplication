@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.feesapplication.databinding.FragmentViewPagerBinding
-import com.example.feesapplication.onBoarding.onboardingScreens.First
-import com.example.feesapplication.onBoarding.onboardingScreens.Second
-import com.example.feesapplication.onBoarding.onboardingScreens.Third
-import com.example.feesapplication.onBoarding.onboardingScreens.Welcome
+import com.example.feesapplication.onBoarding.onboardingScreens.*
 
 
 class ViewPagerFragment : Fragment() {
@@ -29,7 +26,8 @@ class ViewPagerFragment : Fragment() {
             Welcome(),
             First(),
             Second(),
-            Third()
+            Third(),
+            Fourth()
         )
 
         val adapter = ViewPagerAdapter(

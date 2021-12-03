@@ -263,19 +263,19 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     bText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     sText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     reportViewText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     titleText.text = getString(R.string.good_m)
@@ -299,19 +299,19 @@ class DashboardFragment : Fragment(), SearchView.OnQueryTextListener {
                     bText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     sText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     reportViewText.setTextColor(
                         ContextCompat.getColor(
                             requireContext(),
-                            R.color.white
+                            R.color.primaryDarkColor
                         )
                     )
                     titleText.text = "Good Afternoon"

@@ -119,10 +119,18 @@
             app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_studentListFragment_to_email"
-            app:destination="@id/email" />
+            app:destination="@id/email"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_studentListFragment_to_SMS"
-            app:destination="@id/SMS" />
+            app:destination="@id/SMS"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
@@ -180,6 +188,10 @@
         <action
             android:id="@+id/action_email_to_studentListFragment"
             app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/email"
             app:popUpToInclusive="true" />
         <argument
@@ -200,6 +212,10 @@
         <action
             android:id="@+id/action_SMS_to_studentListFragment"
             app:destination="@id/studentListFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/SMS"
             app:popUpToInclusive="true" />
         <argument

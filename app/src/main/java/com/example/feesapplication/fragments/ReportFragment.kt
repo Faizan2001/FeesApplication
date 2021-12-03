@@ -299,12 +299,12 @@ class ReportFragment : Fragment() {
         )
 
 
-        val hasReadPermission = ContextCompat.checkSelfPermission(
+        val hasPermission = ContextCompat.checkSelfPermission(
             requireActivity(),
             Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED
 
-        if (!hasReadPermission) {
+        if (!hasPermission) {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(

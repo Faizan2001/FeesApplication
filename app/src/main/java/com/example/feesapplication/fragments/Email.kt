@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.feesapplication.data.viewmodel.StudentViewModel
 import com.example.feesapplication.databinding.FragmentEmailBinding
@@ -51,8 +52,9 @@ class Email : Fragment() {
 
                         for (i in list.indices) {
 
+                            allEmails.append("\n")
                             allEmails.append(list[i].studentEmail)
-                            allEmails.append(" ")
+
 
                         }
 
@@ -72,7 +74,7 @@ class Email : Fragment() {
             val subject = binding.subjectField.editText?.text.toString()
             val message = binding.messageField.editText?.text.toString()
 
-            val emailAddresses = email.split(" ".toRegex()).toTypedArray()
+            val emailAddresses = email.split("\n".toRegex()).toTypedArray()
 
             val intent = Intent(Intent.ACTION_SENDTO).apply {
 
@@ -86,6 +88,7 @@ class Email : Fragment() {
 
             if (intent.resolveActivity(requireActivity().packageManager) != null) {
                 startActivity(intent)
+                findNavController().popBackStack()
             } else {
                 Toast.makeText(requireActivity(), "No Email Applications Found", Toast.LENGTH_SHORT)
                     .show()
