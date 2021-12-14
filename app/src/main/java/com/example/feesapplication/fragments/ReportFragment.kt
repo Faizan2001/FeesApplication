@@ -77,10 +77,10 @@ class ReportFragment : Fragment() {
 
                 // fileOut.appendText("\n")
                 // fileOut.appendText("${(i) + 1}," + student[i].studentName + "," + student[i].studentNumber + "," + student[i].studentEmail + "," + student[i].batchName + "," + student[i].feesAmount + "," + student[i].feesStatus)
-                stringBuilder.append("${(i) + 1}) " + student[i].studentName + " [" + student[i].batchName + "] \n Current Status : " + student[i].feesStatus.toString() + ", " + student[i].feesAmount.toString() + "\n" + "Months Paid: " + student[i].monthsPaid + "\n" + "\n" + "Contact Number: " + student[i].studentNumber.toString() + "\nMail: " + student[i].studentEmail)
+                stringBuilder.append("${(i) + 1}) " + student[i].studentName + " [" + student[i].batchName + "] \n Current Status : " + student[i].feesStatus.toString() + ", " + student[i].feesAmount.toString() + "\n" + "\n" + "Months Paid: " + student[i].monthsPaid + "\n" + "\n" + "Contact Number: " + student[i].studentNumber.toString() + "\nMail: " + student[i].studentEmail)
                 stringBuilder.append("\n")
                 stringBuilder.append("\n")
-                stringBuilder.append("━━━━━━━━━━━━━━━━━━━━")
+                stringBuilder.append("━━━━━━━━━━\nEND\n━━━━━━━━━━")
                 stringBuilder.append("\n")
                 stringBuilder.append("\n")
                 if (student[i].feesStatus.toString().contains("Paid", false)) {
@@ -156,7 +156,7 @@ class ReportFragment : Fragment() {
             doc.open()
 
             val p0 = Paragraph(
-                "g.dev/FaizanSyed\n",
+                "g.dev/FaizanSyed\n\n",
                 FontFactory.getFont("Times New Roman", 15f, Font.NORMAL)
             )
 
@@ -277,7 +277,7 @@ class ReportFragment : Fragment() {
             doc.close()
             Toast.makeText(
                 context,
-                "Saved in File Manager (Downloads Folder)",
+                "PDF Saved in File Manager (Downloads Folder)",
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -288,7 +288,7 @@ class ReportFragment : Fragment() {
     }
 
 
-    // Views PDF if API < 29
+    //
     private fun viewPdf() {
 
         val mCalendar = Calendar.getInstance()

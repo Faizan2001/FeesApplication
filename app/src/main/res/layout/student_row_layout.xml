@@ -26,6 +26,7 @@
             android:background="@drawable/row_item_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:onOptionsMenu="@{studentInfo}"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +41,6 @@
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="10dp"
                 android:feesStatusColor="@{studentInfo.feesStatus}"
-                android:onOptionsMenu="@{studentInfo}"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

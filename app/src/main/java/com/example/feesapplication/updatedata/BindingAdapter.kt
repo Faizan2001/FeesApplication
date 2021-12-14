@@ -134,11 +134,11 @@ class BindingAdapter {
 
         @BindingAdapter("android:onOptionsMenu")
         @JvmStatic
-        fun onOptionsCardView(cardView: CardView, currentStudent: Student) {
+        fun onOptionsCardView(view: View, currentStudent: Student) {
 
 
-            cardView.setOnClickListener {
-                val popUp = PopupMenu(cardView.context, it)
+            view.setOnClickListener {
+                val popUp = PopupMenu(view.context, it.findViewById(R.id.fees_status))
                 popUp.menuInflater.inflate(R.menu.student_options_menu, popUp.menu)
                 popUp.setOnMenuItemClickListener { menuItem: MenuItem ->
 
@@ -148,17 +148,17 @@ class BindingAdapter {
                                 StudentListFragmentDirections.actionStudentListFragmentToUpdateFragment(
                                     currentStudent
                                 )
-                            cardView.findNavController().navigate(action)
+                            view.findNavController().navigate(action)
                         }
 
                         R.id.call_student -> {
-                            val callIntent: Intent =
+                            val callIntent =
                                 Intent(
                                     Intent.ACTION_DIAL,
                                     Uri.parse("tel:${currentStudent.studentNumber}")
                                 )
 
-                            cardView.context.startActivity(callIntent)
+                            view.context.startActivity(callIntent)
 
                         }
                         R.id.SMS -> {
@@ -168,7 +168,7 @@ class BindingAdapter {
                                     currentStudent,
                                     null
                                 )
-                            cardView.findNavController().navigate(numberAction)
+                            view.findNavController().navigate(numberAction)
 
                         }
                         R.id.mail_Student -> {
@@ -178,7 +178,7 @@ class BindingAdapter {
                                     currentStudent,
                                     null
                                 )
-                            cardView.findNavController().navigate(emailAction)
+                            view.findNavController().navigate(emailAction)
 
                         }
 

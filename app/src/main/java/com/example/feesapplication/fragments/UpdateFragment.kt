@@ -37,20 +37,8 @@ class UpdateFragment : Fragment() {
     private lateinit var currentBatch: Batch
 
     private val MONTHS by lazy {
-        mutableListOf(
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-        )
+        val mutableListOf = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
+        mutableListOf
     }
 
 

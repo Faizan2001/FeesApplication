@@ -35,20 +35,8 @@ class AddStudentFragment : Fragment() {
     private lateinit var currentBatch: Batch
 
     private val MONTHS by lazy {
-        mutableListOf(
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-        )
+        val mutableListOf = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
+        mutableListOf
     }
 
     private var _binding: AddStudentFragmentBinding? = null
@@ -73,23 +61,9 @@ class AddStudentFragment : Fragment() {
         _binding = AddStudentFragmentBinding.inflate(layoutInflater, container, false)
 
 
-        //Months according to Chips checked
-        binding.chipGroup.children.forEach {
-            (it as Chip).setOnCheckedChangeListener { _, _ ->
-
-            }
-        }
-
 
         // Set Menu
         setHasOptionsMenu(true)
-
-
-
-
-
-
-
 
 
         binding.autoCompleteTextView.onItemClickListener =
@@ -523,11 +497,7 @@ class AddStudentFragment : Fragment() {
 
             studentViewModel.insertStudent(newStudentData)
             findNavController().popBackStack()
-            /*  val action =
-                  AddStudentFragmentDirections.actionAddStudentFragment2ToStudentListFragment(
-                      currentBatch
-                  )
-              findNavController().navigate(action) */
+
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
                 .show()
