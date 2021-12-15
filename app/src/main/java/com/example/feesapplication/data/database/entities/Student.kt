@@ -13,7 +13,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "students")
 data class Student(
     @PrimaryKey(autoGenerate = false) val studentName: String,
-    @ColumnInfo(name = "number") val studentNumber: Long,
+    @ColumnInfo(name = "number") val studentNumber: String,
     @ColumnInfo(name = "fees") val feesAmount: Long,
     @ColumnInfo(name = "status") var feesStatus: FeeStatus,
     @ColumnInfo(name = "email") val studentEmail: String,

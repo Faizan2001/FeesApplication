@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.feesapplication.data.database.entities.Batch
 import com.example.feesapplication.data.database.entities.Student
 
-@Database(entities = [Student::class, Batch::class], version = 1, exportSchema = false)
+@Database(entities = [Student::class, Batch::class], version = 2, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class StudentRoomDatabase : RoomDatabase() {
 

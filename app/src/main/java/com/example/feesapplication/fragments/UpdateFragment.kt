@@ -76,7 +76,7 @@ class UpdateFragment : Fragment() {
 
 
         binding.studentNameField.editText?.setText(args.currentStudent.studentName)
-        binding.contactNumberField.editText?.setText(args.currentStudent.studentNumber.toString())
+        binding.contactNumberField.editText?.setText(args.currentStudent.studentNumber)
         binding.feesField.editText?.setText(args.currentStudent.feesAmount.toString())
         binding.mailField.editText?.setText(args.currentStudent.studentEmail)
         binding.batchNameStudent.text = args.currentStudent.batchName
@@ -564,7 +564,7 @@ class UpdateFragment : Fragment() {
             // Green signal to save data into database
             val newStudentData = Student(
                 studentName = studentNameField,
-                studentNumber = contactNumber.toLong(),
+                studentNumber = contactNumber,
                 feesAmount = feesField.toLong(),
                 feesStatus = sharedViewModel.parseFeesStatus(feeStatusSaved),
                 studentEmail = emailField,

@@ -487,7 +487,7 @@ class AddStudentFragment : Fragment() {
             // Green signal to save data into database
             val newStudentData = Student(
                 studentName = studentNameField,
-                studentNumber = contactNumber.toLong(),
+                studentNumber = contactNumber,
                 feesAmount = feesField.toLong(),
                 feesStatus = sharedViewModel.parseFeesStatus(feeStatusSaved),
                 studentEmail = emailField,

@@ -43,10 +43,10 @@ class SMS : Fragment() {
 
         if (args.currentSMSStudent != null) {
             val studentName = args.currentSMSStudent!!.studentName
-            val studentNumber = args.currentSMSStudent!!.studentNumber.toString()
+            val studentNumber = args.currentSMSStudent!!.studentNumber
 
             binding.nameField.editText?.setText(studentName)
-            binding.numbersField.editText?.setText("0$studentNumber")
+            binding.numbersField.editText?.setText(studentNumber)
 
 
 
@@ -106,7 +106,6 @@ class SMS : Fragment() {
 
                             studentNames.append(list[i].studentName)
                             studentNames.append("\n")
-                            studentNumbers.append("0")
                             studentNumbers.append(list[i].studentNumber)
                             studentNumbers.append("\n")
 
