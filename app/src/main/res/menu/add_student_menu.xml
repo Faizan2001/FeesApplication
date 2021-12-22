@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/save_student"
-        android:title="@string/add"
         android:icon="@drawable/ic__save_icon"
         android:iconTint="@color/white"
+        android:title="@string/add"
         app:showAsAction="ifRoom" />
 
 </menu>

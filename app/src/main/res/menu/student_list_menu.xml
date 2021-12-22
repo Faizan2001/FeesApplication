@@ -5,24 +5,23 @@
 
     <item
         android:id="@+id/student_search"
-        android:title="@string/search"
         android:icon="@drawable/ic_search_icon"
-        app:showAsAction="always|withText|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|withText|collapseActionView" />
 
     <item
         android:id="@+id/add_student"
-        android:title="@string/add_student"
         android:icon="@drawable/ic__add_icon"
         android:iconTint="@color/white"
+        android:title="@string/add_student"
         app:showAsAction="ifRoom" />
 
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/dashboard_sortBy"
-            android:title="@string/sort_by_status" >
+            android:title="@string/sort_by_status">
             <menu>
                 <item
                     android:id="@+id/menu_paid_fees"
@@ -49,14 +48,12 @@
 
     <item
         android:id="@+id/reset_batch"
-        android:title="@string/reset_batch_to_unpaid">
-    </item>
+        android:title="@string/reset_batch_to_unpaid"></item>
 
 
     <item
         android:id="@+id/delete_all"
         android:title="@string/delete_everything_here" />
-
 
 
 </menu>

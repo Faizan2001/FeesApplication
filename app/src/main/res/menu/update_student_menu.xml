@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/update_student"
-        android:title="Update"
         android:icon="@drawable/ic_update_student"
         android:iconTint="@color/white"
+        android:title="Update"
         app:showAsAction="ifRoom" />
 
 </menu>

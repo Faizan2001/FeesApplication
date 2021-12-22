@@ -35,10 +35,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
+                android:inputType="text"
                 android:maxLength="31"
+                android:textColor="@color/white"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -50,9 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            app:helperText=" "
             android:layout_marginEnd="32dp"
             android:hint="@string/contact_number"
+            app:helperText=" "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/studentNameField"
@@ -90,8 +90,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:fontFamily="@font/roboto_regular"
+                android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 android:textStyle="normal" />
 
@@ -117,8 +117,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/white"
                 android:textStyle="normal" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -161,9 +161,9 @@
                 android:id="@+id/autoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/status"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto_regular"
+                android:hint="@string/status"
                 android:inputType="none"
                 android:textColor="@color/white"
                 android:textStyle="bold|italic" />
@@ -318,8 +318,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/payment_received_for"
-            android:textSize="16sp"
             android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/mailField"

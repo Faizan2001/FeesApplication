@@ -34,10 +34,8 @@ class AddStudentFragment : Fragment() {
     private lateinit var batchNameSaved: String
     private lateinit var currentBatch: Batch
 
-    private val MONTHS by lazy {
-        val mutableListOf = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
-        mutableListOf
-    }
+    private val MONTHS = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
+
 
     private var _binding: AddStudentFragmentBinding? = null
     private val binding get() = _binding!!
@@ -94,10 +92,6 @@ class AddStudentFragment : Fragment() {
         calendar[Calendar.MONTH] = Calendar.JANUARY
         val jan = calendar.timeInMillis
 
-        calendar.timeInMillis = today
-        calendar[Calendar.MONTH] = Calendar.DECEMBER
-        val dec = calendar.timeInMillis
-
         calendar[Calendar.MONTH] = Calendar.FEBRUARY
         val feb = calendar.timeInMillis
 
@@ -127,6 +121,9 @@ class AddStudentFragment : Fragment() {
 
         calendar[Calendar.MONTH] = Calendar.NOVEMBER
         val nov = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.DECEMBER
+        val dec = calendar.timeInMillis
 
 
         val outputDateFormat = SimpleDateFormat("dd", Locale.getDefault()).apply {

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/update_student"
+    <item
+        android:id="@+id/update_student"
         android:title="@string/update" />
 
-    <item android:id="@+id/call_student"
+    <item
+        android:id="@+id/call_student"
         android:title="@string/call" />
 
-    <item android:id="@+id/SMS"
+    <item
+        android:id="@+id/SMS"
         android:title="@string/sms_student" />
 
-    <item android:id="@+id/mail_Student"
-        android:title="@string/email_student"/>
+    <item
+        android:id="@+id/mail_Student"
+        android:title="@string/email_student" />
 
 
 </menu>

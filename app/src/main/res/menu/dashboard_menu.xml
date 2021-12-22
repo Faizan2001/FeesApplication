@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
     <item
         android:id="@+id/batch_search"
-        android:title="@string/search"
-        android:iconTint="@color/white"
         android:icon="@drawable/batch_search"
-        app:showAsAction="always|withText|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+        android:iconTint="@color/white"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|withText|collapseActionView" />
 
     <item
         android:id="@+id/reset_all"
-        android:title="Reset all to Unpaid">
-    </item>
+        android:title="Reset all to Unpaid"></item>
 
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/dashboard_sortBydays"
-            android:title="Sort By Days" >
+            android:title="Sort By Days">
             <menu>
                 <item
                     android:id="@+id/showAllBatches"

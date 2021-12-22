@@ -1,13 +1,11 @@
-<TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-         android:padding="14dp"
-         android:textColor="?attr/editTextColor"
-    android:textStyle="italic"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="14dp"
+    android:text="TextView"
+    android:textColor="?attr/editTextColor"
     android:textSize="20sp"
 
 
-        xmlns:android = "http://schemas.android.com/apk/res/android"
-    />
+    android:textStyle="italic" />

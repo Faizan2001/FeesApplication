@@ -5,14 +5,14 @@
     android:orientation="vertical">
 
     <data>
-        <variable
-        name = "sharedViewModel"
-        type= "com.example.feesapplication.data.viewmodel.SharedViewModel" />
 
         <variable
-            name = "studentViewModel"
-            type= "com.example.feesapplication.data.viewmodel.StudentViewModel" />
+            name="sharedViewModel"
+            type="com.example.feesapplication.data.viewmodel.SharedViewModel" />
 
+        <variable
+            name="studentViewModel"
+            type="com.example.feesapplication.data.viewmodel.StudentViewModel" />
 
 
     </data>
@@ -33,7 +33,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

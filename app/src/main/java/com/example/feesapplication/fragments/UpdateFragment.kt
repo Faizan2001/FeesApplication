@@ -36,10 +36,7 @@ class UpdateFragment : Fragment() {
     private lateinit var currentStudent: Student
     private lateinit var currentBatch: Batch
 
-    private val MONTHS by lazy {
-        val mutableListOf = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
-        mutableListOf
-    }
+    private val MONTHS = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
 
 
     private var _binding: FragmentUpdateBinding? = null
@@ -134,40 +131,78 @@ class UpdateFragment : Fragment() {
         Log.d("Show", "Tags $stringRetrieved")
 
 
+
+
         if (stringRetrieved.contains("January", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" January").substringAfter("(")
+            MONTHS[0] = dateFound
             binding.janChip.isChecked = true
         }
         if (stringRetrieved.contains("February", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" February").substringAfterLast("(")
+            MONTHS[1] = dateFound
             binding.febChip.isChecked = true
         }
         if (stringRetrieved.contains("March", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" March").substringAfterLast("(")
+            MONTHS[2] = dateFound
             binding.marChip.isChecked = true
         }
         if (stringRetrieved.contains("April", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" April").substringAfterLast("(")
+            MONTHS[3] = dateFound
             binding.aprChip.isChecked = true
         }
         if (stringRetrieved.contains("May", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" May").substringAfterLast("(")
+            MONTHS[4] = dateFound
             binding.mayChip.isChecked = true
         }
         if (stringRetrieved.contains("June", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" June").substringAfterLast("(")
+            MONTHS[5] = dateFound
             binding.juneChip.isChecked = true
         }
         if (stringRetrieved.contains("July", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" July").substringAfterLast("(")
+            MONTHS[6] = dateFound
             binding.julChip.isChecked = true
         }
         if (stringRetrieved.contains("August", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" August").substringAfterLast("(")
+            MONTHS[7] = dateFound
             binding.augChip.isChecked = true
         }
         if (stringRetrieved.contains("September", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" September").substringAfterLast("(")
+            MONTHS[8] = dateFound
             binding.sepChip.isChecked = true
         }
         if (stringRetrieved.contains("October", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" October").substringAfterLast("(")
+            MONTHS[9] = dateFound
             binding.octChip.isChecked = true
         }
         if (stringRetrieved.contains("November", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" November").substringAfterLast("(")
+            MONTHS[10] = dateFound
             binding.novChip.isChecked = true
         }
         if (stringRetrieved.contains("December", true)) {
+
+            val dateFound = stringRetrieved.substringBefore(" December").substringAfterLast("(")
+            MONTHS[11] = dateFound
             binding.decChip.isChecked = true
         }
 
@@ -178,6 +213,8 @@ class UpdateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
         val today = MaterialDatePicker.todayInUtcMilliseconds()
         val calendar = Calendar.getInstance(TimeZone.getDefault())
 
@@ -185,10 +222,6 @@ class UpdateFragment : Fragment() {
 
         calendar[Calendar.MONTH] = Calendar.JANUARY
         val jan = calendar.timeInMillis
-
-        calendar.timeInMillis = today
-        calendar[Calendar.MONTH] = Calendar.DECEMBER
-        val dec = calendar.timeInMillis
 
         calendar[Calendar.MONTH] = Calendar.FEBRUARY
         val feb = calendar.timeInMillis
@@ -219,6 +252,9 @@ class UpdateFragment : Fragment() {
 
         calendar[Calendar.MONTH] = Calendar.NOVEMBER
         val nov = calendar.timeInMillis
+
+        calendar[Calendar.MONTH] = Calendar.DECEMBER
+        val dec = calendar.timeInMillis
 
 
         val outputDateFormat = SimpleDateFormat("dd", Locale.getDefault()).apply {
