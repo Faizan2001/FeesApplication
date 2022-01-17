@@ -213,8 +213,6 @@ class UpdateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
         val today = MaterialDatePicker.todayInUtcMilliseconds()
         val calendar = Calendar.getInstance(TimeZone.getDefault())
 
